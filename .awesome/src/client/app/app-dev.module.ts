@@ -13,8 +13,8 @@ import { InMemoryDataService } from './core';
     // and returns simulated server responses.
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
-      delay: 0
-      // passThruUnknownUrl: true
+      delay: 0,
+      passThruUnknownUrl: true
     })
   ],
   providers: [{ provide: InMemoryDataService, useExisting: InMemoryDbService }],

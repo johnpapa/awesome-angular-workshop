@@ -51,12 +51,17 @@ a {
   flex: 1 auto;
 }
 
+.spacer {
+  order: 0;
+  flex: 18 0px;
+}
+
 .avatar-1 {
-  order: 2;
+  order: 1;
 }
 
 .avatar-2 {
-  order: 3;
+  order: 2;
 }
 
 .avatar-1 > i,

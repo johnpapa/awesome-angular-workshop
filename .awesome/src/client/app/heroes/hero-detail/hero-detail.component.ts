@@ -4,7 +4,6 @@ import {
   ElementRef,
   EventEmitter,
   OnChanges,
-  OnInit,
   Output,
   ViewChild,
   ChangeDetectionStrategy,
@@ -20,7 +19,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./hero-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeroDetailComponent implements OnChanges, OnInit {
+export class HeroDetailComponent implements OnChanges {
   @Input() hero: Hero;
   @Output() unselect = new EventEmitter<string>();
   @Output() add = new EventEmitter<Hero>();
@@ -28,7 +27,6 @@ export class HeroDetailComponent implements OnChanges, OnInit {
 
   @ViewChild('name') nameElement: ElementRef;
 
-  // editingHero: Hero;
   addMode = false;
 
   form = this.fb.group({
@@ -39,17 +37,9 @@ export class HeroDetailComponent implements OnChanges, OnInit {
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
-    // this.addMode = !this.hero;
-    // this.editingHero = { ...this.hero };
-  }
-
   ngOnChanges(changes: SimpleChanges) {
-    // if (!changes.hero.firstChange) {
-      this.setFocus();
-    // }
+    this.setFocus();
     if (this.hero && this.hero.id) {
-      // this.editingHero = { ...this.hero };
       this.form.patchValue(this.hero);
       this.addMode = false;
     } else {
@@ -64,10 +54,6 @@ export class HeroDetailComponent implements OnChanges, OnInit {
     }
     this.clear();
   }
-  // addHero() {
-  //   this.add.emit({ ...this.hero, ...this.editingHero });
-  //   this.clear();
-  // }
 
   clear() {
     this.unselect.emit();
@@ -92,8 +78,4 @@ export class HeroDetailComponent implements OnChanges, OnInit {
     }
     this.clear();
   }
-  // updateHero() {
-  //   this.add.emit({ ...this.hero, ...this.editingHero });
-  //   this.clear();
-  // }
 }

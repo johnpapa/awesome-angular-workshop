@@ -4,7 +4,6 @@ import {
   ElementRef,
   EventEmitter,
   OnChanges,
-  OnInit,
   Output,
   ViewChild,
   SimpleChanges
@@ -17,7 +16,7 @@ import { Villain } from '../../core';
   templateUrl: './villain-detail.component.html',
   styleUrls: ['./villain-detail.component.scss']
 })
-export class VillainDetailComponent implements OnChanges, OnInit {
+export class VillainDetailComponent implements OnChanges {
   @Input() villain: Villain;
   @Output() unselect = new EventEmitter<string>();
   @Output() add = new EventEmitter<Villain>();
@@ -30,29 +29,21 @@ export class VillainDetailComponent implements OnChanges, OnInit {
 
   constructor() {}
 
-  // ngAfterViewInit() {
-  //   this.setFocus();
-  // }
-
-  ngOnInit() {
-    // this.addMode = !this.villain;
-    // this.editingVillain = { ...this.villain };
-  }
-
   ngOnChanges(changes: SimpleChanges) {
-    // if (!changes.villain.firstChange) {
-    //   this.setFocus();
-    // }
-    // this.editingVillain = { ...this.villain };
-    // if (this.villain && this.villain.id) {
-    //   this.addMode = false;
-    // } else {
-    //   this.addMode = true;
-    // }
+    if (!changes.villain.firstChange) {
+      this.setFocus();
+    }
+    if (this.villain && this.villain.id) {
+      this.editingVillain = { ...this.villain };
+      this.addMode = false;
+    } else {
+      this.editingVillain = { id: undefined, name: '', saying: '' };
+      this.addMode = true;
+    }
   }
 
   addVillain() {
-    this.add.emit({ ...this.villain, ...this.editingVillain });
+    this.add.emit(this.editingVillain);
     this.clear();
   }
 
@@ -73,7 +64,7 @@ export class VillainDetailComponent implements OnChanges, OnInit {
   }
 
   updateVillain() {
-    this.add.emit({ ...this.villain, ...this.editingVillain });
+    this.update.emit(this.editingVillain);
     this.clear();
   }
 }

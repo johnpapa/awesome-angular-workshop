@@ -28,7 +28,9 @@ export class VillainsComponent implements OnInit {
 
   deleteVillain(villain: Villain) {
     this.unselect();
-    this.villainService.deleteVillain(villain).subscribe();
+    this.villainService
+      .deleteVillain(villain)
+      .subscribe(() => (this.villains = this.villains.filter(h => h.id !== villain.id)));
   }
 
   enableAddMode() {
@@ -47,11 +49,17 @@ export class VillainsComponent implements OnInit {
   }
 
   update(villain: Villain) {
-    this.villainService.updateVillain(villain).subscribe();
+    this.villainService
+      .updateVillain(villain)
+      .subscribe(
+        () => (this.villains = this.villains.map(h => (h.id === villain.id ? villain : h)))
+      );
   }
 
   add(villain: Villain) {
-    this.villainService.addVillain(villain).subscribe();
+    this.villainService
+      .addVillain(villain)
+      .subscribe(addedvillain => (this.villains = this.villains.concat(addedvillain)));
   }
 
   unselect() {

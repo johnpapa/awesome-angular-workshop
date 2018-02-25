@@ -1,5 +1,13 @@
 # Awesome
 
+## Apps
+
+All apps are in the `src/client` folder. There is a `src/server` folder containing a node server, as some other apps may or may not use it.
+
+### 0-awesome
+
+`0-awesome` is our basic template app. All other apps in the `src/client` folder are derived from `0-awesome` and then modified as needed.
+
 ## Running Multiple Apps in the Same src folder
 
 Example: we make a lab called `new-lab`

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { finalize } from 'rxjs/operators';
 
 import { Villain } from '../../core';
 import { VillainService } from '../villain.service';
@@ -27,9 +28,11 @@ export class VillainsComponent implements OnInit {
   }
 
   deleteVillain(villain: Villain) {
+    this.loading = true;
     this.unselect();
     this.villainService
       .deleteVillain(villain)
+      .pipe(finalize(() => (this.loading = false)))
       .subscribe(() => (this.villains = this.villains.filter(h => h.id !== villain.id)));
   }
 
@@ -39,7 +42,11 @@ export class VillainsComponent implements OnInit {
   }
 
   getVillains() {
-    this.villainService.getVillains().subscribe(villains => (this.villains = villains));
+    this.loading = true;
+    this.villainService
+      .getVillains()
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe(villains => (this.villains = villains));
     this.unselect();
   }
 
@@ -49,16 +56,20 @@ export class VillainsComponent implements OnInit {
   }
 
   update(villain: Villain) {
+    this.loading = true;
     this.villainService
       .updateVillain(villain)
+      .pipe(finalize(() => (this.loading = false)))
       .subscribe(
         () => (this.villains = this.villains.map(h => (h.id === villain.id ? villain : h)))
       );
   }
 
   add(villain: Villain) {
+    this.loading = true;
     this.villainService
       .addVillain(villain)
+      .pipe(finalize(() => (this.loading = false)))
       .subscribe(addedvillain => (this.villains = this.villains.concat(addedvillain)));
   }
 

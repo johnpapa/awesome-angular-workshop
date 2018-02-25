@@ -46,39 +46,53 @@ Example: make a lab called `n-new-lab` where `n` is an integer.
 
 1. Create the `n-new-lab` _app folder_ under `src/client`.
 
+2) Add a new app object to the `"apps"` array in [`angular-cli.json`](./.angular-cli.json):
 
-2. Add a new app object to the `"apps"` array in [`angular-cli.json`](./.angular-cli.json):
-
-  * make it a copy of an existing app object
-  * set its `"name"` to `"n-new-lab"`
-  * set `"outDir"` to `"dist/n-new-lab"`
-  * set `"main"` to `"main.n-new-lab.ts"`
-
+* make it a copy of an existing app object
+* set its `"name"` to `"n-new-lab"`
+* set `"outDir"` to `"dist/n-new-lab"`
+* set `"main"` to `"main.n-new-lab.ts"`
 
 3. Update the lazy loaded routes that start with `0-awesome/` to `n-new-lab/` in `n-new-lab/app-routing.module.ts`.
 
+4) Reset the toolbar title in `n-new-lab/core/toolbar/toolbar.component.html` to "Awesome Lab n: New Lab".
 
-4. Reset the toolbar title in `n-new-lab/core/toolbar/toolbar.component.html` to "Awesome Lab n: New Lab".
-
->Hint: steps #3 and #4 are easy with search-and-replace _AFTER_ limiting `files-to-include` to `"n-new-lab"`.
-
+> Hint: steps #3 and #4 are easy with search-and-replace _AFTER_ limiting `files-to-include` to `"n-new-lab"`.
 
 5. Copy [`main.0-awesome.ts`](src/client/main.0-awesome.ts) to `main.n-new-lab.ts` and update the paths to the app modules:
-    ```
-    import { AppModule } from './n-new-lab/app.module';
-    import { AppDevModule } from './n-new-lab/app-dev.module';
-    ```
+
+   ```
+   import { AppModule } from './n-new-lab/app.module';
+   import { AppDevModule } from './n-new-lab/app-dev.module';
+   ```
 
 6. Add a node script to the [`package.json`](package.json), setting the last
-two port digits (first digit is for `n`, second for the `new-lab` variations).
+   two port digits (first digit is for `n`, second for the `new-lab` variations).
 
-    ```bash
-    "0-new-lab": "ng serve -a n-new-lab -o -p 90n0",
-    ```
+       ```bash
+       "0-new-lab": "ng serve -a n-new-lab -o -p 90n0",
+       ```
 
-    >All labs run in the port 9000 series.
+       >All labs run in the port 9000 series.
+
+7. Update the `labTitle` property of the `ToolbarComponent` to `n-new-lab-xxx`, where n is the number of the lab and xxx is either `begin` or `end`
+
+   ```typescript
+   export class ToolbarComponent {
+     labTitle = 'n-new-lab';
+     labState = 'begin';
+   }
+   ```
+
+8. Uncomment the appropriate lab state (e.g. begin or end) in `toolbar.component.scss`
+
+   ```css
+   // @include primary-background-contrast-color; // end
+   // @include accent-background-color; // begin
+   ```
 
 ## Build and Serve
+
 To see a **list of the npm lab scripts**
 
 ```bash

@@ -14,6 +14,12 @@
   $accent-font-color: map-get($accent, 800);
   color: $accent-font-color;
 }
+@mixin accent-background-color {
+  $accent-color: map-get($accent, 700);
+  $accent-font-color: map-get(map-get($accent, contrast), 700);
+  background-color: $accent-color;
+  color: $accent-font-color !important;
+}
 @mixin selected-style {
   $background-color: map-get($accent, 800);
   $font-color: map-get(map-get($accent, contrast), 800);

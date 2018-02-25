@@ -6,11 +6,11 @@
   "apps": [
     {
       "name": "0-awesome",
-      "root": "src/client",
       "outDir": "dist/0-awesome",
+      "main": "main.0-awesome.ts",
+      "root": "src/client",
       "assets": ["assets", "favicon.ico"],
       "index": "index.html",
-      "main": "main.0-awesome.ts",
       "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",

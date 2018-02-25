@@ -1,4 +1,6 @@
-# Awesome
+# Angular: The Awesome Parts Workshop
+
+by [Ward Bell](https://twitter.com/wardbell) and [John Papa](https://twitter.com/john_papa)
 
 ## Apps
 

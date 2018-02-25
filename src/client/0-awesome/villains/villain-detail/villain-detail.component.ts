@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import { Villain } from '../../core';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'aw-villain-detail',
@@ -24,24 +25,31 @@ export class VillainDetailComponent implements OnChanges {
 
   @ViewChild('name') nameElement: ElementRef;
 
-  editingVillain: Villain;
   addMode = false;
 
-  constructor() {}
+  form = this.fb.group({
+    id: [],
+    name: ['', Validators.required],
+    saying: ['']
+  });
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnChanges(changes: SimpleChanges) {
     this.setFocus();
     if (this.villain && this.villain.id) {
-      this.editingVillain = { ...this.villain };
+      this.form.patchValue(this.villain);
       this.addMode = false;
     } else {
-      this.editingVillain = { id: undefined, name: '', saying: '' };
       this.addMode = true;
     }
   }
 
-  addVillain() {
-    this.add.emit(this.editingVillain);
+  addVillain(form: FormGroup) {
+    const { value, valid, touched } = form;
+    if (touched && valid) {
+      this.add.emit({ ...this.villain, ...value });
+    }
     this.clear();
   }
 
@@ -49,11 +57,11 @@ export class VillainDetailComponent implements OnChanges {
     this.unselect.emit();
   }
 
-  saveVillain() {
+  saveVillain(form: FormGroup) {
     if (this.addMode) {
-      this.addVillain();
+      this.addVillain(form);
     } else {
-      this.updateVillain();
+      this.updateVillain(form);
     }
   }
 
@@ -61,8 +69,11 @@ export class VillainDetailComponent implements OnChanges {
     this.nameElement.nativeElement.focus();
   }
 
-  updateVillain() {
-    this.update.emit(this.editingVillain);
+  updateVillain(form: FormGroup) {
+    const { value, valid, touched } = form;
+    if (touched && valid) {
+      this.update.emit({ ...this.villain, ...value });
+    }
     this.clear();
   }
 }

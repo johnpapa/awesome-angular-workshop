@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 
 import { Hero } from '../../core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'aw-hero-detail',
@@ -26,30 +25,21 @@ export class HeroDetailComponent implements OnChanges {
   @ViewChild('name') nameElement: ElementRef;
 
   addMode = false;
-
-  form = this.fb.group({
-    id: [],
-    name: ['', Validators.required],
-    saying: ['']
-  });
-
-  constructor(private fb: FormBuilder) {}
+  editingHero: Hero;
 
   ngOnChanges(changes: SimpleChanges) {
     this.setFocus();
     if (this.hero && this.hero.id) {
-      this.form.patchValue(this.hero);
+      this.editingHero = { ...this.hero };
       this.addMode = false;
     } else {
+      this.editingHero = { id: undefined, name: '', saying: '' };
       this.addMode = true;
     }
   }
 
-  addHero(form: FormGroup) {
-    const { value, valid, touched } = form;
-    if (touched && valid) {
-      this.add.emit({ ...this.hero, ...value });
-    }
+  addHero() {
+    this.add.emit(this.editingHero);
     this.clear();
   }
 
@@ -57,11 +47,11 @@ export class HeroDetailComponent implements OnChanges {
     this.unselect.emit();
   }
 
-  saveHero(form: FormGroup) {
+  saveHero() {
     if (this.addMode) {
-      this.addHero(form);
+      this.addHero();
     } else {
-      this.updateHero(form);
+      this.updateHero();
     }
   }
 
@@ -69,11 +59,8 @@ export class HeroDetailComponent implements OnChanges {
     this.nameElement.nativeElement.focus();
   }
 
-  updateHero(form: FormGroup) {
-    const { value, valid, touched } = form;
-    if (touched && valid) {
-      this.update.emit({ ...this.hero, ...value });
-    }
+  updateHero() {
+    this.update.emit(this.editingHero);
     this.clear();
   }
 }

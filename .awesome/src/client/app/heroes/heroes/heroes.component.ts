@@ -18,7 +18,7 @@ export class HeroesComponent implements OnInit {
   constructor(private heroService: HeroService) {}
 
   ngOnInit() {
-    this.heroService.getHeroes().subscribe(heroes => (this.heroes = heroes));
+    this.getHeroes();
   }
 
   clear() {
@@ -28,7 +28,9 @@ export class HeroesComponent implements OnInit {
 
   deleteHero(hero: Hero) {
     this.unselect();
-    this.heroService.deleteHero(hero);
+    this.heroService.deleteHero(hero).subscribe(() => {
+      this.heroes = this.heroes.filter(h => h.id !== hero.id);
+    });
   }
 
   enableAddMode() {
@@ -37,7 +39,7 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes() {
-    this.heroService.getHeroes();
+    this.heroService.getHeroes().subscribe(heroes => (this.heroes = heroes));
     this.unselect();
   }
 
@@ -47,11 +49,15 @@ export class HeroesComponent implements OnInit {
   }
 
   update(hero: Hero) {
-    this.heroService.updateHero(hero);
+    this.heroService.updateHero(hero).subscribe(() => {
+      this.heroes = this.heroes.map(h => (h.id === hero.id ? hero : h));
+    });
   }
 
   add(hero: Hero) {
-    this.heroService.addHero(hero);
+    this.heroService.addHero(hero).subscribe(addedHero => {
+      this.heroes = this.heroes.concat(addedHero);
+    });
   }
 
   unselect() {

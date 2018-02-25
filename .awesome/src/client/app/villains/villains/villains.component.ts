@@ -18,7 +18,7 @@ export class VillainsComponent implements OnInit {
   constructor(private villainService: VillainService) {}
 
   ngOnInit() {
-    this.villainService.getVillains().subscribe(villains => (this.villains = villains));
+    this.getVillains();
   }
 
   clear() {
@@ -28,7 +28,7 @@ export class VillainsComponent implements OnInit {
 
   deleteVillain(villain: Villain) {
     this.unselect();
-    this.villainService.deleteVillain(villain);
+    this.villainService.deleteVillain(villain).subscribe();
   }
 
   enableAddMode() {
@@ -37,7 +37,7 @@ export class VillainsComponent implements OnInit {
   }
 
   getVillains() {
-    this.villainService.getVillains();
+    this.villainService.getVillains().subscribe(villains => (this.villains = villains));
     this.unselect();
   }
 
@@ -47,11 +47,11 @@ export class VillainsComponent implements OnInit {
   }
 
   update(villain: Villain) {
-    this.villainService.updateVillain(villain);
+    this.villainService.updateVillain(villain).subscribe();
   }
 
   add(villain: Villain) {
-    this.villainService.addVillain(villain);
+    this.villainService.addVillain(villain).subscribe();
   }
 
   unselect() {

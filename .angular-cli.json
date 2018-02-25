@@ -6,16 +6,39 @@
   "apps": [
     {
       "name": "0-awesome",
-      "root": "src/client",
       "outDir": "dist/0-awesome",
+      "main": "main.0-awesome.ts",
+      "root": "src/client",
       "assets": ["assets", "favicon.ico"],
       "index": "index.html",
-      "main": "main.0-awesome.ts",
       "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "aw",
+      "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
+      "stylePreprocessorOptions": {
+        "includePaths": ["styles"]
+      },
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
+      "name": "4-reactive",
+      "outDir": "dist/4-reactive",
+      "main": "main.4-reactive.ts",
+      "root": "src/client",
+      "assets": ["assets", "favicon.ico"],
+      "index": "index.html",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "aw40",
       "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
       "stylePreprocessorOptions": {
         "includePaths": ["styles"]

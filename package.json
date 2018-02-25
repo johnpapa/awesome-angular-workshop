@@ -11,6 +11,8 @@
     "e2e": "ng e2e",
 
     "0-awesome": "ng serve -a 0-awesome -o -p 9000",
+    "1-routing-begin": "ng serve -a 1-routing-begin -o -p 9010",
+    "1-routing-end": "ng serve -a 1-routing-end -o -p 9011",
     "4-reactive": "ng serve -a 4-reactive -o -p 9040"
   },
   "private": true,

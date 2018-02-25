@@ -48,6 +48,7 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes() {
+    this.heroesService.getAllHeroes();
     this.heroesService.getAll();
     this.unselect();
   }

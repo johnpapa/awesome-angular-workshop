@@ -51,6 +51,11 @@ a {
   flex: 1 auto;
 }
 
+.spacer {
+  order: 0;
+  flex: 18 0px;
+}
+
 .avatar-1 {
   order: 2;
 }
@@ -79,4 +84,6 @@ a {
 .row-commands {
   height: 40px;
   border-top: 1px solid white;
+  // @include primary-background-contrast-color; // end
+  @include accent-background-color; // begin
 }

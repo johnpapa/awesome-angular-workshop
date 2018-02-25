@@ -49,7 +49,8 @@ Example: make a lab called `n-new-lab` where `n` is an integer.
 2) Add a new app object to the `"apps"` array in [`angular-cli.json`](./.angular-cli.json):
 
 * make it a copy of an existing app object
-* set its `"name"` to `"n-new-lab"`
+* set `"name"` to `"n-new-lab"`
+* set `"appRoot"` to `"n-new-lab"`
 * set `"outDir"` to `"dist/n-new-lab"`
 * set `"main"` to `"main.n-new-lab.ts"`
 

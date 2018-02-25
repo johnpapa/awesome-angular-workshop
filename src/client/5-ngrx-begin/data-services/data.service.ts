@@ -42,7 +42,8 @@ const dummyToastService: any = { openSnackBar: () => {} };
  * Assumes a common REST-y web API
  */
 export class DataService<T extends {id: number | string}> {
-  protected _name: string;
+  /** Name of the DataService, usually the entity type name */
+  readonly name: string;
   protected delete404OK: boolean;
   protected entityName: string;
   protected entityUrl: string;
@@ -51,7 +52,7 @@ export class DataService<T extends {id: number | string}> {
   protected saveDelay: typeof noDelay;
   protected timeout: typeof noDelay;
 
-  get name() { return this._name; }
+  private entities: T[] = []; // simplistic cache of entities
 
   constructor(
     entityName: string,
@@ -60,7 +61,7 @@ export class DataService<T extends {id: number | string}> {
     protected toastService?: ToastService,
     config?: Partial<DataServiceConfig>,
   ) {
-    this._name = `${entityName} DataService`;
+    this.name = `${entityName} DataService`;
     this.entityName = entityName;
     const {
       root = 'api',
@@ -78,9 +79,6 @@ export class DataService<T extends {id: number | string}> {
     this.toastService = toastService || dummyToastService;
   }
 
-  // cache of entities
-  private entities: T[] = []; // simplistic
-
   /** live list of cached entities */
   entities$ = new BehaviorSubject(this.entities);
 
@@ -95,44 +93,41 @@ export class DataService<T extends {id: number | string}> {
   /** true when getting all the entities */
   loading$ = new BehaviorSubject(false);
 
+  // region CRUD Commands
   /** Updates cached entities and publishes */
   private next(newEntities: T[]): void {
     this.entities$.next(newEntities);
     this.entities = newEntities;
   }
 
+  /** Add entity to the database. Update entities$. */
   add(entity: T): void {
-    const entityOrError = entity || new Error(`No "${this.entityName}" entity to add`);
-    this.execute('POST', this.entityUrl, entityOrError).pipe(
+    this._add(entity).pipe(
       // pessimistic add
       tap(added => this.next(this.entities.concat(added)))
     ).subscribe();
   }
 
+  /** Delete entity-by-id from the database.  Update entities$. */
   delete(id: number | string ): void {
-    let err: Error;
-    if (id == null) {
-      err = new Error(`No "${this.entityName}" key to delete`);
-    }
     // Optimistic delete
     this.entities$.next(this.entities.filter(e => e.id !== id));
-    this.execute('DELETE', this.entityUrl + id, err).subscribe();
+    this._delete(id).subscribe();
   }
 
+  /** Get all entities from the database. Update entities$ and loading$ indicator. */
   getAll(): void {
     this.loading$.next(true);
-    this.execute('GET', this.entitiesUrl).pipe(
+    this._getAll().pipe(
       tap(results => this.next(results)),
       finalize(() => this.loading$.next(false))
     ).subscribe();
   }
 
+  /** Update the entity in the database.  Update entities$. */
   update(entity: T): void {
     const id = entity && entity.id;
-    const entityOrError = id == null ?
-      new Error(`No "${this.entityName}" update data or id`) :
-      entity;
-    this.execute('PUT', this.entityUrl + id, entityOrError ).pipe(
+    this._update(entity).pipe(
       // pessimistic update
       tap(updated => {
         this.next(
@@ -142,7 +137,41 @@ export class DataService<T extends {id: number | string}> {
     ).subscribe();
   }
 
-  protected execute(
+  // endregion CRUD Commands
+
+  // region Observable methods
+  /** Add entity to the database. Return observable of added entity. */
+  protected _add(entity: T): Observable<T> {
+    const entityOrError = entity || new Error(`No "${this.entityName}" entity to add`);
+    return this._execute('POST', this.entityUrl, entityOrError);
+  }
+
+  /** Delete entity-by-id from the database. Return observable of null. */
+  protected _delete(id: number | string ): Observable<null> {
+    let err: Error;
+    if (id == null) {
+      err = new Error(`No "${this.entityName}" key to delete`);
+    }
+    return this._execute('DELETE', this.entityUrl + id, err);
+  }
+
+  /** Get all entities from the database as Observable */
+  protected _getAll(): Observable<T[]> {
+    return this._execute('GET', this.entitiesUrl);
+  }
+
+  /** Update the entity in the database. Return Observable of updated entity. */
+  protected _update(entity: T): Observable<T> {
+    const id = entity && entity.id;
+    const entityOrError = id == null ?
+      new Error(`No "${this.entityName}" update data or id`) :
+      entity;
+    return this._execute('PUT', this.entityUrl + id, entityOrError);
+  }
+  // endregion Observable methods
+
+  // region execute
+  protected _execute(
     method: HttpMethods,
     url: string,
     data?: any, // data, error, or undefined/null
@@ -192,7 +221,9 @@ export class DataService<T extends {id: number | string}> {
       }
     }
   }
+  // endregion execute
 
+  // region execute helpers
   protected handleError(reqData: RequestData) {
     return (err: any) => {
       const ok = this.handleDelete404(err, reqData);
@@ -216,7 +247,5 @@ export class DataService<T extends {id: number | string}> {
     }
     return undefined;
   }
+  // endregion execute helpers
 }
-
-
-

@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule, } from './core';
 import { DataServiceConfig, DataServicesModule } from './data-services';
 
+import { AppStoreModule } from './store/app-store.module';
+
 import { AppComponent } from './app.component';
 
 const dataServiceConfig: DataServiceConfig = {
@@ -29,6 +31,9 @@ const dataServiceConfig: DataServiceConfig = {
     }),
     HttpClientModule,
     AppRoutingModule,
+
+    // ngrx configured for the app
+    AppStoreModule
   ],
   declarations: [AppComponent],
   providers: [],

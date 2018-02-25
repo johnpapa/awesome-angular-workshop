@@ -30,9 +30,7 @@ export class VillainDetailComponent implements OnChanges {
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!changes.villain.firstChange) {
-      this.setFocus();
-    }
+    this.setFocus();
     if (this.villain && this.villain.id) {
       this.editingVillain = { ...this.villain };
       this.addMode = false;

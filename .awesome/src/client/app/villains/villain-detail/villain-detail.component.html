@@ -3,26 +3,26 @@
     <mat-card-title>Villain Details</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form>
+    <div>
       <div class="editfields">
         <div [hidden]="addMode">
           <mat-form-field>
-            <input matInput [(ngModel)]="editingVillain.id" placeholder="id" #id readonly name="id">
+            <input matInput [(ngModel)]="editingVillain.id" placeholder="id" #id readonly>
           </mat-form-field>
         </div>
         <div>
           <mat-form-field>
-            <input matInput [(ngModel)]="editingVillain.name" placeholder="name" #name name="name">
+            <input matInput [(ngModel)]="editingVillain.name" placeholder="name" #name>
           </mat-form-field>
         </div>
         <div>
           <mat-form-field>
-            <textarea matInput [(ngModel)]="editingVillain.saying" placeholder="saying" #saying (keyup.enter)="saveVillain()" name="saying"></textarea>
+            <textarea matInput [(ngModel)]="editingVillain.saying" placeholder="saying" #saying (keyup.enter)="saveVillain()"></textarea>
           </mat-form-field>
         </div>
       </div>
       <button mat-raised-button color="accent" type="button" (click)="clear()" matTooltip="Cancel all changes">Cancel</button>
       <button mat-raised-button color="primary" type="button" (click)="saveVillain()" matTooltip="Save all changes">Save</button>
-    </form>
+    </div>
   </mat-card-content>
 </mat-card>

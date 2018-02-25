@@ -37,18 +37,18 @@ export class HeroService {
   deleteHero(hero: Hero) {
     return this.http
       .delete(`${api}/hero/${hero.id}`)
-      .pipe(tap(() => this.toastService.openSnackBar(`Hero {hero.name} deleted`, 'DELETE')));
+      .pipe(tap(() => this.toastService.openSnackBar(`Hero ${hero.name} deleted`, 'DELETE')));
   }
 
   addHero(hero: Hero) {
     return this.http
       .post<Hero>(`${api}/hero/`, hero)
-      .pipe(tap(() => this.toastService.openSnackBar(`Hero {hero.name} added`, 'POST')));
+      .pipe(tap(() => this.toastService.openSnackBar(`Hero ${hero.name} added`, 'POST')));
   }
 
   updateHero(hero: Hero) {
     return this.http
       .put<Hero>(`${api}/hero/${hero.id}`, hero)
-      .pipe(tap(() => this.toastService.openSnackBar(`Hero {hero.name} updated`, 'PUT')));
+      .pipe(tap(() => this.toastService.openSnackBar(`Hero ${hero.name} updated`, 'PUT')));
   }
 }

@@ -6,7 +6,6 @@ import {
   OnChanges,
   Output,
   ViewChild,
-  ChangeDetectionStrategy,
   SimpleChanges
 } from '@angular/core';
 
@@ -16,8 +15,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'aw-hero-detail',
   templateUrl: './hero-detail.component.html',
-  styleUrls: ['./hero-detail.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./hero-detail.component.scss']
 })
 export class HeroDetailComponent implements OnChanges {
   @Input() hero: Hero;

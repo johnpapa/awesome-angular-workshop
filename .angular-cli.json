@@ -5,14 +5,12 @@
   },
   "apps": [
     {
+      "name": "0-awesome",
       "root": "src/client",
-      "outDir": "dist",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
+      "outDir": "dist/0-awesome",
+      "assets": ["assets", "favicon.ico"],
       "index": "index.html",
-      "main": "main.ts",
+      "main": "main.0-awesome.ts",
       "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",

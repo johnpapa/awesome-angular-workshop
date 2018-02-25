@@ -7,8 +7,8 @@ export class Hero {
     };
   }
   constructor(
-    public readonly id: number,
-    public readonly name: string,
-    public readonly saying: string
+    public id: number,
+    public name: string,
+    public saying: string
   ) {}
 }

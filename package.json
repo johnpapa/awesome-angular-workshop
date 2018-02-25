@@ -10,8 +10,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
 
-    "0-awesome": "ng serve -a 0-awesome -o -p 9000",
-    "4-reactive": "ng serve -a 4-reactive -o -p 9040"
+    "4-reactive": "ng serve -a 4-reactive -o -p 9040",
+    "5-ngrx-begin": "ng serve -a 5-ngrx-begin -o -p 9041",
+    "0-awesome": "ng serve -a 0-awesome -o -p 9000"
   },
   "private": true,
   "dependencies": {

@@ -8,6 +8,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 // Our eagerly loaded store features
 import { EntityStoreModule } from './entity-store.module';
 
+// ToastService that listens to the ngrx-data EntityActions
+import { NgrxDataToastService } from './ngrx-data-toast.service';
+
 import { environment } from '../../environments/environment';
 
 /**
@@ -24,6 +27,10 @@ import { environment } from '../../environments/environment';
 
     // Don't load the developer tools in production
     environment.production ? [] : StoreDevtoolsModule.instrument()
-  ]
+  ],
+  providers: [ NgrxDataToastService ]
 })
-export class AppStoreModule {}
+export class AppStoreModule {
+  // Inject NgrxDataToastService to start it listening
+  constructor( toastService: NgrxDataToastService) { }
+}

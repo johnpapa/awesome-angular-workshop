@@ -2,10 +2,10 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { combineLatest, finalize, take, tap } from 'rxjs/operators';
 
+import { FilterObserver } from '../shared/filter';
 import { HeroesDataService } from '../data-services';
 import { Hero, ToastService } from '../core';
 
@@ -33,7 +33,7 @@ export class HeroesService {
   filteredEntities$: Observable<Hero[]>;
 
   /** User's filter pattern */
-  filterObserver: Observer<string>;
+  filterObserver: FilterObserver;
 
   /** true when getting all the entities */
   loading$: Observable<boolean>;
@@ -87,8 +87,13 @@ export class HeroesService {
   // region wireFilteredEntities
   wireFilteredEntities() {
     const filterObserver = new BehaviorSubject('');
-    this.filterObserver = filterObserver;
-    this.filteredEntities$ = filterObserver.pipe(
+
+    this.filterObserver = {
+      filter$: filterObserver.asObservable(),
+      setFilter: filterValue => filterObserver.next(filterValue)
+    };
+
+    this.filteredEntities$ = this.filterObserver.filter$.pipe(
       combineLatest(this.entities$, this.filterProjector)
     );
   }

@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { combineLatest, finalize, take, tap } from 'rxjs/operators';
 
 import { DataService, DataServiceConfig } from './data.service';
+import { FilterObserver } from '../shared/filter';
 import { HttpUrlGenerator } from './http-url-generator';
 import { ToastService } from '../core';
 
@@ -41,7 +41,7 @@ export class CqrsDataService<T extends {id: number}> extends DataService<T> {
   filteredEntities$: Observable<T[]>;
 
   /** User's filter pattern */
-  filterObserver: Observer<string>;
+  filterObserver: FilterObserver;
 
   /** true when getting all the entities */
   loading$ = new BehaviorSubject(false);
@@ -95,11 +95,16 @@ export class CqrsDataService<T extends {id: number}> extends DataService<T> {
 
   // endregion Commands
 
-   // region wireFilteredEntities
-   protected wireFilteredEntities() {
+  // region wireFilteredEntities
+  protected wireFilteredEntities() {
     const filterObserver = new BehaviorSubject('');
-    this.filterObserver = filterObserver;
-    this.filteredEntities$ = filterObserver.pipe(
+
+    this.filterObserver = {
+      filter$: filterObserver.asObservable(),
+      setFilter: filterValue => filterObserver.next(filterValue)
+    };
+
+    this.filteredEntities$ = this.filterObserver.filter$.pipe(
       combineLatest(this.entities$, this.filterProjector)
     );
   }

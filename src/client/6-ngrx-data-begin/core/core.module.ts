@@ -6,6 +6,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SharedModule } from '../shared/shared.module';
 import { ToastService } from './toast.service';
 import { throwIfAlreadyLoaded } from './module-import-check';
+import { IdGeneratorService } from './id-generator.service';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { throwIfAlreadyLoaded } from './module-import-check';
   ],
   declarations: [ToolbarComponent],
   exports: [ToolbarComponent],
-  providers: [ ToastService ]
+  providers: [ IdGeneratorService, ToastService ]
 })
 export class CoreModule {
   constructor(

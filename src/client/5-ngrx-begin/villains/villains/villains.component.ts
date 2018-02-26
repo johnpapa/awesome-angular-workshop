@@ -2,8 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
 
+import { FilterObserver } from '../../shared/filter';
 import { Villain } from '../../core';
 import { VillainsService } from '../villains.service';
 
@@ -18,7 +18,7 @@ export class VillainsComponent implements OnInit {
   addingVillain = false;
   selectedVillain: Villain = null;
 
-  filterObserver: Observer<string>;
+  filterObserver: FilterObserver;
   filteredVillains$: Observable<Villain[]>;
   loading$: Observable<boolean>;
 

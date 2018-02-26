@@ -1,7 +1,7 @@
 export class Villain {
   constructor(
-    public id: number,
-    public name: string,
-    public saying: string
+    public readonly id: number,
+    public readonly name: string,
+    public readonly saying: string
   ) {}
 }

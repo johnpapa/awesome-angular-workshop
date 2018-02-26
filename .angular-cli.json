@@ -147,7 +147,56 @@
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
+    },
+    {
+      "name": "6-ngrx-data-begin",
+      "appRoot": "6-ngrx-data-begin",
+      "outDir": "dist/6-ngrx-data-begin",
+      "main": "main.6-ngrx-data-begin.ts",
+      "root": "src/client",
+      "assets": ["assets", "favicon.ico"],
+      "index": "index.html",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "aw",
+      "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
+      "stylePreprocessorOptions": {
+        "includePaths": ["styles"]
+      },
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
+      "name": "6-ngrx-data-end",
+      "appRoot": "6-ngrx-data-end",
+      "outDir": "dist/6-ngrx-data-end",
+      "main": "main.6-ngrx-data-end.ts",
+      "root": "src/client",
+      "assets": ["assets", "favicon.ico"],
+      "index": "index.html",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "aw",
+      "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
+      "stylePreprocessorOptions": {
+        "includePaths": ["styles"]
+      },
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
     }
+
   ],
   "e2e": {
     "protractor": {

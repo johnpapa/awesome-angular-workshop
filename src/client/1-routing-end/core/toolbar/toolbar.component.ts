@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class ToolbarComponent {
   labTitle = '1-routing';
-  labState = 'begin';
+  labState = 'end';
 }

@@ -12,7 +12,7 @@ export interface HeroesState {
 
 // Initial Heroes Collection values
 export const initialHeroesState: HeroesState = {
-  data: testHeroes(), // [],
+  data: [],
   loaded: false,
   loading: false
 };
@@ -122,20 +122,4 @@ export function reducer(
   // Action wasn't a Heroes Action (at least not one we processed)
   // Always return the original state by default.
   return state;
-}
-
-function testHeroes(): Hero[] {
-  return [
-    // Demo data
-    {
-      id: 11,
-      name: 'Maxwell Smart',
-      saying: 'Missed it by that much.'
-    },
-    {
-      id: 12,
-      name: 'Bullwinkle J. Moose',
-      saying: 'Watch me pull a rabbit out of a hat.'
-    }
-  ];
 }

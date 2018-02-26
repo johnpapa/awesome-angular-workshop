@@ -25,5 +25,15 @@ export class HeroesEffects {
     )
   );
 
+  // Step 1. Add an effect to ADD a hero
+
+  // @Effect()
+  // addHero$ = this.actions$.ofType<HeroActions.AddHero>(HeroActions.ADD_HERO).pipe(
+  //   concatMap(action => this.dataService.add(action.payload).pipe(
+  //       map(hero => new HeroActions.AddHeroSuccess(hero)),
+  //       catchError(error => of(new HeroActions.AddHeroError(error)))
+  //     )
+  //   )
+  // );
 }
 

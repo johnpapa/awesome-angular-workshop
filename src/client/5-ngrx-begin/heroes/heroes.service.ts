@@ -48,25 +48,31 @@ export class HeroesService {
 
   // region CRUD Commands
 
-  /** Get all heroes with ngrx */
+  /** Dispatch GetAll request action */
   getAll() {
-    // Create request action and dispatch
     const action = new fromStore.LoadHeroes();
     this.store.dispatch(action);
   }
 
-  /** Add entity to the database. Update entities$. */
-  add(entity: Hero): void {
+  // Step 1. Change so it dispatches the ADD action
+
+  /** Dispatch add hero request action */
+  add(hero: Hero): void {
     this.toastService.openSnackBar('Not implemented yet', 'Add');
+    // if (hero) {
+    //   const action = new fromStore.AddHero(hero);
+    //   this.store.dispatch(action);
+    // }
   }
 
-  /** Delete entity-by-id from the database. Update entities$. */
-  delete(id: number | string ): void {
+
+  /** Dispatch hero delete-by-id request action */
+  delete(id: number ): void {
     this.toastService.openSnackBar('Not implemented yet', 'Delete');
   }
 
-  /** Update the entity in the database.  Update entities$. */
-  update(entity: Hero): void {
+  /** Dispatch hero update request action */
+  update(hero: Hero): void {
     this.toastService.openSnackBar('Not implemented yet', 'Update');
   }
   // endregion CRUD Commands

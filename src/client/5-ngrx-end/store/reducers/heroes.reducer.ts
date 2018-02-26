@@ -60,36 +60,64 @@ export function reducer(
       };
     }
 
-  }
-
   // Step 1. Add the ADD cases (only the success case is necessary)
 
     // Request to add a hero to the database
-    // case fromHeroes.ADD_HERO: {
-    //   // Pessimistically add upon success. Nothing to do.
-    //   // Do not touch the loading or loaded flags during an ADD
-    //   // You can omit this case.
-    //   return state;
-    // }
+    case fromHeroes.ADD_HERO: {
+      // Pessimistically add upon success. Nothing to do.
+      // Do not touch the loading or loaded flags during an ADD
+      // You can omit this case.
+      return state;
+    }
 
     // :-) YES! The server added the hero, which is in the payload
-    // case fromHeroes.ADD_HERO_SUCCESS: {
-    //   const added: Hero = action.payload;
-    //   // Do not add if already in the collection.
-    //   return -1 < state.data.findIndex(e => e.id === added.id) ?
-    //     state :
-    //     {
-    //       ...state,
-    //       data: [...state.data, added] // new array w/ added hero on the end
-    //     };
-    // }
+    case fromHeroes.ADD_HERO_SUCCESS: {
+      const added: Hero = action.payload;
+      // Do not add if already in the collection.
+      return -1 < state.data.findIndex(e => e.id === added.id) ?
+        state :
+        {
+          ...state,
+          data: [...state.data, added] // new array w/ added hero on the end
+        };
+    }
 
     // :-( BOO! The server request failed to add the hero
     // Nothing to do. Return the state.
     // You can omit this case.
-    // case fromHeroes.ADD_HERO_ERROR: {
-    //   return state;
-    // }
+    case fromHeroes.ADD_HERO_ERROR: {
+      return state;
+    }
+
+    // BONUS: the remaining cases
+
+    // Request to delete a hero from the database by id
+    case fromHeroes.DELETE_HERO: {
+      const deleteId: number = action.payload;
+      // Optimistically remove immediately.
+      // If request fails later, too bad. Do nothing.
+      return {
+        ...state,
+        // Create new array of heroes with those that don't match the id.
+        data: state.data.filter(h => h.id !== deleteId)
+      };
+    }
+
+    // Request to update a hero in the database
+    case fromHeroes.UPDATE_HERO_SUCCESS: {
+      const updated: Hero = action.payload;
+      const id: number = updated && updated.id;
+      // Pessimistic. Only add the hero on success.
+      // If request fails, nothing to undo.
+      return {
+        ...state,
+        // Create new array with previous heroes except for updated,
+        // which we use instead of the previous hero.
+        data: state.data.map(h => h.id === id ? updated : h)
+      };
+    }
+
+  }
 
   // Action wasn't a Heroes Action (at least not one we processed)
   // Always return the original state by default.

@@ -123,6 +123,30 @@
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
+    },
+    {
+      "name": "5-ngrx-end",
+      "appRoot": "5-ngrx-end",
+      "outDir": "dist/5-ngrx-end",
+      "main": "main.5-ngrx-end.ts",
+      "root": "src/client",
+      "assets": ["assets", "favicon.ico"],
+      "index": "index.html",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "aw",
+      "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
+      "stylePreprocessorOptions": {
+        "includePaths": ["styles"]
+      },
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
     }
   ],
   "e2e": {

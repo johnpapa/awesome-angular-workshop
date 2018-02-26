@@ -2,11 +2,11 @@ import { Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Hero } from '../core';
-import { DataService, DataServiceConfig, HttpUrlGenerator } from '../data-services';
+import { CqrsDataService, DataServiceConfig, HttpUrlGenerator } from '../data-services';
 import { ToastService } from '../core';
 
 @Injectable()
-export class HeroesService extends DataService<Hero> {
+export class HeroesService extends CqrsDataService<Hero> {
   constructor(
     http: HttpClient,
     httpUrlGenerator: HttpUrlGenerator,

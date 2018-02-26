@@ -2,12 +2,11 @@ import { Injectable, Optional } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { of } from 'rxjs/observable/of';
 import { pipe } from 'rxjs/util/pipe';
 
-import { catchError, combineLatest, delay, finalize, map, tap, timeout } from 'rxjs/operators';
+import { catchError, delay, map, tap, timeout } from 'rxjs/operators';
 
 import { DataServiceError } from './data-service-error';
 import { HttpMethods, RequestData } from './index';
@@ -34,14 +33,15 @@ export abstract class DataServiceConfig {
   timeout?: number; //
 }
 
-const dummyToastService: any = { openSnackBar: () => {} };
-
 /**
  * A basic, generic entity data service
  * suitable for persistence of most entities.
  * Assumes a common REST-y web API
  */
 export class DataService<T extends {id: number | string}> {
+
+  // region setup
+
   /** Name of the DataService, usually the entity type name */
   readonly name: string;
   protected delete404OK: boolean;
@@ -51,8 +51,6 @@ export class DataService<T extends {id: number | string}> {
   protected getDelay: typeof noDelay;
   protected saveDelay: typeof noDelay;
   protected timeout: typeof noDelay;
-
-  private entities: T[] = []; // simplistic cache of entities
 
   constructor(
     entityName: string,
@@ -76,70 +74,12 @@ export class DataService<T extends {id: number | string}> {
     this.getDelay = getDelay ? delay(getDelay) : noDelay;
     this.saveDelay = saveDelay ? delay(saveDelay) : noDelay;
     this.timeout = to ? timeout(to) : noDelay;
-    this.toastService = toastService || dummyToastService;
+    this.toastService = toastService || ({ openSnackBar: () => {} } as any);
   }
-
-  /** live list of cached entities */
-  entities$ = new BehaviorSubject(this.entities);
-
-  /** User's filter pattern */
-  filterObserver = new BehaviorSubject('');
-
-  /** Entities filtered by those criteria */
-  filteredEntities$ = this.filterObserver.pipe(
-    combineLatest(this.entities$, this.filterProjector)
-  );
-
-  /** true when getting all the entities */
-  loading$ = new BehaviorSubject(false);
-
-  // region CRUD Commands
-  /** Updates cached entities and publishes */
-  private next(newEntities: T[]): void {
-    this.entities$.next(newEntities);
-    this.entities = newEntities;
-  }
-
-  /** Add entity to the database. Update entities$. */
-  add(entity: T): void {
-    this._add(entity).pipe(
-      // pessimistic add
-      tap(added => this.next(this.entities.concat(added)))
-    ).subscribe();
-  }
-
-  /** Delete entity-by-id from the database.  Update entities$. */
-  delete(id: number | string ): void {
-    // Optimistic delete
-    this.entities$.next(this.entities.filter(e => e.id !== id));
-    this._delete(id).subscribe();
-  }
-
-  /** Get all entities from the database. Update entities$ and loading$ indicator. */
-  getAll(): void {
-    this.loading$.next(true);
-    this._getAll().pipe(
-      tap(results => this.next(results)),
-      finalize(() => this.loading$.next(false))
-    ).subscribe();
-  }
-
-  /** Update the entity in the database.  Update entities$. */
-  update(entity: T): void {
-    const id = entity && entity.id;
-    this._update(entity).pipe(
-      // pessimistic update
-      tap(updated => {
-        this.next(
-          this.entities.map(e => e.id === id ? updated : e)
-        );
-      })
-    ).subscribe();
-  }
-
-  // endregion CRUD Commands
+  // endregion setup
 
   // region Observable methods
+
   /** Add entity to the database. Return observable of added entity. */
   protected _add(entity: T): Observable<T> {
     const entityOrError = entity || new Error(`No "${this.entityName}" entity to add`);

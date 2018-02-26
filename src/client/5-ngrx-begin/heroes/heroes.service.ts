@@ -2,7 +2,7 @@ import { Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Hero } from '../core';
-import { DataService, DataServiceConfig, HttpUrlGenerator } from '../data-services';
+import { CqrsDataService, DataServiceConfig, HttpUrlGenerator } from '../data-services';
 import { ToastService } from '../core';
 
 // region ngrx-related imports
@@ -16,7 +16,7 @@ import { take } from 'rxjs/operators';
 // endregion ngrx-related imports
 
 @Injectable()
-export class HeroesService extends DataService<Hero> {
+export class HeroesService extends CqrsDataService<Hero> {
 
   heroes$: Observable<Hero[]>;
   heroesLoading$: Observable<boolean>;

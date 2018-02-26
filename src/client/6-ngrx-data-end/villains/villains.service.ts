@@ -1,27 +1,37 @@
-import { Injectable, Optional } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+// ngrx-data version
+import { Injectable } from '@angular/core';
+import { EntityServiceBase, EntityServiceFactory } from 'ngrx-data';
 
-import { CqrsDataService, DataServiceConfig, HttpUrlGenerator } from '../data-services';
-import { Villain, ToastService } from '../core';
+// Bonus: added IdGeneratorService
+import { Villain, IdGeneratorService, ToastService } from '../core';
+import { FilterObserver } from '../shared/filter';
 
 @Injectable()
-export class VillainsService extends CqrsDataService<Villain> {
+export class VillainsService extends EntityServiceBase<Villain> {
+
+  filterObserver: FilterObserver;
+
   constructor(
-    http: HttpClient,
-    httpUrlGenerator: HttpUrlGenerator,
-    @Optional() toastService: ToastService,
-    @Optional() config: DataServiceConfig
-  ) {
-    super('Villain', http, httpUrlGenerator, toastService, config);
+    entityServiceFactory: EntityServiceFactory,
+    private idGenerator: IdGeneratorService, // Bonus: inject id generator
+    private toastService: ToastService) {
+    super('Villain', entityServiceFactory);
+
+    /** User's filter pattern */
+    this.filterObserver = {
+      filter$: this.filter$,
+      setFilter: this.setFilter.bind(this)
+    };
   }
 
-  protected filterProjector(filterValue: string, entities: Villain[]) {
-    const regEx = filterValue ? new RegExp(filterValue, 'i') : undefined;
-    return regEx ?
-      entities.filter((e: any) =>
-        (e.name && e.name.match(regEx)) ||
-        (e.saying && e.saying.match(regEx))
-      ) :
-      entities;
+  add(villain: Villain) {
+    // Bonus: generate id if missing
+    if (!villain.id) {
+      // MUST generate missing id for villain if
+      // Villain EntityMetadata is configured for optimistic ADD.
+      const id = this.idGenerator.nextId();
+      villain = { ...villain, id };
+    }
+    super.add(villain);
   }
 }

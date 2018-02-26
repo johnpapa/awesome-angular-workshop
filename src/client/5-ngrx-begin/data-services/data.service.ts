@@ -1,13 +1,11 @@
-import { Injectable, Optional } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { of } from 'rxjs/observable/of';
 import { pipe } from 'rxjs/util/pipe';
 
-import { catchError, combineLatest, delay, finalize, map, tap, timeout } from 'rxjs/operators';
+import { catchError, delay, map, tap, timeout } from 'rxjs/operators';
 
 import { DataServiceError } from './data-service-error';
 import { HttpMethods, RequestData } from './index';
@@ -34,7 +32,7 @@ export abstract class DataServiceConfig {
   timeout?: number; //
 }
 
-const dummyToastService: any = { openSnackBar: () => {} };
+// Not injectable because generic
 
 /**
  * A basic, generic entity data service
@@ -42,7 +40,11 @@ const dummyToastService: any = { openSnackBar: () => {} };
  * Assumes a common REST-y web API
  */
 export class DataService<T extends {id: number | string}> {
-  protected _name: string;
+
+  // region setup
+
+  /** Name of the DataService, usually the entity type name */
+  readonly name: string;
   protected delete404OK: boolean;
   protected entityName: string;
   protected entityUrl: string;
@@ -51,8 +53,6 @@ export class DataService<T extends {id: number | string}> {
   protected saveDelay: typeof noDelay;
   protected timeout: typeof noDelay;
 
-  get name() { return this._name; }
-
   constructor(
     entityName: string,
     protected http: HttpClient,
@@ -60,7 +60,7 @@ export class DataService<T extends {id: number | string}> {
     protected toastService?: ToastService,
     config?: Partial<DataServiceConfig>,
   ) {
-    this._name = `${entityName} DataService`;
+    this.name = `${entityName} DataService`;
     this.entityName = entityName;
     const {
       root = 'api',
@@ -75,74 +75,44 @@ export class DataService<T extends {id: number | string}> {
     this.getDelay = getDelay ? delay(getDelay) : noDelay;
     this.saveDelay = saveDelay ? delay(saveDelay) : noDelay;
     this.timeout = to ? timeout(to) : noDelay;
-    this.toastService = toastService || dummyToastService;
+    this.toastService = toastService || ({ openSnackBar: () => {} } as any);
   }
+  // endregion setup
 
-  // cache of entities
-  private entities: T[] = []; // simplistic
+  // region Observable methods
 
-  /** live list of cached entities */
-  entities$ = new BehaviorSubject(this.entities);
-
-  /** User's filter pattern */
-  filterObserver = new BehaviorSubject('');
-
-  /** Entities filtered by those criteria */
-  filteredEntities$ = this.filterObserver.pipe(
-    combineLatest(this.entities$, this.filterProjector)
-  );
-
-  /** true when getting all the entities */
-  loading$ = new BehaviorSubject(false);
-
-  /** Updates cached entities and publishes */
-  private next(newEntities: T[]): void {
-    this.entities$.next(newEntities);
-    this.entities = newEntities;
-  }
-
-  add(entity: T): void {
+  /** Add entity to the database. Return observable of added entity. */
+  protected _add(entity: T): Observable<T> {
     const entityOrError = entity || new Error(`No "${this.entityName}" entity to add`);
-    this.execute('POST', this.entityUrl, entityOrError).pipe(
-      // pessimistic add
-      tap(added => this.next(this.entities.concat(added)))
-    ).subscribe();
+    return this._execute('POST', this.entityUrl, entityOrError);
   }
 
-  delete(id: number | string ): void {
+  /** Delete entity-by-id from the database. Return observable of null. */
+  protected _delete(id: number | string ): Observable<null> {
     let err: Error;
     if (id == null) {
       err = new Error(`No "${this.entityName}" key to delete`);
     }
-    // Optimistic delete
-    this.entities$.next(this.entities.filter(e => e.id !== id));
-    this.execute('DELETE', this.entityUrl + id, err).subscribe();
+    return this._execute('DELETE', this.entityUrl + id, err);
   }
 
-  getAll(): void {
-    this.loading$.next(true);
-    this.execute('GET', this.entitiesUrl).pipe(
-      tap(results => this.next(results)),
-      finalize(() => this.loading$.next(false))
-    ).subscribe();
+  /** Get all entities from the database as Observable */
+  protected _getAll(): Observable<T[]> {
+    return this._execute('GET', this.entitiesUrl);
   }
 
-  update(entity: T): void {
+  /** Update the entity in the database. Return Observable of updated entity. */
+  protected _update(entity: T): Observable<T> {
     const id = entity && entity.id;
     const entityOrError = id == null ?
       new Error(`No "${this.entityName}" update data or id`) :
       entity;
-    this.execute('PUT', this.entityUrl + id, entityOrError ).pipe(
-      // pessimistic update
-      tap(updated => {
-        this.next(
-          this.entities.map(e => e.id === id ? updated : e)
-        );
-      })
-    ).subscribe();
+    return this._execute('PUT', this.entityUrl + id, entityOrError);
   }
+  // endregion Observable methods
 
-  protected execute(
+  // region execute
+  protected _execute(
     method: HttpMethods,
     url: string,
     data?: any, // data, error, or undefined/null
@@ -192,7 +162,9 @@ export class DataService<T extends {id: number | string}> {
       }
     }
   }
+  // endregion execute
 
+  // region execute helpers
   protected handleError(reqData: RequestData) {
     return (err: any) => {
       const ok = this.handleDelete404(err, reqData);
@@ -203,20 +175,11 @@ export class DataService<T extends {id: number | string}> {
     };
   }
 
-  protected filterProjector(filterValue: string, entities: T[]) {
-    const regEx = filterValue ? new RegExp(filterValue, 'i') : undefined;
-    return regEx ?
-      entities.filter((e: any) => e.name && e.name.match(regEx)) :
-      entities;
-  }
-
   protected handleDelete404(error: HttpErrorResponse, reqData: RequestData) {
     if (error.status === 404 && reqData.method === 'DELETE' && this.delete404OK) {
       return of({});
     }
     return undefined;
   }
+  // endregion execute helpers
 }
-
-
-

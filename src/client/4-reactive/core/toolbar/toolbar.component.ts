@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class ToolbarComponent {
   labTitle = '4-reactive';
-  labState = 'begin';
+  labState = 'end';
 }

@@ -2,8 +2,10 @@ import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core
 import { throwIfAlreadyLoaded } from '../core/module-import-check';
 
 import { DataServiceConfig } from './data.service';
-import { HttpUrlGenerator, DefaultHttpUrlGenerator } from './http-url-generator';
+import { HttpUrlGenerator } from './http-url-generator';
 import { Pluralizer, PLURAL_NAMES_TOKEN } from './pluralizer';
+
+import { HeroesDataService } from './heroes-data.service';
 
 export interface DataServicesModuleConfig {
   config?: DataServiceConfig;
@@ -12,7 +14,8 @@ export interface DataServicesModuleConfig {
 
 @NgModule({
   providers: [
-    { provide: HttpUrlGenerator, useClass: DefaultHttpUrlGenerator },
+    HeroesDataService,
+    HttpUrlGenerator,
     Pluralizer,
   ]
 })

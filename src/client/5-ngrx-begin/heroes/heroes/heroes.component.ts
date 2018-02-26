@@ -5,7 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 
 import { Hero } from '../../core';
-import { HeroesService } from '../heroes.service';
+// import { HeroesService } from '../heroes.service.1'; // messy 1st version
+import { HeroesService } from '../heroes.service';   // clean version
 
 @Component({
   selector: 'aw-heroes',

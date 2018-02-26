@@ -39,6 +39,12 @@ export class VillainsComponent implements OnInit {
   enableAddMode() {
     this.addingVillain = true;
     this.selectedVillain = null;
+    // TODO: Step 5
+    // Navigate to the details/0
+    // Make it relative to the active route
+
+    // TODO: Step 5 - Solution
+    // this.router.navigate(['details', 0], { relativeTo: this.route });
   }
 
   getVillains() {
@@ -53,6 +59,12 @@ export class VillainsComponent implements OnInit {
   onSelect(villain: Villain) {
     this.addingVillain = false;
     this.selectedVillain = villain;
+    // TODO: Step 6
+    // Navigate to the details/:id
+    // Make it relative to the active route
+
+    // TODO: Step 6 - Solution
+    // this.router.navigate(['details', villain.id], { relativeTo: this.route });
   }
 
   update(villain: Villain) {

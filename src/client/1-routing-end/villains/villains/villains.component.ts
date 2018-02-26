@@ -3,6 +3,7 @@ import { finalize } from 'rxjs/operators';
 
 import { Villain } from '../../core';
 import { VillainService } from '../villain.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'aw-villains',
@@ -16,7 +17,11 @@ export class VillainsComponent implements OnInit {
   villains: Villain[];
   loading: boolean;
 
-  constructor(private villainService: VillainService) {}
+  constructor(
+    private villainService: VillainService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.getVillains();
@@ -39,6 +44,7 @@ export class VillainsComponent implements OnInit {
   enableAddMode() {
     this.addingVillain = true;
     this.selectedVillain = null;
+    this.router.navigate(['details', 0], { relativeTo: this.route });
   }
 
   getVillains() {
@@ -53,6 +59,7 @@ export class VillainsComponent implements OnInit {
   onSelect(villain: Villain) {
     this.addingVillain = false;
     this.selectedVillain = villain;
+    this.router.navigate(['details', villain.id], { relativeTo: this.route });
   }
 
   update(villain: Villain) {

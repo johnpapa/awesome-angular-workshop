@@ -1,4 +1,3 @@
-import { Injectable, Optional } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -32,6 +31,8 @@ export abstract class DataServiceConfig {
   /** request timeout in MS (default: 0)*/
   timeout?: number; //
 }
+
+// Not injectable because generic
 
 /**
  * A basic, generic entity data service
@@ -172,13 +173,6 @@ export class DataService<T extends {id: number | string}> {
       this.toastService.openSnackBar(error.message, `${this.name} ${reqData.method}`);
       return new ErrorObservable(error);
     };
-  }
-
-  protected filterProjector(filterValue: string, entities: T[]) {
-    const regEx = filterValue ? new RegExp(filterValue, 'i') : undefined;
-    return regEx ?
-      entities.filter((e: any) => e.name && e.name.match(regEx)) :
-      entities;
   }
 
   protected handleDelete404(error: HttpErrorResponse, reqData: RequestData) {

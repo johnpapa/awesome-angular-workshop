@@ -1,9 +1,8 @@
 import { Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Villain } from '../core';
 import { CqrsDataService, DataServiceConfig, HttpUrlGenerator } from '../data-services';
-import { ToastService } from '../core';
+import { Villain, ToastService } from '../core';
 
 @Injectable()
 export class VillainsService extends CqrsDataService<Villain> {

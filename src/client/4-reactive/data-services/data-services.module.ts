@@ -2,7 +2,7 @@ import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core
 import { throwIfAlreadyLoaded } from '../core/module-import-check';
 
 import { DataServiceConfig } from './data.service';
-import { HttpUrlGenerator, DefaultHttpUrlGenerator } from './http-url-generator';
+import { HttpUrlGenerator } from './http-url-generator';
 import { Pluralizer, PLURAL_NAMES_TOKEN } from './pluralizer';
 
 export interface DataServicesModuleConfig {
@@ -12,7 +12,7 @@ export interface DataServicesModuleConfig {
 
 @NgModule({
   providers: [
-    { provide: HttpUrlGenerator, useClass: DefaultHttpUrlGenerator },
+    HttpUrlGenerator,
     Pluralizer,
   ]
 })

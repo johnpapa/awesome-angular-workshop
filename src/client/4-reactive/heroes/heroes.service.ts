@@ -1,9 +1,8 @@
 import { Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Hero } from '../core';
 import { CqrsDataService, DataServiceConfig, HttpUrlGenerator } from '../data-services';
-import { ToastService } from '../core';
+import { Hero, ToastService } from '../core';
 
 @Injectable()
 export class HeroesService extends CqrsDataService<Hero> {
@@ -14,5 +13,12 @@ export class HeroesService extends CqrsDataService<Hero> {
     @Optional() config: DataServiceConfig
   ) {
     super('Hero', http, httpUrlGenerator, toastService, config);
+  }
+
+  protected filterProjector(filterValue: string, entities: Hero[]) {
+    const regEx = filterValue ? new RegExp(filterValue, 'i') : undefined;
+    return regEx ?
+      entities.filter((e: any) => e.name && e.name.match(regEx)) :
+      entities;
   }
 }

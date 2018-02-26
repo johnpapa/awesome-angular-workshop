@@ -1,51 +1,54 @@
-import { Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { combineLatest, finalize, take, tap } from 'rxjs/operators';
 
 import { DataService, DataServiceConfig } from './data.service';
 import { HttpUrlGenerator } from './http-url-generator';
 import { ToastService } from '../core';
 
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
-import { combineLatest, finalize, take, tap } from 'rxjs/operators';
+// Not injectable because generic
 
 /**
- * CQRS DataService
- * CRUD commands produce HTTP requests
- * Observable query properties (e.g., entities$) report results
+ * CQRS Caching DataService
+ * CRUD commands produce HTTP requests and return void
+ * Observable query properties (e.g., entities$) report changes in cache
  */
-@Injectable()
 export class CqrsDataService<T extends {id: number}> extends DataService<T> {
 
   private _entities: T[] = []; // simplistic cache of entities
   private _entities$ = new BehaviorSubject(this._entities);
-  private _filterObserver = new BehaviorSubject('');
-
-  /** live list of cached entities */
-  entities$: Observable<T[]> = this._entities$;
-
-  /** User's filter pattern */
-  filterObserver: Observer<string> = this._filterObserver;
-
-  /** Entities filtered by those criteria */
-  filteredEntities$ = this._filterObserver.pipe(
-    combineLatest(this._entities$, this.filterProjector)
-  );
-
-  /** true when getting all the entities */
-  loading$ = new BehaviorSubject(false);
 
   constructor(
     entityName: string,
     http: HttpClient,
     httpUrlGenerator: HttpUrlGenerator,
-    @Optional() toastService: ToastService,
-    @Optional() config: DataServiceConfig
+    toastService?: ToastService,
+    config?: DataServiceConfig
   ) {
     super(entityName, http, httpUrlGenerator, toastService, config);
+    this.wireFilteredEntities();
   }
+
+  // region Queries
+
+  /** live list of cached entities */
+  entities$: Observable<T[]> = this._entities$;
+
+  /** Entities filtered by those criteria */
+  filteredEntities$: Observable<T[]>;
+
+  /** User's filter pattern */
+  filterObserver: Observer<string>;
+
+  /** true when getting all the entities */
+  loading$ = new BehaviorSubject(false);
+
+  // endregion Queries
+
+  // region Commands
 
   /** Updates cached entities and publishes */
   private next(newEntities: T[]): void {
@@ -90,4 +93,24 @@ export class CqrsDataService<T extends {id: number}> extends DataService<T> {
     ).subscribe();
   }
 
+  // endregion Commands
+
+  // region wireFilteredEntities
+  protected wireFilteredEntities() {
+    const filterObserver = new BehaviorSubject('');
+    this.filterObserver = filterObserver;
+    this.filteredEntities$ = filterObserver.pipe(
+      combineLatest(this.entities$, this.filterProjector)
+    );
+  }
+
+  /**
+   * Filter entities by the filterValue.
+   * This one ignores filter and returns entities.
+   * Override in sub-class.
+   */
+  protected filterProjector(filterValue: string, entities: T[]) {
+    return entities;
+  }
+  // endregion wireFilteredEntities
 }

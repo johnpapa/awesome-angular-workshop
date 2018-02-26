@@ -2,26 +2,23 @@ import { Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { CqrsDataService, DataServiceConfig, HttpUrlGenerator } from '../data-services';
-import { Villain, ToastService } from '../core';
+import { Hero, ToastService } from '../core';
 
 @Injectable()
-export class VillainsService extends CqrsDataService<Villain> {
+export class OldHeroesService extends CqrsDataService<Hero> {
   constructor(
     http: HttpClient,
     httpUrlGenerator: HttpUrlGenerator,
     @Optional() toastService: ToastService,
     @Optional() config: DataServiceConfig
   ) {
-    super('Villain', http, httpUrlGenerator, toastService, config);
+    super('Hero', http, httpUrlGenerator, toastService, config);
   }
 
-  protected filterProjector(filterValue: string, entities: Villain[]) {
+  protected filterProjector(filterValue: string, entities: Hero[]) {
     const regEx = filterValue ? new RegExp(filterValue, 'i') : undefined;
     return regEx ?
-      entities.filter((e: any) =>
-        (e.name && e.name.match(regEx)) ||
-        (e.saying && e.saying.match(regEx))
-      ) :
+      entities.filter((e: any) => e.name && e.name.match(regEx)) :
       entities;
   }
 }

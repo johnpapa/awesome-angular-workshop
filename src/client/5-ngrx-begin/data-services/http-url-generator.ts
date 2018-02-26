@@ -1,26 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Pluralizer } from './pluralizer';
 
-/**
- * Generate the base part of an HTTP URL for
- * single entity or entity collection resource
- */
-export abstract class HttpUrlGenerator {
-  /**
-   * Return the base URL for a single entity resource,
-   * e.g., the base URL to get a single hero by its id
-   */
-  abstract entityResource(entityName: string, root: string): string;
-
-  /**
-   * Return the base URL for a collection resource,
-   * e.g., the base URL to get all heroes
-   */
-  abstract collectionResource(entityName: string, root: string): string;
-}
-
 @Injectable()
-export class DefaultHttpUrlGenerator implements HttpUrlGenerator {
+export class HttpUrlGenerator {
   constructor(private pluralizer: Pluralizer) { }
 
   entityResource(entityName: string, root: string): string {

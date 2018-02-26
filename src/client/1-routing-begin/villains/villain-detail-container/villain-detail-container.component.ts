@@ -3,7 +3,6 @@ import { finalize, map, tap } from 'rxjs/operators';
 
 import { Villain } from '../../core';
 import { VillainService } from '../villain.service';
-// import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'aw-villain-detail-container',
@@ -17,16 +16,12 @@ export class VillainDetailContainerComponent implements OnInit {
   loading: boolean;
   private id: number;
 
-  constructor(
-    private villainService: VillainService
-    // private route: ActivatedRoute
-  ) {}
+  constructor(private villainService: VillainService) {}
 
   ngOnInit() {
     // TODO: Step 8
     // Get the id route parameter.
     // If it is > 0, get the villain, else enable add mode.
-
     // TODO: Step 8 - Solution
     // this.route.params
     //   .pipe(map(params => params['id']), tap(id => (this.id = +id)))

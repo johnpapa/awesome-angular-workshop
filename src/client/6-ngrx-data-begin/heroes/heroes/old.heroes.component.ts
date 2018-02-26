@@ -1,12 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, NgModule } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
 
 import { FilterObserver } from '../../shared/filter';
 import { Hero } from '../../core';
-// import { HeroesService } from '../heroes.service.1'; // messy 1st version
-import { HeroesService } from '../heroes.service';   // clean version
+import { HeroesService } from '../heroes.service';
+
+// Note: declared in OldHeroesModule at the bottom
 
 @Component({
   selector: 'aw-heroes',
@@ -71,3 +72,10 @@ export class HeroesComponent implements OnInit {
     this.selectedHero = null;
   }
 }
+
+// Placeholder to keep Angular Language Service happy
+
+@NgModule({
+  declarations: [ HeroesComponent ]
+})
+export class OldHeroesModule {}

@@ -2,8 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
 
+import { FilterObserver } from '../../shared/filter';
 import { Hero } from '../../core';
 import { HeroesService } from '../heroes.service';
 
@@ -18,7 +18,7 @@ export class HeroesComponent implements OnInit {
   addingHero = false;
   selectedHero: Hero;
 
-  filterObserver: Observer<string>;
+  filterObserver: FilterObserver;
   filteredHeroes$: Observable<Hero[]>;
   loading$: Observable<boolean>;
 

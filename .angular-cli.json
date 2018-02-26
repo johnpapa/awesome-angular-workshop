@@ -8,6 +8,31 @@
       "name": "0-awesome",
       "outDir": "dist/0-awesome",
       "main": "main.0-awesome.ts",
+      "appRoot": "0-awesome",
+      "root": "src/client",
+      "assets": ["assets", "favicon.ico"],
+      "index": "index.html",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "aw",
+      "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
+      "stylePreprocessorOptions": {
+        "includePaths": ["styles"]
+      },
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
+      "name": "1-routing-begin",
+      "outDir": "dist/1-routing-begin",
+      "main": "main.1-routing-begin.ts",
+      "appRoot": "1-routing-begin",
       "root": "src/client",
       "assets": ["assets", "favicon.ico"],
       "index": "index.html",
@@ -31,6 +56,7 @@
       "name": "1-routing-end",
       "outDir": "dist/1-routing-end",
       "main": "main.1-routing-end.ts",
+      "appRoot": "1-routing-end",
       "root": "src/client",
       "assets": ["assets", "favicon.ico"],
       "index": "index.html",
@@ -54,6 +80,7 @@
       "name": "4-reactive",
       "outDir": "dist/4-reactive",
       "main": "main.4-reactive.ts",
+      "appRoot": "4-reactive",
       "root": "src/client",
       "assets": ["assets", "favicon.ico"],
       "index": "index.html",
@@ -61,7 +88,7 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "aw40",
+      "prefix": "aw",
       "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
       "stylePreprocessorOptions": {
         "includePaths": ["styles"]
@@ -77,6 +104,7 @@
       "name": "5-ngrx-begin",
       "outDir": "dist/5-ngrx-begin",
       "main": "main.5-ngrx-begin.ts",
+      "appRoot": "5-ngrx-begin",
       "root": "src/client",
       "assets": ["assets", "favicon.ico"],
       "index": "index.html",
@@ -84,7 +112,7 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "aw40",
+      "prefix": "aw",
       "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
       "stylePreprocessorOptions": {
         "includePaths": ["styles"]
@@ -123,6 +151,26 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {}
+    "component": {
+      "spec": false
+    },
+    "directive": {
+      "spec": false
+    },
+    "class": {
+      "spec": false
+    },
+    "guard": {
+      "spec": false
+    },
+    "module": {
+      "spec": false
+    },
+    "pipe": {
+      "spec": false
+    },
+    "service": {
+      "spec": false
+    }
   }
 }

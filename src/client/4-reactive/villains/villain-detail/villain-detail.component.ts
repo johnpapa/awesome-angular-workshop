@@ -42,6 +42,7 @@ export class VillainDetailComponent implements OnChanges {
       this.addMode = false;
       this.form.patchValue(this.villain);
     } else {
+      this.form.reset();
       this.addMode = true;
     }
   }

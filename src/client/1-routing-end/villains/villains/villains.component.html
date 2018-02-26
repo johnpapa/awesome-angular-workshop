@@ -5,6 +5,7 @@
       matTooltip="Add a new villain">Add</button>
   </div>
 </div>
+
 <div class="content-container">
   <div class="list-container">
     <div *ngIf="villains">
@@ -15,8 +16,6 @@
     </div>
   </div>
   <div class="detail-container">
-    <aw-villain-detail *ngIf="selectedVillain || addingVillain" [villain]="selectedVillain" (unselect)="unselect()" (add)="add($event)"
-      (update)="update($event)">
-    </aw-villain-detail>
+    <router-outlet></router-outlet>
   </div>
 </div>

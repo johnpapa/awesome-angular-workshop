@@ -19,6 +19,16 @@ export class VillainService {
     return this.http.get<any>(`${api}/profile`);
   }
 
+  getVillain(id: number) {
+    return this.http
+      .get<Array<Villain>>(`${api}/villains/${id}`)
+      .pipe(
+        map(villain => villain),
+        tap(() => this.toastService.openSnackBar('Villain retrieved successfully!', 'GET')),
+        catchError(this.handleError)
+      );
+  }
+
   getVillains() {
     return this.http
       .get<Array<Villain>>(`${api}/villains`)

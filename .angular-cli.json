@@ -53,6 +53,54 @@
       }
     },
     {
+      "name": "1-routing-guards-begin",
+      "appRoot": "1-routing-guards-begin",
+      "outDir": "dist/1-routing-guards-begin",
+      "main": "main.1-routing-guards-begin.ts",
+      "root": "src/client",
+      "assets": ["assets", "favicon.ico"],
+      "index": "index.html",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "aw",
+      "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
+      "stylePreprocessorOptions": {
+        "includePaths": ["styles"]
+      },
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
+      "name": "1-routing-guards-end",
+      "appRoot": "1-routing-guards-end",
+      "outDir": "dist/1-routing-guards-end",
+      "main": "main.1-routing-guards-end.ts",
+      "root": "src/client",
+      "assets": ["assets", "favicon.ico"],
+      "index": "index.html",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "aw",
+      "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
+      "stylePreprocessorOptions": {
+        "includePaths": ["styles"]
+      },
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
       "name": "1-routing-end",
       "appRoot": "1-routing-end",
       "outDir": "dist/1-routing-end",

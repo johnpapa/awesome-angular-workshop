@@ -12,6 +12,8 @@
     "0-awesome": "ng serve -a 0-awesome -o -p 9000",
     "1-routing-begin": "ng serve -a 1-routing-begin -o -p 9010",
     "1-routing-end": "ng serve -a 1-routing-end -o -p 9011",
+    "1-routing-guards-begin": "ng serve -a 1-routing-guards-begin -o -p 9012",
+    "1-routing-guards-end": "ng serve -a 1-routing-guards-end -o -p 9013",
     "2-modules-begin": "ng serve -a 2-modules-begin -o -p 9020",
     "2-modules-end": "ng serve -a 2-modules-end -o -p 9021",
     "4-reactive": "ng serve -a 4-reactive -o -p 9040",

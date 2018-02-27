@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize } from 'rxjs/operators';
 
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { combineLatest, finalize } from 'rxjs/operators';
+
+import { FilterObserver } from '../../shared/filter';
 import { Hero } from '../../core';
 import { HeroService } from '../hero.service';
 
@@ -13,10 +17,17 @@ export class HeroesComponent implements OnInit {
   addingHero = false;
   selectedHero: Hero;
 
-  heroes: Hero[];
-  loading: boolean;
+  // for filtering
+  filterObserver: FilterObserver;
+  filteredHeroes$: Observable<Hero[]>;
+  heroes$: Observable<Hero[]>;
+  loading$: Observable<boolean>;
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroService) {
+    this.filterObserver = heroService.filterObserver;
+    this.heroes$ = heroService.heroes$;
+    this.filteredHeroes$ = heroService.filteredHeroes$;
+  }
 
   ngOnInit() {
     this.getHeroes();
@@ -27,27 +38,25 @@ export class HeroesComponent implements OnInit {
     this.selectedHero = null;
   }
 
-  deleteHero(hero: Hero) {
-    this.loading = true;
-    this.unselect();
-    this.heroService
-      .deleteHero(hero)
-      .pipe(finalize(() => (this.loading = false)))
-      .subscribe(() => (this.heroes = this.heroes.filter(h => h.id !== hero.id)));
-  }
-
   enableAddMode() {
     this.addingHero = true;
     this.selectedHero = null;
   }
 
   getHeroes() {
-    this.loading = true;
-    this.heroService
-      .getHeroes()
-      .pipe(finalize(() => (this.loading = false)))
-      .subscribe(heroes => (this.heroes = heroes));
-    this.unselect();
+    this.heroService.getHeroes();
+  }
+
+  add(hero: Hero) {
+    this.heroService.addHero(hero);
+  }
+
+  deleteHero(hero: Hero) {
+    this.heroService.deleteHero(hero);
+  }
+
+  update(hero: Hero) {
+    this.heroService.updateHero(hero);
   }
 
   onSelect(hero: Hero) {
@@ -55,24 +64,9 @@ export class HeroesComponent implements OnInit {
     this.selectedHero = hero;
   }
 
-  update(hero: Hero) {
-    this.loading = true;
-    this.heroService
-      .updateHero(hero)
-      .pipe(finalize(() => (this.loading = false)))
-      .subscribe(() => (this.heroes = this.heroes.map(h => (h.id === hero.id ? hero : h))));
-  }
-
-  add(hero: Hero) {
-    this.loading = true;
-    this.heroService
-      .addHero(hero)
-      .pipe(finalize(() => (this.loading = false)))
-      .subscribe(addedHero => (this.heroes = this.heroes.concat(addedHero)));
-  }
-
   unselect() {
     this.addingHero = false;
     this.selectedHero = null;
   }
+
 }

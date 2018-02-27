@@ -13,6 +13,8 @@ import {
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { FilterComponent } from './filter/filter.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTooltipModule,
   ],
   exports: [
+    FilterComponent,
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -41,6 +44,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatToolbarModule,
     MatTooltipModule,
   ],
-  declarations: []
+  declarations: [FilterComponent]
 })
 export class SharedModule {}

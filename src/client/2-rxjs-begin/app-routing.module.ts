@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'villains',
     loadChildren: '2-rxjs-begin/villains/villains.module#VillainsModule'
+  },
+  {
+    path: 'raw',
+    loadChildren: '2-rxjs-begin/raw/raw.module#RawModule'
   }
 ];
 

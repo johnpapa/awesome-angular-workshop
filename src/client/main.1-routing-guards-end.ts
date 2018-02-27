@@ -4,7 +4,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './1-routing-guards-end/app.module';
 import { AppDevModule } from './1-routing-guards-end/app-dev.module';
 import { environment } from './environments/environment';
- 
+
 import 'hammerjs';
 
 if (environment.production) {

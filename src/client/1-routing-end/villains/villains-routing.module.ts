@@ -8,7 +8,9 @@ const routes: Routes = [
   {
     path: '',
     component: VillainsComponent,
-    children: [{ path: 'details/:id', component: VillainDetailContainerComponent }]
+    children: [
+      { path: 'details/:id', component: VillainDetailContainerComponent }
+    ]
   }
 ];
 

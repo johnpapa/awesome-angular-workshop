@@ -1,0 +1,11 @@
+version: '2.1'
+
+services:
+  awesome-angular-workshop:
+    image: awesome-angular-workshop
+    build: .
+    environment:
+      PUBLICWEB: ./publicweb
+      NODE_ENV: production
+    ports:
+      - 9070:9070

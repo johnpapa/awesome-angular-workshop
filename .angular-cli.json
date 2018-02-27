@@ -291,6 +291,84 @@
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
+    },
+    {
+      "name": "7-deploy-begin",
+      "appRoot": "7-deploy-begin",
+      "outDir": "dist/7-deploy-begin/publicweb",
+      "main": "main.7-deploy-begin.ts",
+      "root": "src/client",
+      "assets": [
+        "assets",
+        "favicon.ico",
+        {
+          "glob": "**/*.*",
+          "input": "../server/",
+          "output": "../",
+          "allowOutsideOutDir": true
+        },
+        {
+          "glob": "package.json",
+          "input": "../../",
+          "output": "../",
+          "allowOutsideOutDir": true
+        }
+      ],
+      "index": "index.html",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "aw",
+      "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
+      "stylePreprocessorOptions": {
+        "includePaths": ["styles"]
+      },
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
+      "name": "7-deploy-end",
+      "appRoot": "7-deploy-end",
+      "outDir": "dist/7-deploy-end/publicweb",
+      "main": "main.7-deploy-end.ts",
+      "root": "src/client",
+      "assets": [
+        "assets",
+        "favicon.ico",
+        {
+          "glob": "**/*.*",
+          "input": "../server/",
+          "output": "../",
+          "allowOutsideOutDir": true
+        },
+        {
+          "glob": "package.json",
+          "input": "../../",
+          "output": "../",
+          "allowOutsideOutDir": true
+        }
+      ],
+      "index": "index.html",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "aw",
+      "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
+      "stylePreprocessorOptions": {
+        "includePaths": ["styles"]
+      },
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
     }
   ],
   "e2e": {

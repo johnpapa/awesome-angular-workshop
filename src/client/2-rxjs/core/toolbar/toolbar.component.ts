@@ -8,7 +8,7 @@ import { MessageService } from '../message.service';
 })
 export class ToolbarComponent {
   labTitle = '2-rxjs';
-  labState = 'begin';
+  labState = '';
 
   constructor(private messageService: MessageService) {}
 

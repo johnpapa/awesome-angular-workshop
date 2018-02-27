@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { combineLatest, finalize } from 'rxjs/operators';
 
 import { FilterObserver } from '../../shared/filter';
 import { Hero } from '../../core';
@@ -68,5 +66,4 @@ export class HeroesComponent implements OnInit {
     this.addingHero = false;
     this.selectedHero = null;
   }
-
 }

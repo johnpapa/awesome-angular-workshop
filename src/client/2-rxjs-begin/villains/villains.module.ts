@@ -23,7 +23,7 @@ import { MessageService } from '../core';
 
   providers: [
     // Module gets a private MessageService
-    MessageService,
+    MessageService, // <-- what happens if commented out?
     VillainService
   ]
 })

@@ -4,6 +4,8 @@
     <button mat-raised-button color="primary" type="button" (click)="enableAddMode()" *ngIf="!addingHero && !selectedHero" matTooltip="Add a new hero">Add</button>
   </div>
 
+  <!-- FILTER OBSERVER -->
+
   <aw-filter [filterObserver]="filterObserver" filterPlaceholder="Filter by hero's name"
   class="filter-panel"></aw-filter>
 
@@ -12,6 +14,9 @@
 <div class="content-container">
 
   <div class="list-container">
+
+    <!-- ASYNC PIPES -->
+
     <!-- <div *ngIf="heroes$ | async as heroes"> -->
     <div *ngIf="filteredHeroes$ | async as heroes">
       <mat-spinner *ngIf="loading$ | async ;else heroList" mode="indeterminate" color="accent"></mat-spinner>

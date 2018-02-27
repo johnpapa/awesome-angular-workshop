@@ -20,10 +20,7 @@ import { throwIfAlreadyLoaded } from './module-import-check';
 })
 export class CoreModule {
   constructor(
-    @Optional()
-    @SkipSelf()
-    parentModule: CoreModule
-    // toastService: NgrxDataToastService
+    @Optional()  @SkipSelf() parentModule: CoreModule,
   ) {
     throwIfAlreadyLoaded(parentModule, 'CoreModule');
   }

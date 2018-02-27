@@ -99,8 +99,9 @@ export class VillainsComponent implements OnInit, OnDestroy {
         if (message.match(/add|update/i)) {
           this.getVillains(); // detail saved a change
         } else if (message.match(/close/i)) {
-          // return here from detail
-          this.router.navigate(['./villains']);
+          // Return here from detail
+          // Below is like navigating to "/villains" without hard-coding it.
+          this.router.navigate(['./'], { relativeTo: this.route });
           this.clear();
         }
       }

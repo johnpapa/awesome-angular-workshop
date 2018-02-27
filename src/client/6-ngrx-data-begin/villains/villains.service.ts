@@ -1,3 +1,8 @@
+// Reactive non-ngrx version
+
+// Step 1. Completely replace with contents of HeroService
+// Step 2. Replace all "Hero" with "Villain".
+
 import { Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 

@@ -25,7 +25,6 @@ export class CoreModule {
     @Optional()
     @SkipSelf()
     parentModule: CoreModule
-    // toastService: NgrxDataToastService
   ) {
     throwIfAlreadyLoaded(parentModule, 'CoreModule');
   }

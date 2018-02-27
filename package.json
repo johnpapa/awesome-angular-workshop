@@ -16,6 +16,7 @@
     "1-routing-guards-end": "ng serve -a 1-routing-guards-end -o -p 9013",
     "2-modules-begin": "ng serve -a 2-modules-begin -o -p 9020",
     "2-modules-end": "ng serve -a 2-modules-end -o -p 9021",
+    "3-rxjs-begin": "ng serve -a 2-rxjs-begin -o -p 9030",
     "4-reactive": "ng serve -a 4-reactive -o -p 9040",
     "5-ngrx-begin": "ng serve -a 5-ngrx-begin -o -p 9050",
     "5-ngrx-end": "ng serve -a 5-ngrx-end -o -p 9051",

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs/Subject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, combineLatest, finalize, map, tap } from 'rxjs/operators';
@@ -31,10 +31,10 @@ export class HeroService {
       this.wireFilteredHeroes();
     }
 
-  /** Updates cached heroes and publishes */
+  /** Updates cached heroes and push into the observable */
   private next(newHeroes: Hero[]): void {
-    this.heroes$.next(newHeroes);
     this.heroes = newHeroes;
+    this.heroes$.next(newHeroes);
   }
 
   // region Commands
@@ -115,7 +115,10 @@ export class HeroService {
 
   // region wireFilteredHeroes
   wireFilteredHeroes() {
-    const filterObserver = new BehaviorSubject<string>('');
+    const filterObserver = new ReplaySubject<string>();
+
+    // What happens when you comment this out? Why? See FilterComponent.
+    filterObserver.next('m');
 
     this.filterObserver = {
       filter$: filterObserver.asObservable(),

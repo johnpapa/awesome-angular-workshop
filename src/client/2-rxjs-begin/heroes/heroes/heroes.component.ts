@@ -22,9 +22,10 @@ export class HeroesComponent implements OnInit {
   loading$: Observable<boolean>;
 
   constructor(private heroService: HeroService) {
-    this.filterObserver = heroService.filterObserver;
     this.heroes$ = heroService.heroes$;
+    this.filterObserver = heroService.filterObserver;
     this.filteredHeroes$ = heroService.filteredHeroes$;
+    this.loading$ = heroService.loading$;
   }
 
   ngOnInit() {

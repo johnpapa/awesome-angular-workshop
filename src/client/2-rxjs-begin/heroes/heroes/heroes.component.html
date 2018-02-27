@@ -19,7 +19,7 @@
 
     <!-- <div *ngIf="heroes$ | async as heroes"> -->
     <div *ngIf="filteredHeroes$ | async as heroes">
-      <mat-spinner *ngIf="loading$ | async ;else heroList" mode="indeterminate" color="accent"></mat-spinner>
+      <mat-spinner *ngIf="loading$ | async;else heroList" mode="indeterminate" color="accent"></mat-spinner>
 
       <ng-template #heroList>
         <aw-hero-list [heroes]="heroes" [selectedHero]="selectedHero" (deleted)="deleteHero($event)" (selected)="onSelect($event)"></aw-hero-list>

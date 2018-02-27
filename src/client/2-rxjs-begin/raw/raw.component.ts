@@ -35,9 +35,9 @@ export class RawComponent implements OnInit, OnDestroy {
     /////// Observable
 
     // A function that takes an Observer (AKA, Subscriber)
-    const myObservable = (subscriber: Observer<string>) => {
+    const myObservable = (observer: Observer<string>) => {
       // Call observer methods when something happens
-      subscriber.next('Hello, good looking!');
+      observer.next('Hello, good looking!');
     };
 
 
@@ -65,7 +65,7 @@ export class RawComponent implements OnInit, OnDestroy {
     // this.subscription = observable.subscribe(
     //   value => this.items.push(value),
     //   (err: string) => this.errorMessage = err,
-    //   () => this.items.push('observable completed')
+    //   () => console.log('observable completed')
     // );
   }
 

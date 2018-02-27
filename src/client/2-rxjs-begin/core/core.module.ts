@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SharedModule } from '../shared/shared.module';
+import { MessageService } from './message.service';
 import { ToastService } from './toast.service';
 import { throwIfAlreadyLoaded } from './module-import-check';
 
@@ -15,7 +16,7 @@ import { throwIfAlreadyLoaded } from './module-import-check';
   ],
   declarations: [ToolbarComponent],
   exports: [ToolbarComponent],
-  providers: [ToastService]
+  providers: [ MessageService, ToastService ]
 })
 export class CoreModule {
   constructor(

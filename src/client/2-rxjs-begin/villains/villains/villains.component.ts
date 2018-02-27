@@ -1,44 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { Subscription } from 'rxjs/Subscription';
 import { finalize } from 'rxjs/operators';
 
-import { Villain } from '../../core';
+import { MessageService, Villain } from '../../core';
 import { VillainService } from '../villain.service';
 import { Router, ActivatedRoute } from '@angular/router';
+
+import { VILLAIN_DETAIL_CONTAINER } from '../villain-detail-container';
 
 @Component({
   selector: 'aw-villains',
   templateUrl: './villains.component.html',
   styleUrls: ['./villains.component.scss']
 })
-export class VillainsComponent implements OnInit {
+export class VillainsComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
   addingVillain = false;
   selectedVillain: Villain;
 
   villains: Villain[];
   loading: boolean;
-
   constructor(
     private villainService: VillainService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
+    this.listenToViewDetailContainer();
     this.getVillains();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   clear() {
     this.addingVillain = false;
     this.selectedVillain = null;
-  }
-
-  deleteVillain(villain: Villain) {
-    this.loading = true;
-    this.unselect();
-    this.villainService
-      .deleteVillain(villain)
-      .pipe(finalize(() => (this.loading = false)))
-      .subscribe(() => (this.villains = this.villains.filter(h => h.id !== villain.id)));
   }
 
   enableAddMode() {
@@ -48,18 +49,35 @@ export class VillainsComponent implements OnInit {
   }
 
   getVillains() {
+    this.clear();
     this.loading = true;
     this.villainService
       .getVillains()
       .pipe(finalize(() => (this.loading = false)))
       .subscribe(villains => (this.villains = villains));
-    this.unselect();
   }
 
   onSelect(villain: Villain) {
     this.addingVillain = false;
     this.selectedVillain = villain;
     this.router.navigate(['details', villain.id], { relativeTo: this.route });
+  }
+
+  add(villain: Villain) {
+    this.loading = true;
+    this.villainService
+      .addVillain(villain)
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe(addedVillain => (this.villains = this.villains.concat(addedVillain)));
+  }
+
+  deleteVillain(villain: Villain) {
+    this.loading = true;
+    this.clear();
+    this.villainService
+      .deleteVillain(villain)
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe(() => (this.villains = this.villains.filter(h => h.id !== villain.id)));
   }
 
   update(villain: Villain) {
@@ -72,16 +90,20 @@ export class VillainsComponent implements OnInit {
       );
   }
 
-  add(villain: Villain) {
-    this.loading = true;
-    this.villainService
-      .addVillain(villain)
-      .pipe(finalize(() => (this.loading = false)))
-      .subscribe(addedvillain => (this.villains = this.villains.concat(addedvillain)));
-  }
 
-  unselect() {
-    this.addingVillain = false;
-    this.selectedVillain = null;
+
+  private listenToViewDetailContainer() {
+    this.subscription = this.messageService.listen$
+    .subscribe(({ message, sender }) => {
+      if (sender === VILLAIN_DETAIL_CONTAINER ) {
+        if (message.match(/add|update/i)) {
+          this.getVillains(); // detail saved a change
+        } else if (message.match(/close/i)) {
+          // return here from detail
+          this.router.navigate(['./villains']);
+          this.clear();
+        }
+      }
+    });
   }
 }

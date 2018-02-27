@@ -9,6 +9,8 @@ import { VillainService } from './villain.service';
 import { SharedModule } from '../shared/shared.module';
 import { VillainDetailContainerComponent } from './villain-detail-container/villain-detail-container.component';
 
+import { MessageService } from '../core';
+
 @NgModule({
   imports: [CommonModule, SharedModule, VillainsRoutingModule],
   exports: [VillainsComponent, VillainDetailComponent],
@@ -18,6 +20,15 @@ import { VillainDetailContainerComponent } from './villain-detail-container/vill
     VillainListComponent,
     VillainDetailContainerComponent
   ],
-  providers: [VillainService]
+
+  providers: [
+    // Module gets a private MessageService
+    MessageService,
+    VillainService
+  ]
 })
-export class VillainsModule {}
+export class VillainsModule {
+  constructor(messageService: MessageService) {
+    messageService.send('Villains Module Loaded', 'VillainsModule');
+  }
+}

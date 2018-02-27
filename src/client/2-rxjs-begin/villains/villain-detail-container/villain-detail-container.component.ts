@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize, map, tap } from 'rxjs/operators';
 
-import { Villain } from '../../core';
+import { MessageService, Villain } from '../../core';
 import { VillainService } from '../villain.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+export const VILLAIN_DETAIL_CONTAINER = 'VillainDetailContainer';
 
 @Component({
   selector: 'aw-villain-detail-container',
@@ -19,8 +21,9 @@ export class VillainDetailContainerComponent implements OnInit {
 
   constructor(
     private villainService: VillainService,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit() {
     this.route.params
@@ -33,38 +36,49 @@ export class VillainDetailContainerComponent implements OnInit {
     this.selectedVillain = null;
   }
 
+  close() {
+    this.loading = false;
+    this.sendMessage('Close')();
+  }
+
   enableAddMode() {
     this.addingVillain = true;
     this.selectedVillain = null;
   }
 
   getVillain() {
+    this.clear();
     this.loading = true;
     this.villainService
       .getVillain(this.id)
       .pipe(finalize(() => (this.loading = false)))
       .subscribe(villain => (this.selectedVillain = villain));
-    this.unselect();
-  }
-
-  update(villain: Villain) {
-    this.loading = true;
-    this.villainService
-      .updateVillain(villain)
-      .pipe(finalize(() => (this.loading = false)))
-      .subscribe();
   }
 
   add(villain: Villain) {
     this.loading = true;
     this.villainService
       .addVillain(villain)
-      .pipe(finalize(() => (this.loading = false)))
+      .pipe(
+        tap(this.sendMessage('Added')),
+        finalize(() =>  this.close())
+      )
       .subscribe();
   }
 
-  unselect() {
-    this.addingVillain = false;
-    this.selectedVillain = null;
+  update(villain: Villain) {
+    this.loading = true;
+    this.villainService
+      .updateVillain(villain)
+      .pipe(
+        tap(this.sendMessage('Updated')),
+        finalize(() =>  this.close())
+      )
+      .subscribe();
+  }
+
+  private sendMessage(operation: string) {
+    return () =>
+      this.messageService.send(`${operation} Villain`, VILLAIN_DETAIL_CONTAINER);
   }
 }

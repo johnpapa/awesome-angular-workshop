@@ -23,7 +23,6 @@ export class VillainService {
     return this.http
       .get<Array<Villain>>(`${api}/villains/${id}`)
       .pipe(
-        map(villain => villain),
         tap(() => this.toastService.openSnackBar('Villain retrieved successfully!', 'GET')),
         catchError(this.handleError)
       );
@@ -33,7 +32,6 @@ export class VillainService {
     return this.http
       .get<Array<Villain>>(`${api}/villains`)
       .pipe(
-        map(villains => villains),
         tap(() => this.toastService.openSnackBar('Villains retrieved successfully!', 'GET')),
         catchError(this.handleError)
       );

@@ -27,15 +27,13 @@ export class FilterComponent implements OnInit {
   ngOnInit() {
     // Set the filter to the current value from filterObserver or ''
     // IMPORTANT: filterObserver must emit at least once!
-    this.filterObserver.filter$
-    .pipe(take(1))
     // take(1) completes so no need to unsubscribe
-    .subscribe(value => this.filter.setValue(value));
+    this.filterObserver.filter$.pipe(take(1))
+      .subscribe(value => this.filter.setValue(value));
 
+    // no need to unsubscribe because subscribing to self
     this.filter.valueChanges
-      .pipe(
-        debounceTime(300), distinctUntilChanged())
-      // no need to unsubscribe because subscribing to self
+      .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe(pattern => this.filterObserver.setFilter(pattern));
   }
 }

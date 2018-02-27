@@ -24,11 +24,11 @@ export class VillainsService extends EntityServiceBase<Villain> {
     };
   }
 
+  // BONUS: generate id if missing
+  // MUST generate missing id for villain if
+  // Villain EntityMetadata is configured for optimistic ADD.
   add(villain: Villain) {
-    // Bonus: generate id if missing
     if (!villain.id) {
-      // MUST generate missing id for villain if
-      // Villain EntityMetadata is configured for optimistic ADD.
       const id = this.idGenerator.nextId();
       villain = { ...villain, id };
     }

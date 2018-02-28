@@ -7,7 +7,7 @@ import { MessageService } from '../message.service';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
-  labTitle = '2-rxjs';
+  labTitle = '3-rxjs';
   labState = '';
 
   constructor(private messageService: MessageService) {}

@@ -5,15 +5,15 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'heroes' },
   {
     path: 'heroes',
-    loadChildren: '2-rxjs/heroes/heroes.module#HeroesModule'
+    loadChildren: '3-rxjs/heroes/heroes.module#HeroesModule'
   },
   {
     path: 'villains',
-    loadChildren: '2-rxjs/villains/villains.module#VillainsModule'
+    loadChildren: '3-rxjs/villains/villains.module#VillainsModule'
   },
   {
     path: 'raw',
-    loadChildren: '2-rxjs/raw/raw.module#RawModule'
+    loadChildren: '3-rxjs/raw/raw.module#RawModule'
   }
 ];
 

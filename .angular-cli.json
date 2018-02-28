@@ -173,6 +173,30 @@
       }
     },
     {
+      "name": "3-rxjs",
+      "appRoot": "3-rxjs",
+      "outDir": "dist/3-rxjs",
+      "main": "main.3-rxjs.ts",
+      "root": "src/client",
+      "assets": ["assets", "favicon.ico"],
+      "index": "index.html",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "aw",
+      "styles": ["styles/theme.scss", "styles/mixin.scss", "styles/styles.scss"],
+      "stylePreprocessorOptions": {
+        "includePaths": ["styles"]
+      },
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
       "name": "4-reactive",
       "appRoot": "4-reactive",
       "outDir": "dist/4-reactive",

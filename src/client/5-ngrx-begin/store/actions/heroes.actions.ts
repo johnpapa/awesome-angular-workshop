@@ -55,7 +55,7 @@ export type HeroActions =
   | LoadHeroesError;
 
 
-// Step 3. Add the "ADD" Action Creator classes
+// Step 3. Extend with the "ADD" Action Creator classes
 
 // | AddHero
 // | AddHeroSuccess

@@ -1,0 +1,6 @@
+<mat-spinner *ngIf="loading;else details" mode="indeterminate" color="accent"></mat-spinner>
+<ng-template #details>
+  <aw-villain-detail *ngIf="selectedVillain || addingVillain" [villain]="selectedVillain" (unselect)="close()" (add)="add($event)"
+    (update)="update($event)">
+  </aw-villain-detail>
+</ng-template>

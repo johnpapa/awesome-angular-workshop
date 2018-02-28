@@ -26,7 +26,8 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    // no need to unsubscribe because subscribing to self
+    // Although no need to unsubscribe because subscribing to self,
+    // unsubscribe for safety
     this.filter.valueChanges
       .pipe(
         debounceTime(300),      // wait for user to stop typing
@@ -38,7 +39,7 @@ export class FilterComponent implements OnInit {
     // take(1) completes so no need to unsubscribe
     this.filterObserver.filter$.pipe(
       race(of('')), // either the filterObserver is ready or we use ''
-      take(1)
+      take(1)       // What if you left this step out?
     )
     .subscribe(value => this.filter.setValue(value));
   }

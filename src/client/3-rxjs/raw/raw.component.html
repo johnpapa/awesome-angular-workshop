@@ -1,0 +1,25 @@
+<h3>Raw Observables Demo</h3>
+<p><i>An observable is just a function</i></p>
+<p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
+
+<div class="control-panel">
+  <div class="button-panel">
+    <button mat-raised-button color="primary" type="button" (click)="v1()" matTooltip="Observable v1">v1</button>
+    <button mat-raised-button color="primary" type="button" (click)="v2()" matTooltip="Observable v2">v2</button>
+    <button mat-raised-button color="primary" type="button" (click)="binding()" matTooltip="Angular binding">Binding</button>
+    <button mat-raised-button color="primary" type="button" (click)="v3()" matTooltip="Observable v3">v3</button>
+    <button mat-raised-button color="primary" type="button" (click)="v4()" matTooltip="Observable v4">v4</button>
+    <button mat-raised-button color="primary" type="button" (click)="clear()" matTooltip="Clear input">Clear</button>
+  </div>
+</div>
+
+<h4>{{currentDemo}}</h4>
+
+<input (keyup)="onKey($event.target.value)"
+
+        class="play" [class.hidden]="isHidden"
+        placeholder="Type something" #input />
+
+<ol>
+  <li *ngFor="let item of items">{{item}}</li>
+</ol>

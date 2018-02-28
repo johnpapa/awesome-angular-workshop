@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
-import { debounceTime, distinctUntilChanged, take } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
+import { debounceTime, distinctUntilChanged, race, take } from 'rxjs/operators';
 
 /** FilterComponent binds to a FilterObserver from parent component */
 export interface FilterObserver {
@@ -25,17 +26,20 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Set the filter to the current value from filterObserver or ''
-    // IMPORTANT: filterObserver must emit at least once!
-    this.filterObserver.filter$
-    .pipe(take(1))
-    // take(1) completes so no need to unsubscribe
-    .subscribe(value => this.filter.setValue(value));
-
+    // no need to unsubscribe because subscribing to self
     this.filter.valueChanges
       .pipe(
-        debounceTime(300), distinctUntilChanged())
-      // no need to unsubscribe because subscribing to self
+        debounceTime(300),      // wait for user to stop typing
+        distinctUntilChanged()  // make sure its a new value
+      )
       .subscribe(pattern => this.filterObserver.setFilter(pattern));
+
+    // Set the filter to the current value from filterObserver or ''
+    // take(1) completes so no need to unsubscribe
+    this.filterObserver.filter$.pipe(
+      race(of('')), // either the filterObserver is ready or we use ''
+      take(1)
+    )
+    .subscribe(value => this.filter.setValue(value));
   }
 }

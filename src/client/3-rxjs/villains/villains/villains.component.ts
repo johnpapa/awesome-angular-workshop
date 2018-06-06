@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 import { MessageService, Villain } from '../../core';
@@ -68,7 +68,9 @@ export class VillainsComponent implements OnInit, OnDestroy {
     this.villainService
       .addVillain(villain)
       .pipe(finalize(() => (this.loading = false)))
-      .subscribe(addedVillain => (this.villains = this.villains.concat(addedVillain)));
+      .subscribe(
+        addedVillain => (this.villains = this.villains.concat(addedVillain))
+      );
   }
 
   deleteVillain(villain: Villain) {
@@ -77,7 +79,9 @@ export class VillainsComponent implements OnInit, OnDestroy {
     this.villainService
       .deleteVillain(villain)
       .pipe(finalize(() => (this.loading = false)))
-      .subscribe(() => (this.villains = this.villains.filter(h => h.id !== villain.id)));
+      .subscribe(
+        () => (this.villains = this.villains.filter(h => h.id !== villain.id))
+      );
   }
 
   update(villain: Villain) {
@@ -86,25 +90,27 @@ export class VillainsComponent implements OnInit, OnDestroy {
       .updateVillain(villain)
       .pipe(finalize(() => (this.loading = false)))
       .subscribe(
-        () => (this.villains = this.villains.map(h => (h.id === villain.id ? villain : h)))
+        () =>
+          (this.villains = this.villains.map(
+            h => (h.id === villain.id ? villain : h)
+          ))
       );
   }
 
-
-
   private listenToViewDetailContainer() {
-    this.subscription = this.messageService.listen$
-    .subscribe(({ message, sender }) => {
-      if (sender === VILLAIN_DETAIL_CONTAINER ) {
-        if (message.match(/add|update/i)) {
-          this.getVillains(); // detail saved a change
-        } else if (message.match(/close/i)) {
-          // Return here from detail
-          // Below is like navigating to "/villains" without hard-coding it.
-          this.router.navigate(['./'], { relativeTo: this.route });
-          this.clear();
+    this.subscription = this.messageService.listen$.subscribe(
+      ({ message, sender }) => {
+        if (sender === VILLAIN_DETAIL_CONTAINER) {
+          if (message.match(/add|update/i)) {
+            this.getVillains(); // detail saved a change
+          } else if (message.match(/close/i)) {
+            // Return here from detail
+            // Below is like navigating to "/villains" without hard-coding it.
+            this.router.navigate(['./'], { relativeTo: this.route });
+            this.clear();
+          }
         }
       }
-    });
+    );
   }
 }

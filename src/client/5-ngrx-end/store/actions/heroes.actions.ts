@@ -21,83 +21,85 @@ export const UPDATE_HERO = '[Heroes] Update Hero';
 export const UPDATE_HERO_SUCCESS = '[Heroes] Update Hero Success';
 export const UPDATE_HERO_ERROR = '[Heroes] Update Hero Error';
 
+export interface HeroAction extends Action {
+  payload?: any;
+}
+
 // Action Creators
-export class LoadHeroes implements Action {
+export class LoadHeroes implements HeroAction {
   readonly type = LOAD_HEROES;
 }
 
-export class LoadHeroesSuccess implements Action {
+export class LoadHeroesSuccess implements HeroAction {
   readonly type = LOAD_HEROES_SUCCESS;
-  constructor(public payload: Hero[]) { }
+  constructor(public payload: Hero[]) {}
 }
 
-export class LoadHeroesError implements Action {
+export class LoadHeroesError implements HeroAction {
   readonly type = LOAD_HEROES_ERROR;
-  constructor(public payload: any) { }
+  constructor(public payload: any) {}
 }
 
-// Step 2. Add the "ADD" Action Creators here
+// Step 2. Add the "ADD" HeroAction Creators here
 
-export class AddHero implements Action {
+export class AddHero implements HeroAction {
   readonly type = ADD_HERO;
-  constructor(public payload: Hero) { }
+  constructor(public payload: Hero) {}
 }
 
-export class AddHeroSuccess implements Action {
+export class AddHeroSuccess implements HeroAction {
   readonly type = ADD_HERO_SUCCESS;
-  constructor(public payload: Hero) { }
+  constructor(public payload: Hero) {}
 }
 
-export class AddHeroError implements Action {
+export class AddHeroError implements HeroAction {
   readonly type = ADD_HERO_ERROR;
-  constructor(public payload: any) { }
+  constructor(public payload: any) {}
 }
 
-// BONUS: the remaining action creators
+// BONUS: the remaining HeroAction creators
 
-export class DeleteHero implements Action {
+export class DeleteHero implements HeroAction {
   readonly type = DELETE_HERO;
-  constructor(public payload: number) { }
+  constructor(public payload: number) {}
 }
 
-export class DeleteHeroSuccess implements Action {
+export class DeleteHeroSuccess implements HeroAction {
   readonly type = DELETE_HERO_SUCCESS;
 }
 
-export class DeleteHeroError implements Action {
+export class DeleteHeroError implements HeroAction {
   readonly type = DELETE_HERO_ERROR;
-  constructor(public payload: any) { }
+  constructor(public payload: any) {}
 }
 
-export class UpdateHero implements Action {
+export class UpdateHero implements HeroAction {
   readonly type = UPDATE_HERO;
-  constructor(public payload: Hero) { }
+  constructor(public payload: Hero) {}
 }
 
-export class UpdateHeroSuccess implements Action {
+export class UpdateHeroSuccess implements HeroAction {
   readonly type = UPDATE_HERO_SUCCESS;
-  constructor(public payload: Hero) { }
+  constructor(public payload: Hero) {}
 }
 
-export class UpdateHeroError implements Action {
+export class UpdateHeroError implements HeroAction {
   readonly type = UPDATE_HERO_ERROR;
-  constructor(public payload: any) { }
+  constructor(public payload: any) {}
 }
 
 /** Union type of all Hero Action Creator classes */
 export type HeroActions =
-  LoadHeroes
+  | LoadHeroes
   | LoadHeroesSuccess
   | LoadHeroesError
 
-// Step 3. Add the "ADD" Action Creator classes
-
+  // Step 3. Add the "ADD" Action Creator classes
   | AddHero
   | AddHeroSuccess
   | AddHeroError
 
-// BONUS: the remaining action creators
-
+  // BONUS: the remaining action creators
   | DeleteHero
   | DeleteHeroSuccess
   | DeleteHeroError

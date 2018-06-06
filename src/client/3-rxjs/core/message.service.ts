@@ -1,13 +1,11 @@
 import { Injectable, OnDestroy } from '@angular/core';
 
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 import { ToastService } from './toast.service';
 
 export class Message {
-  constructor(
-    public readonly message?: any,
-    public readonly sender?: string) {}
+  constructor(public readonly message?: any, public readonly sender?: string) {}
 }
 
 @Injectable()
@@ -18,13 +16,11 @@ export class MessageService implements OnDestroy {
   listen$ = this.messageRelay.asObservable();
 
   constructor(private toastService: ToastService) {
-    this.listen$.subscribe(
-      ({ message, sender }) => {
-        message = message || '<unspecified message>';
-        sender = sender || 'Unknown sender';
-        this.toastService.openSnackBar(message, sender);
-      }
-    );
+    this.listen$.subscribe(({ message, sender }) => {
+      message = message || '<unspecified message>';
+      sender = sender || 'Unknown sender';
+      this.toastService.openSnackBar(message, sender);
+    });
   }
 
   /**

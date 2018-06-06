@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { ToastService, Villain } from '../core';
 
-
 const api = '/api';
 
 @Injectable()
@@ -12,21 +11,24 @@ export class VillainService {
   constructor(private http: HttpClient, private toastService: ToastService) {}
 
   getVillain(id: number) {
-    return this.http
-      .get<Array<Villain>>(`${api}/villains/${id}`)
-      .pipe(
-        tap(() => this.toastService.openSnackBar('Villain retrieved successfully!', 'GET')),
-        catchError(this.handleError)
-      );
+    return this.http.get<Villain>(`${api}/villains/${id}`).pipe(
+      tap(() =>
+        this.toastService.openSnackBar('Villain retrieved successfully!', 'GET')
+      ),
+      catchError(this.handleError)
+    );
   }
 
   getVillains() {
-    return this.http
-      .get<Array<Villain>>(`${api}/villains`)
-      .pipe(
-        tap(() => this.toastService.openSnackBar('Villains retrieved successfully!', 'GET')),
-        catchError(this.handleError)
-      );
+    return this.http.get<Array<Villain>>(`${api}/villains`).pipe(
+      tap(() =>
+        this.toastService.openSnackBar(
+          'Villains retrieved successfully!',
+          'GET'
+        )
+      ),
+      catchError(this.handleError)
+    );
   }
 
   private handleError(res: HttpErrorResponse) {
@@ -37,18 +39,39 @@ export class VillainService {
   deleteVillain(villain: Villain) {
     return this.http
       .delete(`${api}/villain/${villain.id}`)
-      .pipe(tap(() => this.toastService.openSnackBar(`Villain ${villain.name} deleted`, 'DELETE')));
+      .pipe(
+        tap(() =>
+          this.toastService.openSnackBar(
+            `Villain ${villain.name} deleted`,
+            'DELETE'
+          )
+        )
+      );
   }
 
   addVillain(villain: Villain) {
     return this.http
       .post<Villain>(`${api}/villain/`, villain)
-      .pipe(tap(() => this.toastService.openSnackBar(`Villain ${villain.name} added`, 'POST')));
+      .pipe(
+        tap(() =>
+          this.toastService.openSnackBar(
+            `Villain ${villain.name} added`,
+            'POST'
+          )
+        )
+      );
   }
 
   updateVillain(villain: Villain) {
     return this.http
       .put<Villain>(`${api}/villain/${villain.id}`, villain)
-      .pipe(tap(() => this.toastService.openSnackBar(`Villain ${villain.name} updated`, 'PUT')));
+      .pipe(
+        tap(() =>
+          this.toastService.openSnackBar(
+            `Villain ${villain.name} updated`,
+            'PUT'
+          )
+        )
+      );
   }
 }

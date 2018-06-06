@@ -6,17 +6,19 @@ by [Ward Bell](https://twitter.com/wardbell) and [John Papa](https://twitter.com
 
 All apps are in the `src/client` folder. There is a `src/server` folder containing a node server, as some other apps may or may not use it.
 
-### app-0-awesome
+### 0-awesome
 
-`app-0-awesome` is our basic template app. All other apps in the `src/client` folder are derived from `app-0-awesome` and then modified as needed.
+`0-awesome` is our basic template app. All other apps in the `src/client` folder are derived from `0-awesome` and then modified as needed.
 
 ### 1-router
 
-**TBD**
+`1-routing-begin` is our beginning lab for routing and `1-routing-begin-end` is the end state.
+
+We also have a routing guard lab. `1-routing-guards-begin` and `1-routing-guards-end`.
 
 ### 2-rxjs
 
-**TBD**
+`1-routing-begin` is our beginning lab for routing and `1-routing-begin-end` is the end state.
 
 ### 3-style
 
@@ -57,7 +59,7 @@ Example: make a lab called `n-new-lab-begin` where `n` is an integer.
 - set `"outDir"` to `"dist/n-new-lab-begin"`
 - set `"main"` to `"main.n-new-lab-begin.ts"`
 
-3.  Update the lazy loaded routes that start with `app-0-awesome/` to `n-new-lab-begin/` in `n-new-lab-begin/app-routing.module.ts`.
+3.  Update the lazy loaded routes that start with `0-awesome/` to `n-new-lab-begin/` in `n-new-lab-begin/app-routing.module.ts`.
 
 > Hint: easy with search-and-replace _AFTER_ limiting `files-to-include` to `"n-new-lab-begin"`.
 

@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
-  labTitle = 'app-0-awesome';
+  labTitle = '0-awesome';
   labState = 'template';
 }

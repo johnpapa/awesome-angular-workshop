@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "app-0-awesome": "ng serve app-0-awesome -o --port 9000",
+    "0-awesome": "ng serve 0-awesome -o --port 9000",
     "1-routing-begin": "ng serve 1-routing-begin -o --port 9010",
     "1-routing-end": "ng serve 1-routing-end -o --port 9011",
     "1-routing-guards-begin": "ng serve 1-routing-guards-begin -o --port 9012",

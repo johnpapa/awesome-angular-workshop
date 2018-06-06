@@ -4,9 +4,6 @@ import { Hero } from '../../core';
 import { EntityCacheState, HeroesState, initialHeroesState } from '../reducers';
 import { entityCacheSelector } from './entity-cache.selectors';
 
-
-
-
 export interface HeroesSelectors {
   selectCollection: Selector<{}, HeroesState>;
   selectHeroes: Selector<{}, Hero[]>;
@@ -15,14 +12,25 @@ export interface HeroesSelectors {
 }
 
 export function createHeroesSelectors(): HeroesSelectors {
-  const selectCollection = createSelector(entityCacheSelector,
-      state => state ? state.hero : initialHeroesState);
+  const selectCollection = createSelector(
+    entityCacheSelector,
+    state => (state ? state.hero : initialHeroesState)
+  );
 
   return {
     selectCollection,
-    selectHeroes: createSelector(selectCollection, collection => collection.data),
-    selectLoaded: createSelector(selectCollection, collection => collection.loaded),
-    selectLoading: createSelector(selectCollection, collection => collection.loading)
+    selectHeroes: createSelector(
+      selectCollection,
+      collection => collection.data
+    ),
+    selectLoaded: createSelector(
+      selectCollection,
+      collection => collection.loaded
+    ),
+    selectLoading: createSelector(
+      selectCollection,
+      collection => collection.loading
+    )
   };
 }
 
@@ -33,7 +41,9 @@ export interface HeroesSelectors$ {
   loading$: Observable<boolean>;
 }
 
-export function createHeroesSelectors$(store: Store<EntityCacheState>): HeroesSelectors$ {
+export function createHeroesSelectors$(
+  store: Store<EntityCacheState>
+): HeroesSelectors$ {
   const selectors = createHeroesSelectors();
   return {
     collection$: store.select(selectors.selectCollection),
@@ -42,4 +52,3 @@ export function createHeroesSelectors$(store: Store<EntityCacheState>): HeroesSe
     loading$: store.select(selectors.selectLoading)
   };
 }
-

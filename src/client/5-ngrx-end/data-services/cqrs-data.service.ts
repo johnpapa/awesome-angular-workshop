@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { combineLatest, finalize, take, tap } from 'rxjs/operators';
-
-import { DataService, DataServiceConfig } from './data.service';
-import { FilterObserver } from '../shared/filter';
-import { HttpUrlGenerator } from './http-url-generator';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { combineLatest, finalize, tap } from 'rxjs/operators';
 import { ToastService } from '../core';
+import { FilterObserver } from '../shared/filter';
+import { DataService, DataServiceConfig } from './data.service';
+import { HttpUrlGenerator } from './http-url-generator';
+
+
 
 // Not injectable because generic
 

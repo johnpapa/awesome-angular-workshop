@@ -1,14 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Observable } from 'rxjs/Observable';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { catchError, combineLatest, finalize, map, tap } from 'rxjs/operators';
-
-import { FilterObserver } from '../shared/filter';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, ReplaySubject, throwError } from 'rxjs';
+import { catchError, combineLatest, finalize, tap } from 'rxjs/operators';
 import { Hero, ToastService } from '../core';
+import { FilterObserver } from '../shared/filter';
+
+
 
 const api = '/api';
 
@@ -106,7 +103,7 @@ export class HeroService {
 
   private handleError(res: HttpErrorResponse) {
     console.error(res.error);
-    return new ErrorObservable(res.error || 'Server error');
+    return throwError(res.error || 'Server error');
   }
 
   private toast(message: string, action: string) {

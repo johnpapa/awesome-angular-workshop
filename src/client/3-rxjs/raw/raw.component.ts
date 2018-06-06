@@ -1,22 +1,11 @@
 // region imports
-import { Component, ElementRef, OnInit, OnDestroy, ViewChild } from '@angular/core';
-
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 // Convenient ... but don't do it.
 // import { Observable } from 'rxjs';
-
 // Kitchen sink ... don't do it this way either.
 // import * as rxjs from 'rxjs';
-
-
 // Get each thing you need separately from its module
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import { Subscription } from 'rxjs/Subscription';
-import { timer } from 'rxjs/observable/timer';
-
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { filter } from 'rxjs/operators';
-
+import { fromEvent, Observable, Observer, Subscription } from 'rxjs';
 // endregion
 
 @Component({

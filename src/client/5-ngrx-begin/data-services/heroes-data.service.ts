@@ -1,11 +1,11 @@
-import { Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { Observable } from 'rxjs/Observable';
-
+import { Injectable, Optional } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Hero, ToastService } from '../core';
 import { DataService, DataServiceConfig } from './data.service';
 import { HttpUrlGenerator } from './http-url-generator';
-import { Hero, ToastService } from '../core';
+
+
 
 /**
  * Heroes HTTP DataService

@@ -1,16 +1,15 @@
 // Clean Ngrx version
 import { Injectable } from '@angular/core';
-
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { combineLatest, finalize, take, tap } from 'rxjs/operators';
-
-import { FilterObserver } from '../shared/filter';
-import { HeroesDataService } from '../data-services';
-import { Hero, ToastService } from '../core';
-
 import { Store } from '@ngrx/store';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { combineLatest } from 'rxjs/operators';
+import { Hero, ToastService } from '../core';
+import { HeroesDataService } from '../data-services';
+import { FilterObserver } from '../shared/filter';
 import * as fromStore from '../store';
+
+
+
 
 @Injectable()
 export class HeroesService {

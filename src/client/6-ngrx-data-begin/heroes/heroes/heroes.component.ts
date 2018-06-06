@@ -1,12 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl } from '@angular/forms';
-
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-
-import { FilterObserver } from '../../shared/filter';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Hero } from '../../core';
+import { FilterObserver } from '../../shared/filter';
 import { HeroesService } from '../heroes.service';
+
+
 
 @Component({
   selector: 'aw-heroes',

@@ -1,16 +1,13 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-
-import { Observable } from 'rxjs/Observable';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { of } from 'rxjs/observable/of';
-import { pipe } from 'rxjs/util/pipe';
-
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of, pipe, throwError } from 'rxjs';
 import { catchError, delay, map, tap, timeout } from 'rxjs/operators';
-
-import { DataServiceError } from './data-service-error';
-import { HttpMethods, RequestData } from './index';
-import { HttpUrlGenerator } from './http-url-generator';
 import { ToastService } from '../core';
+import { DataServiceError } from './data-service-error';
+import { HttpUrlGenerator } from './http-url-generator';
+import { HttpMethods, RequestData } from './index';
+
+
+
 
 // Pass the observable straight through
 export const noDelay = <T>(source: Observable<T>) => source;
@@ -158,7 +155,7 @@ export class DataService<T extends {id: number | string}> {
       }
       default: {
         const error = new Error('Unimplemented HTTP method, ' + method);
-        return new ErrorObservable(error);
+        return throwError(error);
       }
     }
   }
@@ -171,7 +168,7 @@ export class DataService<T extends {id: number | string}> {
       if (ok) { return ok; }
       const error = new DataServiceError(err, reqData);
       this.toastService.openSnackBar(error.message, `${this.name} ${reqData.method}`);
-      return new ErrorObservable(error);
+      return throwError(error);
     };
   }
 

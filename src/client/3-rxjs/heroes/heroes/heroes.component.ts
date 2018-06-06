@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Observable } from 'rxjs/Observable';
-
-import { FilterObserver } from '../../shared/filter';
+import { Observable } from 'rxjs';
 import { Hero } from '../../core';
+import { FilterObserver } from '../../shared/filter';
 import { HeroService } from '../hero.service';
+
+
 
 @Component({
   selector: 'aw-heroes',

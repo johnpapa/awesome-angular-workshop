@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
-
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { concatMap, catchError, map } from 'rxjs/operators';
-
-import * as HeroActions from '../actions';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { of } from 'rxjs';
+import { catchError, concatMap, map } from 'rxjs/operators';
 import { HeroesDataService } from '../../data-services';
+import * as HeroActions from '../actions';
+
+
 
 @Injectable()
 export class HeroesEffects {
@@ -17,7 +16,9 @@ export class HeroesEffects {
   ) {}
 
   @Effect()
-  loadHeroes$ = this.actions$.ofType(HeroActions.LOAD_HEROES).pipe(
+  // loadHeroes$ = this.actions$.ofType(HeroActions.LOAD_HEROES).pipe(
+  loadHeroes$ = this.actions$.pipe(ofType(HeroActions.LOAD_HEROES)
+  // loadHeroes$ = this.actions$.ofType(HeroActions.LOAD_HEROES).pipe(
     concatMap(() => this.dataService.getAll().pipe(
         map(heroes => new HeroActions.LoadHeroesSuccess(heroes)),
         catchError(error => of(new HeroActions.LoadHeroesError(error)))

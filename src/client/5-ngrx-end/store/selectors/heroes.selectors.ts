@@ -1,11 +1,11 @@
 import { createSelector, Selector, Store } from '@ngrx/store';
-
-import { Observable } from 'rxjs/Observable';
-
+import { Observable } from 'rxjs';
 import { Hero } from '../../core';
-
-import { entityCacheSelector } from './entity-cache.selectors';
 import { EntityCacheState, HeroesState, initialHeroesState } from '../reducers';
+import { entityCacheSelector } from './entity-cache.selectors';
+
+
+
 
 export interface HeroesSelectors {
   selectCollection: Selector<{}, HeroesState>;

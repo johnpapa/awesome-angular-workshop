@@ -1,11 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, NgModule } from '@angular/core';
-import { FormControl } from '@angular/forms';
-
-import { Observable } from 'rxjs/Observable';
-
-import { FilterObserver } from '../../shared/filter';
+import { ChangeDetectionStrategy, Component, NgModule, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Hero } from '../../core';
+import { FilterObserver } from '../../shared/filter';
 import { HeroesService } from '../heroes.service';
+
+
 
 // Note: declared in OldHeroesModule at the bottom
 

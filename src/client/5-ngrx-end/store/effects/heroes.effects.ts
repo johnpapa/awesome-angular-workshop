@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { concatMap, catchError, map } from 'rxjs/operators';
-
-import * as HeroActions from '../actions';
+import { of } from 'rxjs';
+import { catchError, concatMap, map } from 'rxjs/operators';
 import { HeroesDataService } from '../../data-services';
+import * as HeroActions from '../actions';
+
+
 
 @Injectable()
 export class HeroesEffects {

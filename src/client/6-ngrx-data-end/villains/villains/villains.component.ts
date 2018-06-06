@@ -1,11 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl } from '@angular/forms';
-
-import { Observable } from 'rxjs/Observable';
-
-import { FilterObserver } from '../../shared/filter';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Villain } from '../../core';
+import { FilterObserver } from '../../shared/filter';
 import { VillainsService } from '../villains.service';
+
+
 
 @Component({
   selector: 'aw-villains',

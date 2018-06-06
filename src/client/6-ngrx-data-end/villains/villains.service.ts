@@ -1,21 +1,24 @@
 // ngrx-data version
 import { Injectable } from '@angular/core';
-import { EntityServiceBase, EntityServiceFactory } from 'ngrx-data';
+import {
+  EntityCollectionServiceBase,
+  EntityCollectionServiceFactory
+} from 'ngrx-data';
 
 // Bonus: added IdGeneratorService
 import { Villain, IdGeneratorService, ToastService } from '../core';
 import { FilterObserver } from '../shared/filter';
 
 @Injectable()
-export class VillainsService extends EntityServiceBase<Villain> {
-
+export class VillainsService extends EntityCollectionServiceBase<Villain> {
   filterObserver: FilterObserver;
 
   constructor(
-    entityServiceFactory: EntityServiceFactory,
+    entityCollectionServiceFactory: EntityCollectionServiceFactory,
     private idGenerator: IdGeneratorService, // Bonus: inject id generator
-    private toastService: ToastService) {
-    super('Villain', entityServiceFactory);
+    private toastService: ToastService
+  ) {
+    super('Villain', entityCollectionServiceFactory);
 
     /** User's filter pattern */
     this.filterObserver = {

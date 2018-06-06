@@ -1,18 +1,21 @@
 // ngrx-data version
 import { Injectable } from '@angular/core';
-import { EntityServiceBase, EntityServiceFactory } from 'ngrx-data';
+import {
+  EntityCollectionServiceBase,
+  EntityCollectionServiceFactory
+} from 'ngrx-data';
 
 import { Hero, ToastService } from '../core';
 import { FilterObserver } from '../shared/filter';
 
-@Injectable()
-export class HeroesService extends EntityServiceBase<Hero> {
-
+@Injectable({ providedIn: 'root' })
+export class HeroesService extends EntityCollectionServiceBase<Hero> {
   filterObserver: FilterObserver;
 
   constructor(
-    entityServiceFactory: EntityServiceFactory,
-    private toastService: ToastService) {
+    entityServiceFactory: EntityCollectionServiceFactory,
+    private toastService: ToastService
+  ) {
     super('Hero', entityServiceFactory);
 
     /** User's filter pattern */

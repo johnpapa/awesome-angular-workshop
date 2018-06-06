@@ -1,8 +1,12 @@
-import { defaultSelectId, EntityMetadataMap, PropsFilterFnFactory } from 'ngrx-data';
+import {
+  defaultSelectId,
+  EntityMetadataMap,
+  PropsFilterFnFactory
+} from 'ngrx-data';
 
 export const entityMetadata: EntityMetadataMap = {
   Hero: {
-    filterFn: nameFilter,    // optional
+    filterFn: nameFilter, // optional
     sortComparer: sortByName // optional
   },
 
@@ -12,7 +16,7 @@ export const entityMetadata: EntityMetadataMap = {
     // BONUS METADATA
     // - give Villain its own `selectId
     // - a filter function that filters both on name and saying
-    selectId: villainSelectId,  //  a non-default function
+    selectId: villainSelectId, //  a non-default function
     filterFn: nameAndSayingFilter,
 
     // DOUBLE BONUS
@@ -31,7 +35,10 @@ export const pluralNames = {
 // AOT obliges us to encapsulate the logic in wrapper functions
 
 /** Filter for entities whose name matches the case-insensitive pattern */
-export function nameFilter<T>(entities: T[], pattern: string) {
+export function nameFilter<T extends { name: string }>(
+  entities: T[],
+  pattern: string
+) {
   return PropsFilterFnFactory(['name'])(entities, pattern);
 }
 
@@ -41,7 +48,10 @@ export function sortByName(a: { name: string }, b: { name: string }): number {
 }
 
 /** Filter for entities whose name or saying matches the case-insensitive pattern */
-export function nameAndSayingFilter<T>(entities: T[], pattern: string) {
+export function nameAndSayingFilter<T extends { name: string; saying: string }>(
+  entities: T[],
+  pattern: string
+) {
   return PropsFilterFnFactory(['name', 'saying'])(entities, pattern);
 }
 

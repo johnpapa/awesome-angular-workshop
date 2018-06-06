@@ -5,19 +5,17 @@ import { catchError, concatMap, map } from 'rxjs/operators';
 import { HeroesDataService } from '../../data-services';
 import * as HeroActions from '../actions';
 
-
-
 @Injectable()
 export class HeroesEffects {
-
   constructor(
     private actions$: Actions,
-    private dataService: HeroesDataService,
+    private dataService: HeroesDataService
   ) {}
 
   @Effect()
   loadHeroes$ = this.actions$.ofType(HeroActions.LOAD_HEROES).pipe(
-    concatMap(() => this.dataService.getAll().pipe(
+    concatMap(() =>
+      this.dataService.getAll().pipe(
         map(heroes => new HeroActions.LoadHeroesSuccess(heroes)),
         catchError(error => of(new HeroActions.LoadHeroesError(error)))
       )
@@ -27,33 +25,43 @@ export class HeroesEffects {
   // Step 1. Add an effect to ADD a hero
 
   @Effect()
-  addHero$ = this.actions$.ofType<HeroActions.AddHero>(HeroActions.ADD_HERO).pipe(
-    concatMap(action => this.dataService.add(action.payload).pipe(
-        map(hero => new HeroActions.AddHeroSuccess(hero)),
-        catchError(error => of(new HeroActions.AddHeroError(error)))
+  addHero$ = this.actions$
+    .ofType<HeroActions.AddHero>(HeroActions.ADD_HERO)
+    .pipe(
+      concatMap(action =>
+        this.dataService.add(action.payload).pipe(
+          map(hero => new HeroActions.AddHeroSuccess(hero)),
+          catchError(error => of(new HeroActions.AddHeroError(error)))
+        )
       )
-    )
-  );
+    );
 
   // BONUS: the remaining effects.
 
   @Effect()
-  deleteHero$ = this.actions$.ofType<HeroActions.DeleteHero>(HeroActions.DELETE_HERO).pipe(
-    concatMap(action => this.dataService.delete(action.payload).pipe(
-        map(hero => new HeroActions.DeleteHeroSuccess()),
-        catchError(error => of(new HeroActions.DeleteHeroError(error)))
+  deleteHero$ = this.actions$
+    .ofType<HeroActions.DeleteHero>(HeroActions.DELETE_HERO)
+    .pipe(
+      concatMap(action =>
+        this.dataService.delete(action.payload).pipe(
+          map(hero => new HeroActions.DeleteHeroSuccess()),
+          catchError(error => of(new HeroActions.DeleteHeroError(error)))
+        )
       )
-    )
-  );
+    );
 
   @Effect()
-  updateHero$ = this.actions$.ofType<HeroActions.UpdateHero>(HeroActions.UPDATE_HERO).pipe(
-    concatMap(action => this.dataService.update(action.payload).pipe(
-        // return the updated hero if there is one, else the hero in the Update Action payload
-        map(hero => new HeroActions.UpdateHeroSuccess( hero || action.payload )),
-        catchError(error => of(new HeroActions.UpdateHeroError(error)))
+  updateHero$ = this.actions$
+    .ofType<HeroActions.UpdateHero>(HeroActions.UPDATE_HERO)
+    .pipe(
+      concatMap(action =>
+        this.dataService.update(action.payload).pipe(
+          // return the updated hero if there is one, else the hero in the Update Action payload
+          map(
+            hero => new HeroActions.UpdateHeroSuccess(hero || action.payload)
+          ),
+          catchError(error => of(new HeroActions.UpdateHeroError(error)))
+        )
       )
-    )
-  );
+    );
 }
-

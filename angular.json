@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "0-awesome": {
+    "app-0-awesome": {
       "root": "src",
       "sourceRoot": "src/client",
       "projectType": "application",
@@ -11,9 +11,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/0-awesome",
+            "outputPath": "dist/app-0-awesome",
             "index": "src/client/index.html",
-            "main": "src/client/main.0-awesome.ts",
+            "main": "src/client/main.app-0-awesome.ts",
             "tsConfig": "src/client/tsconfig.app.json",
             "polyfills": "src/client/polyfills.ts",
             "stylePreprocessorOptions": {
@@ -55,18 +55,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "0-awesome:build"
+            "browserTarget": "app-0-awesome:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "0-awesome:build:production"
+              "browserTarget": "app-0-awesome:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "0-awesome:build"
+            "browserTarget": "app-0-awesome:build"
           }
         },
         "test": {

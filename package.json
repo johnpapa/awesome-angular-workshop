@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "0-awesome": "ng serve 0-awesome -o --port 9000",
+    "app-0-awesome": "ng serve app-0-awesome -o --port 9000",
     "1-routing-begin": "ng serve 1-routing-begin -o --port 9010",
     "1-routing-end": "ng serve 1-routing-end -o --port 9011",
     "1-routing-guards-begin": "ng serve 1-routing-guards-begin -o --port 9012",
@@ -49,7 +49,7 @@
     "express": "^4.16.3",
     "hammerjs": "^2.0.8",
     "mongoose": "^5.0.12",
-    "ngrx-data": "6.0.0-beta.6",
+    "ngrx-data": "^6.0.0-beta.6",
     "rxjs": "^6.2.0",
     "zone.js": "^0.8.26"
   },

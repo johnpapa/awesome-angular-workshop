@@ -1,12 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Actions } from '@ngrx/effects';
-import {  EntityAction, OP_ERROR, OP_SUCCESS } from 'ngrx-data';
-import { filter, takeUntil } from 'rxjs/operators';
+import { EntityAction, OP_ERROR, OP_SUCCESS } from 'ngrx-data';
 import { Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 import { ToastService } from '../core';
-
-
-
 
 /** Report success/error ngrx-data EntityActions as toast messages **/
 @Injectable()
@@ -18,12 +15,13 @@ export class NgrxDataToastService implements OnDestroy {
       .pipe(
         filter(
           (ea: EntityAction) =>
-            ea.op &&
-            (ea.op.includes(OP_SUCCESS) || ea.op.includes(OP_ERROR))
+            ea.op && (ea.op.includes(OP_SUCCESS) || ea.op.includes(OP_ERROR))
         ),
         takeUntil(this.onDestroy)
       )
-      .subscribe(action => toast.openSnackBar(`${action.entityName} action`, action.op));
+      .subscribe(action =>
+        toast.openSnackBar(`${action.entityName} action`, action.op)
+      );
   }
 
   ngOnDestroy() {

@@ -22,8 +22,8 @@
     "5-ngrx-end": "ng serve 5-ngrx-end -o --port 9051",
     "6-ngrx-data-begin": "ng serve 6-ngrx-data-begin -o --port 9060",
     "6-ngrx-data-end": "ng serve 6-ngrx-data-end -o --port 9061",
-    "7-deploy-begin-build": "ng build -a 7-deploy-begin",
-    "7-deploy-begin-serve": "PUBLICWEB='./dist/7-deploy-begin/publicweb' node ./dist/7-deploy-begin/index.js"
+    "7-deploy-build": "ng build 7-deploy",
+    "7-deploy-serve": "WWW='./dist/7-deploy/www' node ./server.js"
   },
   "private": true,
   "dependencies": {

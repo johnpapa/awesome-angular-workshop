@@ -5,11 +5,11 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'heroes' },
   {
     path: 'heroes',
-    loadChildren: '7-deploy-end/heroes/heroes.module#HeroesModule'
+    loadChildren: '7-deploy/heroes/heroes.module#HeroesModule'
   },
   {
     path: 'villains',
-    loadChildren: '7-deploy-end/villains/villains.module#VillainsModule'
+    loadChildren: '7-deploy/villains/villains.module#VillainsModule'
   }
 ];
 

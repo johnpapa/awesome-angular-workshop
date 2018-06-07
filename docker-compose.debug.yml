@@ -11,4 +11,5 @@ services:
       - 9070:9070
       - 9229:9229
     ## set your startup file here
-    command: node --inspect server.js
+    # command: node --inspect server.js
+    command: node --inspect=0.0.0.0:9229 server.js

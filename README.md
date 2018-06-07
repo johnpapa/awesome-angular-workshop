@@ -43,7 +43,15 @@ which require a client-side Id Generator for Adds (see VillainsService).
 
 ### 7-deploy
 
-**TBD**
+Locally
+1. Run `npm run 7-deploy-build` to build it.
+2. Run `npm run 7-deploy-serve` to serve it.
+3. Kill the process
+
+Locally with Docker
+1. Run `docker compose up` from the command palette in VS Code.
+2. Choose the debug option
+
 
 ## Define Multiple Apps in the Same _src folder
 

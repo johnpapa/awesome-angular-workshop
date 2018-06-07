@@ -5,7 +5,7 @@ services:
     image: awesome-angular-workshop
     build: .
     environment:
-      PUBLICWEB: ./publicweb
+      WWW: ./www
       NODE_ENV: production
     ports:
       - 9070:9070

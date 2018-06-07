@@ -4,11 +4,11 @@ by [Ward Bell](https://twitter.com/wardbell) and [John Papa](https://twitter.com
 
 ## Apps
 
-All apps are in the `src/client` folder. There is a `src/server` folder containing a node server, as some other apps may or may not use it.
+All apps are in the `src` folder. There is a `src/server` folder containing a node server, as some other apps may or may not use it.
 
 ### 0-awesome
 
-`0-awesome` is our basic template app. All other apps in the `src/client` folder are derived from `0-awesome` and then modified as needed.
+`0-awesome` is our basic template app. All other apps in the `src` folder are derived from `0-awesome` and then modified as needed.
 
 ### 1-router
 
@@ -45,11 +45,11 @@ which require a client-side Id Generator for Adds (see VillainsService).
 
 **TBD**
 
-## Define Multiple Apps in the Same _src/client_ folder
+## Define Multiple Apps in the Same _src folder
 
 Example: make a lab called `n-new-lab-begin` where `n` is an integer.
 
-1.  Create the `n-new-lab-begin` _app folder_ under `src/client`.
+1.  Create the `n-new-lab-begin` _app folder_ under `src`.
 
 2)  Add a new app object to the `"apps"` array in [`angular-cli.json`](./.angular-cli.json):
 
@@ -63,7 +63,7 @@ Example: make a lab called `n-new-lab-begin` where `n` is an integer.
 
 > Hint: easy with search-and-replace _AFTER_ limiting `files-to-include` to `"n-new-lab-begin"`.
 
-4.  Copy [`main.0-awesome.ts`](src/client/main.0-awesome.ts) to `main.n-new-lab-begin.ts` and update the paths to the app modules:
+4.  Copy [`main.0-awesome.ts`](src/main.0-awesome.ts) to `main.n-new-lab-begin.ts` and update the paths to the app modules:
 
     ```
     import { AppModule } from './n-new-lab-begin/app.module';

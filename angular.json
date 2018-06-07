@@ -5,30 +5,30 @@
   "projects": {
     "0-awesome": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/0-awesome",
-            "index": "src/client/index.html",
-            "main": "src/client/main.0-awesome.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.0-awesome.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -45,8 +45,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -72,19 +72,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -129,30 +129,30 @@
     },
     "1-routing-begin": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/1-routing-begin",
-            "index": "src/client/index.html",
-            "main": "src/client/main.1-routing-begin.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.1-routing-begin.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -169,8 +169,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -196,19 +196,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -253,30 +253,30 @@
     },
     "1-routing-guards-begin": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/1-routing-guards-begin",
-            "index": "src/client/index.html",
-            "main": "src/client/main.1-routing-guards-begin.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.1-routing-guards-begin.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -293,8 +293,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -320,19 +320,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -377,30 +377,30 @@
     },
     "1-routing-guards-end": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/1-routing-guards-end",
-            "index": "src/client/index.html",
-            "main": "src/client/main.1-routing-guards-end.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.1-routing-guards-end.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -417,8 +417,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -444,19 +444,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -501,30 +501,30 @@
     },
     "1-routing-end": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/1-routing-end",
-            "index": "src/client/index.html",
-            "main": "src/client/main.1-routing-end.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.1-routing-end.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -541,8 +541,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -568,19 +568,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -625,30 +625,30 @@
     },
     "2-modules-begin": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/2-modules-begin",
-            "index": "src/client/index.html",
-            "main": "src/client/main.2-modules-begin.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.2-modules-begin.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -665,8 +665,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -692,19 +692,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -749,30 +749,30 @@
     },
     "2-modules-end": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/2-modules-end",
-            "index": "src/client/index.html",
-            "main": "src/client/main.2-modules-end.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.2-modules-end.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -789,8 +789,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -816,19 +816,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -873,30 +873,30 @@
     },
     "3-rxjs": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/3-rxjs",
-            "index": "src/client/index.html",
-            "main": "src/client/main.3-rxjs.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.3-rxjs.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -913,8 +913,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -940,19 +940,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -997,30 +997,30 @@
     },
     "4-reactive": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/4-reactive",
-            "index": "src/client/index.html",
-            "main": "src/client/main.4-reactive.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.4-reactive.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -1037,8 +1037,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -1064,19 +1064,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -1121,30 +1121,30 @@
     },
     "5-ngrx-begin": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/5-ngrx-begin",
-            "index": "src/client/index.html",
-            "main": "src/client/main.5-ngrx-begin.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.5-ngrx-begin.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -1161,8 +1161,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -1188,19 +1188,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -1245,30 +1245,30 @@
     },
     "5-ngrx-end": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/5-ngrx-end",
-            "index": "src/client/index.html",
-            "main": "src/client/main.5-ngrx-end.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.5-ngrx-end.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -1285,8 +1285,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -1312,19 +1312,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -1369,30 +1369,30 @@
     },
     "6-ngrx-data-begin": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/6-ngrx-data-begin",
-            "index": "src/client/index.html",
-            "main": "src/client/main.6-ngrx-data-begin.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.6-ngrx-data-begin.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -1409,8 +1409,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -1436,19 +1436,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -1493,30 +1493,30 @@
     },
     "6-ngrx-data-end": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/6-ngrx-data-end",
-            "index": "src/client/index.html",
-            "main": "src/client/main.6-ngrx-data-end.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.6-ngrx-data-end.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -1533,8 +1533,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -1560,19 +1560,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -1617,30 +1617,30 @@
     },
     "7-deploy": {
       "root": "src",
-      "sourceRoot": "src/client",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/7-deploy/www",
-            "index": "src/client/index.html",
-            "main": "src/client/main.7-deploy.ts",
-            "tsConfig": "src/client/tsconfig.app.json",
-            "polyfills": "src/client/polyfills.ts",
+            "index": "src/index.html",
+            "main": "src/main.7-deploy.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/client/styles"
+                "src/styles"
               ]
             },
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -1657,8 +1657,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/client/environments/environment.ts",
-                  "with": "src/client/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -1684,19 +1684,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/client/test.ts",
+            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "src/client/tsconfig.spec.json",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/client/styles/theme.scss",
-              "src/client/styles/mixin.scss",
-              "src/client/styles/styles.scss"
+              "src/styles/theme.scss",
+              "src/styles/mixin.scss",
+              "src/styles/styles.scss"
             ],
             "assets": [
-              "src/client/assets",
-              "src/client/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },

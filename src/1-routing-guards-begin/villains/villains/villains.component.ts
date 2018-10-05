@@ -36,7 +36,7 @@ export class VillainsComponent implements OnInit {
   }
 
   enableAddMode() {
-    this.selectedVillain = null;
+    this.selectedVillain = <any>{};
     // TODO: Step 5
     // Navigate to the details/0
     // Make it relative to the active route

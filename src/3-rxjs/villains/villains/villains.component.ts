@@ -38,7 +38,7 @@ export class VillainsComponent implements OnInit, OnDestroy {
   }
 
   enableAddMode() {
-    this.selectedVillain = null;
+    this.selectedVillain = <any>{};
     this.router.navigate(['details', 0], { relativeTo: this.route });
   }
 

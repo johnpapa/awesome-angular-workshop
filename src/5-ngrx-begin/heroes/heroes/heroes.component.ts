@@ -60,6 +60,6 @@ export class HeroesComponent implements OnInit {
   }
 
   unselect() {
-    this.selectedHero = <any>{};
+    this.selectedHero = null;
   }
 }

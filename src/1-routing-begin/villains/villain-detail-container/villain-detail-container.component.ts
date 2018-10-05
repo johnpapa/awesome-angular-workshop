@@ -31,7 +31,7 @@ export class VillainDetailContainerComponent implements OnInit {
   }
 
   enableAddMode() {
-    this.selectedVillain = null;
+    this.selectedVillain = <any>{};
   }
 
   getVillain() {

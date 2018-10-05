@@ -38,7 +38,7 @@ export class VillainsComponent implements OnInit {
   }
 
   enableAddMode() {
-    this.selectedVillain = null;
+    this.selectedVillain = <any>{};
   }
 
   getVillains() {

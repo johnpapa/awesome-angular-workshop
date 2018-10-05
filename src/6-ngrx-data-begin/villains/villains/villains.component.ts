@@ -19,10 +19,10 @@ export class VillainsComponent implements OnInit {
   filteredVillains$: Observable<Villain[]>;
   loading$: Observable<boolean>;
 
-  constructor(public villainsService: VillainService) {
-    this.filterObserver = villainsService.filterObserver;
-    this.filteredVillains$ = villainsService.filteredEntities$;
-    this.loading$ = this.villainsService.loading$;
+  constructor(public villainService: VillainService) {
+    this.filterObserver = villainService.filterObserver;
+    this.filteredVillains$ = villainService.filteredEntities$;
+    this.loading$ = this.villainService.loading$;
   }
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class VillainsComponent implements OnInit {
 
   deleteVillain(villain: Villain) {
     this.unselect();
-    this.villainsService.delete(villain.id);
+    this.villainService.delete(villain.id);
   }
 
   enableAddMode() {
@@ -45,7 +45,7 @@ export class VillainsComponent implements OnInit {
   }
 
   getVillains() {
-    this.villainsService.getAll();
+    this.villainService.getAll();
     this.unselect();
   }
 
@@ -55,11 +55,11 @@ export class VillainsComponent implements OnInit {
   }
 
   update(villain: Villain) {
-    this.villainsService.update(villain);
+    this.villainService.update(villain);
   }
 
   add(villain: Villain) {
-    this.villainsService.add(villain);
+    this.villainService.add(villain);
   }
 
   unselect() {

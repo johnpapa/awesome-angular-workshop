@@ -18,7 +18,6 @@ import { HeroService } from '../hero.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroesComponent implements OnInit {
-  addingHero = false;
   selectedHero: Hero;
 
   filterObserver: FilterObserver;
@@ -36,7 +35,6 @@ export class HeroesComponent implements OnInit {
   }
 
   clear() {
-    this.addingHero = false;
     this.selectedHero = null;
   }
 
@@ -46,8 +44,7 @@ export class HeroesComponent implements OnInit {
   }
 
   enableAddMode() {
-    this.addingHero = true;
-    this.selectedHero = null;
+    this.selectedHero = <any>{};
   }
 
   getHeroes() {
@@ -56,7 +53,6 @@ export class HeroesComponent implements OnInit {
   }
 
   onSelect(hero: Hero) {
-    this.addingHero = false;
     this.selectedHero = hero;
   }
 
@@ -69,7 +65,6 @@ export class HeroesComponent implements OnInit {
   }
 
   unselect() {
-    this.addingHero = false;
     this.selectedHero = null;
   }
 }

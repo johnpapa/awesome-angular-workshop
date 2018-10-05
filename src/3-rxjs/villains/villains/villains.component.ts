@@ -1,13 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-
 import { MessageService, Villain } from '../../core';
-import { VillainService } from '../villain.service';
-import { Router, ActivatedRoute } from '@angular/router';
-
 import { VILLAIN_DETAIL_CONTAINER } from '../villain-detail-container';
+import { VillainService } from '../villain.service';
 
 @Component({
   selector: 'aw-villains',
@@ -16,7 +13,6 @@ import { VILLAIN_DETAIL_CONTAINER } from '../villain-detail-container';
 })
 export class VillainsComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
-  addingVillain = false;
   selectedVillain: Villain;
 
   villains: Villain[];
@@ -38,12 +34,10 @@ export class VillainsComponent implements OnInit, OnDestroy {
   }
 
   clear() {
-    this.addingVillain = false;
     this.selectedVillain = null;
   }
 
   enableAddMode() {
-    this.addingVillain = true;
     this.selectedVillain = null;
     this.router.navigate(['details', 0], { relativeTo: this.route });
   }
@@ -58,7 +52,6 @@ export class VillainsComponent implements OnInit, OnDestroy {
   }
 
   onSelect(villain: Villain) {
-    this.addingVillain = false;
     this.selectedVillain = villain;
     this.router.navigate(['details', villain.id], { relativeTo: this.route });
   }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-
 import { Hero } from '../../core';
 import { HeroService } from '../hero.service';
 
@@ -10,7 +9,6 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./heroes.component.scss']
 })
 export class HeroesComponent implements OnInit {
-  addingHero = false;
   selectedHero: Hero;
 
   heroes: Hero[];
@@ -23,7 +21,6 @@ export class HeroesComponent implements OnInit {
   }
 
   clear() {
-    this.addingHero = false;
     this.selectedHero = null;
   }
 
@@ -33,12 +30,13 @@ export class HeroesComponent implements OnInit {
     this.heroService
       .deleteHero(hero)
       .pipe(finalize(() => (this.loading = false)))
-      .subscribe(() => (this.heroes = this.heroes.filter(h => h.id !== hero.id)));
+      .subscribe(
+        () => (this.heroes = this.heroes.filter(h => h.id !== hero.id))
+      );
   }
 
   enableAddMode() {
-    this.addingHero = true;
-    this.selectedHero = null;
+    this.selectedHero = <any>{};
   }
 
   getHeroes() {
@@ -51,7 +49,6 @@ export class HeroesComponent implements OnInit {
   }
 
   onSelect(hero: Hero) {
-    this.addingHero = false;
     this.selectedHero = hero;
   }
 
@@ -60,7 +57,10 @@ export class HeroesComponent implements OnInit {
     this.heroService
       .updateHero(hero)
       .pipe(finalize(() => (this.loading = false)))
-      .subscribe(() => (this.heroes = this.heroes.map(h => (h.id === hero.id ? hero : h))));
+      .subscribe(
+        () =>
+          (this.heroes = this.heroes.map(h => (h.id === hero.id ? hero : h)))
+      );
   }
 
   add(hero: Hero) {
@@ -72,7 +72,6 @@ export class HeroesComponent implements OnInit {
   }
 
   unselect() {
-    this.addingHero = false;
     this.selectedHero = null;
   }
 }

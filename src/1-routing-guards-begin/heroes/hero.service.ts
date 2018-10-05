@@ -7,7 +7,7 @@ import { Hero, ToastService } from '../core';
 
 const api = '/api';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class HeroService {
   constructor(private http: HttpClient, private toastService: ToastService) {}
 

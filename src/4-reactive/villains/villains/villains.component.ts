@@ -12,7 +12,6 @@ import { VillainService } from '../villains.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VillainsComponent implements OnInit {
-  addingVillain = false;
   selectedVillain: Villain = null;
 
   filterObserver: FilterObserver;
@@ -30,7 +29,6 @@ export class VillainsComponent implements OnInit {
   }
 
   clear() {
-    this.addingVillain = false;
     this.selectedVillain = null;
   }
 
@@ -40,7 +38,6 @@ export class VillainsComponent implements OnInit {
   }
 
   enableAddMode() {
-    this.addingVillain = true;
     this.selectedVillain = null;
   }
 
@@ -50,7 +47,6 @@ export class VillainsComponent implements OnInit {
   }
 
   onSelect(villain: Villain) {
-    this.addingVillain = false;
     this.selectedVillain = villain;
   }
 
@@ -63,7 +59,6 @@ export class VillainsComponent implements OnInit {
   }
 
   unselect() {
-    this.addingVillain = false;
     this.selectedVillain = null;
   }
 }

@@ -1,11 +1,14 @@
-import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatSnackBarModule,
+  MatToolbarModule
+} from '@angular/material';
 import { RouterModule } from '@angular/router';
-
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { ToastService } from './toast.service';
 import { throwIfAlreadyLoaded } from './module-import-check';
-import { MatButtonModule, MatIconModule, MatToolbarModule, MatSnackBarModule } from '@angular/material';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   imports: [
@@ -17,8 +20,7 @@ import { MatButtonModule, MatIconModule, MatToolbarModule, MatSnackBarModule } f
     RouterModule // because we use <router-outlet> and routerLink
   ],
   declarations: [ToolbarComponent],
-  exports: [ToolbarComponent],
-  providers: [ToastService]
+  exports: [ToolbarComponent]
 })
 export class CoreModule {
   constructor(

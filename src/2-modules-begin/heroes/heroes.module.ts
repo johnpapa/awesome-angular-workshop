@@ -1,20 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { HeroesRoutingModule } from './heroes-routing.module';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroListComponent } from './hero-list/hero-list.component';
-import { HeroService } from './hero.service';
-import {
-  MatProgressSpinnerModule,
-  MatCardModule,
-  MatInputModule,
-  MatIconModule,
-  MatSnackBarModule,
-  MatButtonModule
-} from '@angular/material';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatInputModule,
+  MatProgressSpinnerModule
+} from '@angular/material';
+import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { HeroListComponent } from './hero-list/hero-list.component';
+import { HeroesRoutingModule } from './heroes-routing.module';
+import { HeroesComponent } from './heroes/heroes.component';
 
 @NgModule({
   imports: [
@@ -29,7 +26,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule
   ],
   exports: [HeroesComponent, HeroDetailComponent],
-  declarations: [HeroesComponent, HeroDetailComponent, HeroListComponent],
-  providers: [HeroService]
+  declarations: [HeroesComponent, HeroDetailComponent, HeroListComponent]
 })
 export class HeroesModule {}

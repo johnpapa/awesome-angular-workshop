@@ -1,29 +1,24 @@
-import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import {
+  ModuleWithProviders,
+  NgModule,
+  Optional,
+  SkipSelf
+} from '@angular/core';
 import { throwIfAlreadyLoaded } from '../core/module-import-check';
-
 import { DataServiceConfig } from './data.service';
-import { HttpUrlGenerator } from './http-url-generator';
-import { Pluralizer, PLURAL_NAMES_TOKEN } from './pluralizer';
-
-import { HeroesDataService } from './heroes-data.service';
+import { PLURAL_NAMES_TOKEN } from './pluralizer';
 
 export interface DataServicesModuleConfig {
   config?: DataServiceConfig;
   pluralNames?: { [name: string]: string };
 }
 
-@NgModule({
-  providers: [
-    HeroesDataService,
-    HttpUrlGenerator,
-    Pluralizer,
-  ]
-})
+@NgModule()
 export class DataServicesModule {
   constructor(
     @Optional()
     @SkipSelf()
-    parentModule: DataServicesModule,
+    parentModule: DataServicesModule
   ) {
     throwIfAlreadyLoaded(parentModule, 'DataServicesModule');
   }
@@ -33,7 +28,11 @@ export class DataServicesModule {
       ngModule: DataServicesModule,
       providers: [
         { provide: DataServiceConfig, useValue: config.config },
-        { provide: PLURAL_NAMES_TOKEN, multi: true, useValue: config.pluralNames }
+        {
+          provide: PLURAL_NAMES_TOKEN,
+          multi: true,
+          useValue: config.pluralNames
+        }
       ]
     };
   }

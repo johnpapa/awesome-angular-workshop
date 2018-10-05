@@ -1,13 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { VillainsRoutingModule } from './villains-routing.module';
-import { VillainDetailComponent } from './villain-detail/villain-detail.component';
-import { VillainsComponent } from './villains/villains.component';
-import { VillainListComponent } from './villain-list/villain-list.component';
-import { VillainService } from './villain.service';
+import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { VillainDetailContainerComponent } from './villain-detail-container/villain-detail-container.component';
+import { VillainDetailComponent } from './villain-detail/villain-detail.component';
+import { VillainListComponent } from './villain-list/villain-list.component';
+import { VillainsRoutingModule } from './villains-routing.module';
+import { VillainsComponent } from './villains/villains.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, VillainsRoutingModule],
@@ -17,7 +15,6 @@ import { VillainDetailContainerComponent } from './villain-detail-container/vill
     VillainDetailComponent,
     VillainListComponent,
     VillainDetailContainerComponent
-  ],
-  providers: [VillainService]
+  ]
 })
 export class VillainsModule {}

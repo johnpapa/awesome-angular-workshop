@@ -15,7 +15,6 @@ import { throwIfAlreadyLoaded } from './module-import-check';
   ],
   declarations: [ToolbarComponent],
   exports: [ToolbarComponent],
-  providers: [ToastService]
 })
 export class CoreModule {
   constructor(

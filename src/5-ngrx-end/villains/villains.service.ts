@@ -1,11 +1,14 @@
-import { Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { CqrsDataService, DataServiceConfig, HttpUrlGenerator } from '../data-services';
-import { Villain, ToastService } from '../core';
+import { Injectable, Optional } from '@angular/core';
+import { ToastService, Villain } from '../core';
+import {
+  CqrsDataService,
+  DataServiceConfig,
+  HttpUrlGenerator
+} from '../data-services';
 
 @Injectable()
-export class VillainsService extends CqrsDataService<Villain> {
+export class VillainService extends CqrsDataService<Villain> {
   constructor(
     http: HttpClient,
     httpUrlGenerator: HttpUrlGenerator,
@@ -17,11 +20,12 @@ export class VillainsService extends CqrsDataService<Villain> {
 
   protected filterProjector(filterValue: string, entities: Villain[]) {
     const regEx = filterValue ? new RegExp(filterValue, 'i') : undefined;
-    return regEx ?
-      entities.filter((e: any) =>
-        (e.name && e.name.match(regEx)) ||
-        (e.saying && e.saying.match(regEx))
-      ) :
-      entities;
+    return regEx
+      ? entities.filter(
+          (e: any) =>
+            (e.name && e.name.match(regEx)) ||
+            (e.saying && e.saying.match(regEx))
+        )
+      : entities;
   }
 }

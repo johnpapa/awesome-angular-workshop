@@ -18,6 +18,5 @@ import { VillainDetailContainerComponent } from './villain-detail-container/vill
     VillainListComponent,
     VillainDetailContainerComponent
   ],
-  providers: [VillainService]
 })
 export class VillainsModule {}

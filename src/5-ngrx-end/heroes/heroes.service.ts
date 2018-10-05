@@ -1,19 +1,15 @@
 // Clean Ngrx version
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { combineLatest } from 'rxjs/operators';
 import { Hero, ToastService } from '../core';
 import { HeroesDataService } from '../data-services';
 import { FilterObserver } from '../shared/filter';
 import * as fromStore from '../store';
 
-
-
-
 @Injectable()
-export class HeroesService {
-
+export class HeroService {
   constructor(
     private heroesDataService: HeroesDataService,
     private store: Store<fromStore.EntityCacheState>,
@@ -63,7 +59,6 @@ export class HeroesService {
     }
   }
 
-
   // BONUS. the remaining dispatched actions
 
   /** Dispatch hero delete-by-id request action */
@@ -99,9 +94,9 @@ export class HeroesService {
 
   protected filterProjector(filterValue: string, entities: Hero[]) {
     const regEx = filterValue ? new RegExp(filterValue, 'i') : undefined;
-    return regEx ?
-      entities.filter((e: any) => e.name && e.name.match(regEx)) :
-      entities;
+    return regEx
+      ? entities.filter((e: any) => e.name && e.name.match(regEx))
+      : entities;
   }
   // endregion wireFilteredEntities
 }

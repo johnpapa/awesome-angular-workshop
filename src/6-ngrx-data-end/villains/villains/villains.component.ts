@@ -2,15 +2,13 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Villain } from '../../core';
 import { FilterObserver } from '../../shared/filter';
-import { VillainsService } from '../villains.service';
-
-
+import { VillainService } from '../villains.service';
 
 @Component({
   selector: 'aw-villains',
   templateUrl: './villains.component.html',
   styleUrls: ['./villains.component.scss'],
-  providers: [ VillainsService ],
+  providers: [VillainService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VillainsComponent implements OnInit {
@@ -21,7 +19,7 @@ export class VillainsComponent implements OnInit {
   filteredVillains$: Observable<Villain[]>;
   loading$: Observable<boolean>;
 
-  constructor(public villainsService: VillainsService) {
+  constructor(public villainsService: VillainService) {
     this.filterObserver = villainsService.filterObserver;
     this.filteredVillains$ = villainsService.filteredEntities$;
     this.loading$ = this.villainsService.loading$;

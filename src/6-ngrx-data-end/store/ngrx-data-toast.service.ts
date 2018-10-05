@@ -1,32 +1,48 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { Actions } from '@ngrx/effects';
-import { EntityAction, OP_ERROR, OP_SUCCESS } from 'ngrx-data';
-import { filter, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { ToastService } from '../core';
+import { Injectable } from '@angular/core';
+import { Actions, ofType } from '@ngrx/effects';
+import {
+  EntityAction,
+  EntityCacheAction,
+  ofEntityOp,
+  OP_ERROR,
+  OP_SUCCESS
+} from 'ngrx-data';
+import { filter } from 'rxjs/operators';
+import { ToastService } from '../core/toast.service';
 
-
-
-
-/** Report success/error ngrx-data EntityActions as toast messages **/
-@Injectable()
-export class NgrxDataToastService implements OnDestroy {
-  private onDestroy = new Subject();
-
+/** Report ngrx-data success/error actions as toast messages * */
+@Injectable({ providedIn: 'root' })
+export class NgrxDataToastService {
   constructor(actions$: Actions, toast: ToastService) {
     actions$
       .pipe(
+        ofEntityOp(),
         filter(
           (ea: EntityAction) =>
-            ea.op &&
-            (ea.op.includes(OP_SUCCESS) || ea.op.includes(OP_ERROR))
-        ),
-        takeUntil(this.onDestroy)
+            ea.payload.entityOp.endsWith(OP_SUCCESS) ||
+            ea.payload.entityOp.endsWith(OP_ERROR)
+        )
       )
-      .subscribe(action => toast.openSnackBar(`${action.entityName} action`, action.op));
-  }
+      // this service never dies so no need to unsubscribe
+      .subscribe(action =>
+        toast.openSnackBar(
+          `${action.payload.entityName} action`,
+          action.payload.entityOp
+        )
+      );
 
-  ngOnDestroy() {
-    this.onDestroy.next();
+    actions$
+      .pipe(
+        ofType(
+          EntityCacheAction.SAVE_ENTITIES_SUCCESS,
+          EntityCacheAction.SAVE_ENTITIES_ERROR
+        )
+      )
+      .subscribe((action: any) =>
+        toast.openSnackBar(
+          `${action.type} - url: ${action.payload.url}`,
+          'SaveEntities'
+        )
+      );
   }
 }

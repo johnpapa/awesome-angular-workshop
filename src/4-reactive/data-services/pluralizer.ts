@@ -1,8 +1,10 @@
 import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 
-export const PLURAL_NAMES_TOKEN = new InjectionToken<{ [name: string]: string }>('Plural Names');
+export const PLURAL_NAMES_TOKEN = new InjectionToken<{
+  [name: string]: string;
+}>('Plural Names');
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class Pluralizer {
   private pluralNames: { [name: string]: string } = {};
 

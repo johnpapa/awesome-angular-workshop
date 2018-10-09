@@ -625,7 +625,7 @@
     },
     "2-modules-begin": {
       "root": "src",
-      "sourceRoot": "src",
+      "sourceRoot": "src/2-modules-begin",
       "projectType": "application",
       "architect": {
         "build": {

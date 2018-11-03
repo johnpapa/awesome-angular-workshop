@@ -16,13 +16,13 @@ All apps are in the `src` folder. There is a `src/server` folder containing a no
 
 We also have a routing guard lab. `1-routing-guards-begin` and `1-routing-guards-end`.
 
-### 2-rxjs
+### 2-modules
 
-`1-routing-begin` is our beginning lab for routing and `1-routing-begin-end` is the end state.
+This labs takes you from 1 module to multiple modules.
 
-### 3-style
+### 3-rxjs
 
-**TBD**
+RxJS lab.
 
 ### 4-reactive
 
@@ -44,41 +44,42 @@ which require a client-side Id Generator for Adds (see VillainsService).
 ### 7-deploy
 
 Locally
+
 1. Run `npm run 7-deploy-build` to build it.
 2. Run `npm run 7-deploy-serve` to serve it.
 3. Kill the process
 
 Locally with Docker
+
 1. Run `docker compose up` from the command palette in VS Code.
 2. Choose the debug option
-
 
 ## Define Multiple Apps in the Same _src folder
 
 Example: make a lab called `n-new-lab-begin` where `n` is an integer.
 
-1.  Create the `n-new-lab-begin` _app folder_ under `src`.
+1. Create the `n-new-lab-begin` _app folder_ under `src`.
 
-2)  Add a new app object to the `"apps"` array in [`angular-cli.json`](./.angular-cli.json):
+2. Add a new app object to the `"apps"` array in [`angular-cli.json`](./.angular-cli.json):
 
-- make it a copy of an existing app object
-- set `"name"` to `"n-new-lab-begin"`
-- set `"appRoot"` to `"n-new-lab-begin"`
-- set `"outDir"` to `"dist/n-new-lab-begin"`
-- set `"main"` to `"main.n-new-lab-begin.ts"`
+    - make it a copy of an existing app object
+    - set `"name"` to `"n-new-lab-begin"`
+    - set `"appRoot"` to `"n-new-lab-begin"`
+    - set `"outDir"` to `"dist/n-new-lab-begin"`
+    - set `"main"` to `"main.n-new-lab-begin.ts"`
 
-3.  Update the lazy loaded routes that start with `0-awesome/` to `n-new-lab-begin/` in `n-new-lab-begin/app-routing.module.ts`.
+3. Update the lazy loaded routes that start with `0-awesome/` to `n-new-lab-begin/` in `n-new-lab-begin/app-routing.module.ts`.
 
-> Hint: easy with search-and-replace _AFTER_ limiting `files-to-include` to `"n-new-lab-begin"`.
+    > Hint: easy with search-and-replace _AFTER_ limiting `files-to-include` to `"n-new-lab-begin"`.
 
-4.  Copy [`main.0-awesome.ts`](src/main.0-awesome.ts) to `main.n-new-lab-begin.ts` and update the paths to the app modules:
+4. Copy [`main.0-awesome.ts`](src/main.0-awesome.ts) to `main.n-new-lab-begin.ts` and update the paths to the app modules:
 
     ```
     import { AppModule } from './n-new-lab-begin/app.module';
     import { AppDevModule } from './n-new-lab-begin/app-dev.module';
     ```
 
-5.  Add a node script to the [`package.json`](package.json), setting the last
+5. Add a node script to the [`package.json`](package.json), setting the last
     two port digits (first digit is for `n`, second for the `new-lab-begin` variations).
 
     ```bash
@@ -87,7 +88,7 @@ Example: make a lab called `n-new-lab-begin` where `n` is an integer.
 
     > All labs run in the port 9000 series.
 
-6.  Update the `labTitle` property of the `ToolbarComponent` to `n-new-lab-xxx`, where n is the number of the lab and xxx is either `begin` or `end`
+6. Update the `labTitle` property of the `ToolbarComponent` to `n-new-lab-xxx`, where n is the number of the lab and xxx is either `begin` or `end`
 
     ```typescript
     export class ToolbarComponent {
@@ -96,7 +97,7 @@ Example: make a lab called `n-new-lab-begin` where `n` is an integer.
     }
     ```
 
-7.  Uncomment the appropriate lab state (e.g. begin or end) in `toolbar.component.scss`
+7. Uncomment the appropriate lab state (e.g. begin or end) in `toolbar.component.scss`
 
     ```css
     // @include primary-background-contrast-color; // end

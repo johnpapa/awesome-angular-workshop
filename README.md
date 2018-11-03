@@ -16,11 +16,11 @@ All apps are in the `src` folder. There is a `src/server` folder containing a no
 
 We also have a routing guard lab. `1-routing-guards-begin` and `1-routing-guards-end`.
 
-### 2-rxjs
+### 2-Modules
 
-`1-routing-begin` is our beginning lab for routing and `1-routing-begin-end` is the end state.
+`2-modules-begin` and `1-modules-end`.
 
-### 3-style
+### 3-rxjs
 
 **TBD**
 

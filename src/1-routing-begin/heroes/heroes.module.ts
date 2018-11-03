@@ -12,6 +12,5 @@ import { SharedModule } from '../shared/shared.module';
   imports: [CommonModule, SharedModule, HeroesRoutingModule],
   exports: [HeroesComponent, HeroDetailComponent],
   declarations: [HeroesComponent, HeroDetailComponent, HeroListComponent],
-  providers: [HeroService]
 })
 export class HeroesModule {}

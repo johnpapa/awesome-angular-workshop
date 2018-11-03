@@ -2,21 +2,17 @@
 import { Injectable } from '@angular/core';
 import {
   EntityCollectionServiceBase,
-  EntityCollectionServiceFactory
+  EntityCollectionServiceElementsFactory
 } from 'ngrx-data';
-
-import { Hero, ToastService } from '../core';
+import { Hero } from '../core';
 import { FilterObserver } from '../shared/filter';
 
 @Injectable({ providedIn: 'root' })
-export class HeroesService extends EntityCollectionServiceBase<Hero> {
+export class HeroService extends EntityCollectionServiceBase<Hero> {
   filterObserver: FilterObserver;
 
-  constructor(
-    entityServiceFactory: EntityCollectionServiceFactory,
-    private toastService: ToastService
-  ) {
-    super('Hero', entityServiceFactory);
+  constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
+    super('Hero', serviceElementsFactory);
 
     /** User's filter pattern */
     this.filterObserver = {

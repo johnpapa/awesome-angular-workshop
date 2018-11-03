@@ -6,7 +6,7 @@ import { ToastService, Villain } from '../core';
 
 const api = '/api';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class VillainService {
   constructor(private http: HttpClient, private toastService: ToastService) {}
 

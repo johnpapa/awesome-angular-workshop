@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Pluralizer } from './pluralizer';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class HttpUrlGenerator {
-  constructor(private pluralizer: Pluralizer) { }
+  constructor(private pluralizer: Pluralizer) {}
 
   entityResource(entityName: string, root: string): string {
     root = normalizeRoot(root);

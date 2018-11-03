@@ -5,13 +5,10 @@ import { catchError, combineLatest, finalize, tap } from 'rxjs/operators';
 import { Hero, ToastService } from '../core';
 import { FilterObserver } from '../shared/filter';
 
-
-
 const api = '/api';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class HeroService {
-
   // service's cache of heroes
   private heroes: Hero[] = []; // simplistic cache of heroes
 
@@ -22,11 +19,9 @@ export class HeroService {
 
   loading$ = new BehaviorSubject<boolean>(false);
 
-  constructor(
-    private http: HttpClient,
-    private toastService: ToastService) {
-      this.wireFilteredHeroes();
-    }
+  constructor(private http: HttpClient, private toastService: ToastService) {
+    this.wireFilteredHeroes();
+  }
 
   /** Updates cached heroes and push into the observable */
   private next(newHeroes: Hero[]): void {
@@ -40,7 +35,7 @@ export class HeroService {
   getHeroes(): void {
     this.loading$.next(true);
     this.http
-    .get<Hero[]>(`${api}/heroes/`)
+      .get<Hero[]>(`${api}/heroes/`)
       .pipe(
         tap(results => {
           this.next(results);
@@ -70,7 +65,7 @@ export class HeroService {
   }
 
   /** Delete hero-by-id from the database. Update heroes$. */
-  deleteHero(hero: Hero ): void {
+  deleteHero(hero: Hero): void {
     const id = hero && hero.id;
 
     // Optimistic delete: before request
@@ -79,7 +74,7 @@ export class HeroService {
 
     this.http
       .delete(`${api}/hero/${id}`)
-      .pipe( catchError(this.handleError) )
+      .pipe(catchError(this.handleError))
       .subscribe(); // <--- What if you don't subscribe?
   }
 
@@ -87,11 +82,11 @@ export class HeroService {
   updateHero(updatedHero: Hero): void {
     const id = updatedHero && updatedHero.id;
     this.http
-    .put<Hero>(`${api}/hero/${updatedHero.id}`, updatedHero)
+      .put<Hero>(`${api}/hero/${updatedHero.id}`, updatedHero)
       .pipe(
         // Pessimistic update: after succeeds
         tap(updated => {
-          this.next(this.heroes.map(h => h.id === id ? updatedHero : h));
+          this.next(this.heroes.map(h => (h.id === id ? updatedHero : h)));
           this.toast(`Hero ${updatedHero.name} updated`, 'PUT');
         }),
         catchError(this.handleError)
@@ -131,9 +126,9 @@ export class HeroService {
 
   filterProjector(filterValue: string, entities: Hero[]) {
     const regEx = filterValue ? new RegExp(filterValue, 'i') : undefined;
-    return regEx ?
-      entities.filter((e: any) => e.name && e.name.match(regEx)) :
-      entities;
+    return regEx
+      ? entities.filter((e: any) => e.name && e.name.match(regEx))
+      : entities;
   }
   // endregion wireFilteredHeroes
 }

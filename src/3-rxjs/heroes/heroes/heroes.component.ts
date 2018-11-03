@@ -12,7 +12,6 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./heroes.component.scss']
 })
 export class HeroesComponent implements OnInit {
-  addingHero = false;
   selectedHero: Hero;
 
   // for filtering
@@ -33,13 +32,11 @@ export class HeroesComponent implements OnInit {
   }
 
   clear() {
-    this.addingHero = false;
     this.selectedHero = null;
   }
 
   enableAddMode() {
-    this.addingHero = true;
-    this.selectedHero = null;
+    this.selectedHero = <any>{};
   }
 
   getHeroes() {
@@ -59,12 +56,10 @@ export class HeroesComponent implements OnInit {
   }
 
   onSelect(hero: Hero) {
-    this.addingHero = false;
     this.selectedHero = hero;
   }
 
   unselect() {
-    this.addingHero = false;
     this.selectedHero = null;
   }
 }

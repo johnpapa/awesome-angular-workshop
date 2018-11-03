@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize, map, tap } from 'rxjs/operators';
-
+import { finalize } from 'rxjs/operators';
 import { Villain } from '../../core';
 import { VillainService } from '../villain.service';
 
@@ -10,7 +9,6 @@ import { VillainService } from '../villain.service';
   styleUrls: ['./villain-detail-container.component.scss']
 })
 export class VillainDetailContainerComponent implements OnInit {
-  addingVillain = false;
   selectedVillain: Villain;
 
   loading: boolean;
@@ -29,13 +27,11 @@ export class VillainDetailContainerComponent implements OnInit {
   }
 
   clear() {
-    this.addingVillain = false;
     this.selectedVillain = null;
   }
 
   enableAddMode() {
-    this.addingVillain = true;
-    this.selectedVillain = null;
+    this.selectedVillain = <any>{};
   }
 
   getVillain() {
@@ -64,7 +60,6 @@ export class VillainDetailContainerComponent implements OnInit {
   }
 
   unselect() {
-    this.addingVillain = false;
     this.selectedVillain = null;
   }
 }

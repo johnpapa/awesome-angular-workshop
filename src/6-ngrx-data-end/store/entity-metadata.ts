@@ -1,8 +1,17 @@
 import {
-  defaultSelectId,
+  DefaultDataServiceConfig,
   EntityMetadataMap,
   PropsFilterFnFactory
 } from 'ngrx-data';
+
+export const defaultDataServiceConfig: DefaultDataServiceConfig = {
+  root: 'api', // root path to web api
+  timeout: 3000, // request timeout
+
+  // Simulate latency for demo
+  getDelay: 500,
+  saveDelay: 800
+};
 
 export const entityMetadata: EntityMetadataMap = {
   Hero: {
@@ -21,7 +30,7 @@ export const entityMetadata: EntityMetadataMap = {
 
     // DOUBLE BONUS
     // - performs optimistic add and update (no rollback)
-    //   see VillainsService
+    //   see VillainService
     entityDispatcherOptions: { optimisticAdd: true, optimisticUpdate: true }
   }
 };

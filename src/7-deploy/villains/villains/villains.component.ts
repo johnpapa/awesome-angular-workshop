@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-
 import { Villain } from '../../core';
 import { VillainService } from '../villain.service';
 
@@ -10,7 +9,6 @@ import { VillainService } from '../villain.service';
   styleUrls: ['./villains.component.scss']
 })
 export class VillainsComponent implements OnInit {
-  addingVillain = false;
   selectedVillain: Villain;
 
   villains: Villain[];
@@ -23,7 +21,6 @@ export class VillainsComponent implements OnInit {
   }
 
   clear() {
-    this.addingVillain = false;
     this.selectedVillain = null;
   }
 
@@ -33,12 +30,13 @@ export class VillainsComponent implements OnInit {
     this.villainService
       .deleteVillain(villain)
       .pipe(finalize(() => (this.loading = false)))
-      .subscribe(() => (this.villains = this.villains.filter(h => h.id !== villain.id)));
+      .subscribe(
+        () => (this.villains = this.villains.filter(h => h.id !== villain.id))
+      );
   }
 
   enableAddMode() {
-    this.addingVillain = true;
-    this.selectedVillain = null;
+    this.selectedVillain = <any>{};
   }
 
   getVillains() {
@@ -51,7 +49,6 @@ export class VillainsComponent implements OnInit {
   }
 
   onSelect(villain: Villain) {
-    this.addingVillain = false;
     this.selectedVillain = villain;
   }
 
@@ -61,7 +58,10 @@ export class VillainsComponent implements OnInit {
       .updateVillain(villain)
       .pipe(finalize(() => (this.loading = false)))
       .subscribe(
-        () => (this.villains = this.villains.map(h => (h.id === villain.id ? villain : h)))
+        () =>
+          (this.villains = this.villains.map(
+            h => (h.id === villain.id ? villain : h)
+          ))
       );
   }
 
@@ -70,11 +70,12 @@ export class VillainsComponent implements OnInit {
     this.villainService
       .addVillain(villain)
       .pipe(finalize(() => (this.loading = false)))
-      .subscribe(addedvillain => (this.villains = this.villains.concat(addedvillain)));
+      .subscribe(
+        addedvillain => (this.villains = this.villains.concat(addedvillain))
+      );
   }
 
   unselect() {
-    this.addingVillain = false;
     this.selectedVillain = null;
   }
 }

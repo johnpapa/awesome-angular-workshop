@@ -12,6 +12,5 @@ import { SharedModule } from '../shared/shared.module';
   imports: [CommonModule, SharedModule, VillainsRoutingModule],
   exports: [VillainsComponent, VillainDetailComponent],
   declarations: [VillainsComponent, VillainDetailComponent, VillainListComponent],
-  providers: [VillainService]
 })
 export class VillainsModule {}

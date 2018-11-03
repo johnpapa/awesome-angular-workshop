@@ -2,30 +2,27 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Hero } from '../../core';
 import { FilterObserver } from '../../shared/filter';
-// import { HeroesService } from '../heroes.service.1'; // messy 1st version
-import { HeroesService } from '../heroes.service'; // clean version
-
-
+// import { HeroService } from '../hero.service.1'; // messy 1st version
+import { HeroService } from '../hero.service'; // clean version
 
 @Component({
   selector: 'aw-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss'],
-  providers: [ HeroesService ],
+  providers: [HeroService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroesComponent implements OnInit {
-  addingHero = false;
   selectedHero: Hero;
 
   filterObserver: FilterObserver;
   filteredHeroes$: Observable<Hero[]>;
   loading$: Observable<boolean>;
 
-  constructor(public heroesService: HeroesService) {
-    this.filterObserver = heroesService.filterObserver;
-    this.filteredHeroes$ = heroesService.filteredEntities$;
-    this.loading$ = this.heroesService.loading$;
+  constructor(public heroService: HeroService) {
+    this.filterObserver = heroService.filterObserver;
+    this.filteredHeroes$ = heroService.filteredEntities$;
+    this.loading$ = this.heroService.loading$;
   }
 
   ngOnInit() {
@@ -33,40 +30,36 @@ export class HeroesComponent implements OnInit {
   }
 
   clear() {
-    this.addingHero = false;
     this.selectedHero = null;
   }
 
   deleteHero(hero: Hero) {
     this.unselect();
-    this.heroesService.delete(hero.id);
+    this.heroService.delete(hero.id);
   }
 
   enableAddMode() {
-    this.addingHero = true;
-    this.selectedHero = null;
+    this.selectedHero = <any>{};
   }
 
   getHeroes() {
-    this.heroesService.getAll();
+    this.heroService.getAll();
     this.unselect();
   }
 
   onSelect(hero: Hero) {
-    this.addingHero = false;
     this.selectedHero = hero;
   }
 
   update(hero: Hero) {
-    this.heroesService.update(hero);
+    this.heroService.update(hero);
   }
 
   add(hero: Hero) {
-    this.heroesService.add(hero);
+    this.heroService.add(hero);
   }
 
   unselect() {
-    this.addingHero = false;
     this.selectedHero = null;
   }
 }

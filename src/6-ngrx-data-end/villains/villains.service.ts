@@ -2,23 +2,21 @@
 import { Injectable } from '@angular/core';
 import {
   EntityCollectionServiceBase,
-  EntityCollectionServiceFactory
+  EntityCollectionServiceElementsFactory
 } from 'ngrx-data';
-
 // Bonus: added IdGeneratorService
-import { Villain, IdGeneratorService, ToastService } from '../core';
+import { IdGeneratorService, Villain } from '../core';
 import { FilterObserver } from '../shared/filter';
 
 @Injectable()
-export class VillainsService extends EntityCollectionServiceBase<Villain> {
+export class VillainService extends EntityCollectionServiceBase<Villain> {
   filterObserver: FilterObserver;
 
   constructor(
-    entityCollectionServiceFactory: EntityCollectionServiceFactory,
-    private idGenerator: IdGeneratorService, // Bonus: inject id generator
-    private toastService: ToastService
+    serviceElementsFactory: EntityCollectionServiceElementsFactory,
+    private idGenerator: IdGeneratorService // Bonus: inject id generator
   ) {
-    super('Villain', entityCollectionServiceFactory);
+    super('Villain', serviceElementsFactory);
 
     /** User's filter pattern */
     this.filterObserver = {
@@ -35,6 +33,6 @@ export class VillainsService extends EntityCollectionServiceBase<Villain> {
       const id = this.idGenerator.nextId();
       villain = { ...villain, id };
     }
-    super.add(villain);
+    return super.add(villain);
   }
 }

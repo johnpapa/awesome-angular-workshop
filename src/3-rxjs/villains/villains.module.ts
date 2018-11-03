@@ -23,8 +23,7 @@ import { MessageService } from '../core';
 
   providers: [
     // Module gets a private MessageService
-    MessageService, // <-- what happens if commented out?
-    VillainService
+    // MessageService, // <-- what happens if commented out?
   ]
 })
 export class VillainsModule {

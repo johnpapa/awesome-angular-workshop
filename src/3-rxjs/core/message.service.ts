@@ -1,14 +1,12 @@
 import { Injectable, OnDestroy } from '@angular/core';
-
 import { Subject } from 'rxjs';
-
 import { ToastService } from './toast.service';
 
 export class Message {
   constructor(public readonly message?: any, public readonly sender?: string) {}
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class MessageService implements OnDestroy {
   private messageRelay = new Subject<Message>();
 

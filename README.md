@@ -39,7 +39,7 @@ See how the basic app changes to conform to these three principles.
 `6-ngrx-data-begin` refactors `5-ngrx-end` to use _ngrx-data_ for Heroes.
 `6-ngrx-data-end` does the same to Villains.
 It demonstrates additional metadata features, including optimistic add and update,
-which require a client-side Id Generator for Adds (see VillainsService).
+which require a client-side Id Generator for Adds (see VillainService).
 
 ### 7-deploy
 
@@ -54,7 +54,7 @@ Locally with Docker
 1. Run `docker compose up` from the command palette in VS Code.
 2. Choose the debug option
 
-## Define Multiple Apps in the Same _src folder
+## Define Multiple Apps in the Same \_src folder
 
 Example: make a lab called `n-new-lab-begin` where `n` is an integer.
 

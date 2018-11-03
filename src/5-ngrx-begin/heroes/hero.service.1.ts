@@ -12,7 +12,7 @@
 
 
 // @Injectable()
-// export class HeroesService {
+// export class HeroService {
 
 //   constructor(
 //     private heroesDataService: HeroesDataService,

@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-
-import { Villain, ToastService } from '../core';
+import { ToastService, Villain } from '../core';
 
 const api = '/api';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class VillainService {
   constructor(private http: HttpClient, private toastService: ToastService) {}
 

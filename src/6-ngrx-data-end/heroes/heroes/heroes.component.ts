@@ -2,29 +2,26 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Hero } from '../../core';
 import { FilterObserver } from '../../shared/filter';
-import { HeroesService } from '../heroes.service';
-
-
+import { HeroService } from '../heroes.service';
 
 @Component({
   selector: 'aw-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss'],
-  providers: [ HeroesService ],
+  providers: [HeroService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroesComponent implements OnInit {
-  addingHero = false;
   selectedHero: Hero;
 
   filterObserver: FilterObserver;
   filteredHeroes$: Observable<Hero[]>;
   loading$: Observable<boolean>;
 
-  constructor(public heroesService: HeroesService) {
-    this.filterObserver = this.heroesService.filterObserver;
-    this.filteredHeroes$ = this.heroesService.filteredEntities$;
-    this.loading$ = this.heroesService.loading$;
+  constructor(public heroService: HeroService) {
+    this.filterObserver = this.heroService.filterObserver;
+    this.filteredHeroes$ = this.heroService.filteredEntities$;
+    this.loading$ = this.heroService.loading$;
   }
 
   ngOnInit() {
@@ -32,40 +29,36 @@ export class HeroesComponent implements OnInit {
   }
 
   clear() {
-    this.addingHero = false;
     this.selectedHero = null;
   }
 
   deleteHero(hero: Hero) {
     this.unselect();
-    this.heroesService.delete(hero.id);
+    this.heroService.delete(hero.id);
   }
 
   enableAddMode() {
-    this.addingHero = true;
-    this.selectedHero = null;
+    this.selectedHero = <any>{};
   }
 
   getHeroes() {
-    this.heroesService.getAll();
+    this.heroService.getAll();
     this.unselect();
   }
 
   onSelect(hero: Hero) {
-    this.addingHero = false;
     this.selectedHero = hero;
   }
 
   update(hero: Hero) {
-    this.heroesService.update(hero);
+    this.heroService.update(hero);
   }
 
   add(hero: Hero) {
-    this.heroesService.add(hero);
+    this.heroService.add(hero);
   }
 
   unselect() {
-    this.addingHero = false;
     this.selectedHero = null;
   }
 }

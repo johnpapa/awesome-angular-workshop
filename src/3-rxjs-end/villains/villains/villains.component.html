@@ -1,0 +1,19 @@
+<div class="control-panel">
+  <div class="button-panel">
+    <button mat-raised-button color="primary" type="button" (click)="getVillains()" matTooltip="Refresh the villains">Refresh</button>
+    <button mat-raised-button color="primary" type="button" (click)="enableAddMode()" *ngIf=" !selectedVillain"
+      matTooltip="Add a new villain">Add</button>
+  </div>
+</div>
+
+<div class="content-container">
+  <div class="list-container">
+    <aw-villain-list *ngIf="villains" [villains]="villains"
+      [selectedVillain]="selectedVillain" (selected)="onSelect($event)"
+      (deleted)="deleteVillain($event)">
+    </aw-villain-list>
+  </div>
+  <div class="detail-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

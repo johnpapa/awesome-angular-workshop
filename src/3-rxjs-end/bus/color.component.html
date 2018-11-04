@@ -1,0 +1,7 @@
+<div class="{{color}}">
+  <h4>{{color}} Component
+    <a (click)="send()">Send</a>
+    <a (click)="clear()">Clear</a>
+  </h4>
+  <div *ngFor="let message of messages$ | async" class="message">{{message}}<div>
+<div>

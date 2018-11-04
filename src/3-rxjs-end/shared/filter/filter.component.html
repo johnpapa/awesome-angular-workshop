@@ -1,0 +1,12 @@
+<div>
+  <mat-form-field>
+    <!-- REACTIVE FORM CONTROL -->
+    <input matInput [formControl]="filter" [placeholder]="filterPlaceholder">
+  </mat-form-field>
+
+  <button mat-button *ngIf="filter.value" (click)="clear()"
+    matSuffix mat-icon-button class="clear-button" aria-label="Clear"
+    matTooltip="Clear filter">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

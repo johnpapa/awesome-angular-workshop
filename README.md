@@ -22,7 +22,7 @@ We also have a routing guard lab. `1-routing-guards-begin` and `1-routing-guards
 
 ### 3-rxjs
 
-**TBD**
+How to communicate changes across the app with RxJS
 
 ### 4-reactive
 

@@ -4,7 +4,6 @@ import {
   MatButtonModule,
   MatCardModule,
   MatIconModule,
-  MatProgressSpinnerModule,
   MatSlideToggleModule,
   MatSnackBarModule,
   MatTooltipModule,
@@ -15,34 +14,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FilterComponent } from './filter/filter.component';
 
+export const importsExports = [
+  CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatInputModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatToolbarModule,
+  MatTooltipModule,
+];
+
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatCardModule,
-    MatIconModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatToolbarModule,
-    MatTooltipModule,
-  ],
+  imports: importsExports,
   exports: [
     FilterComponent,
-    MatButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatIconModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatToolbarModule,
-    MatTooltipModule,
+    importsExports
   ],
   declarations: [FilterComponent]
 })

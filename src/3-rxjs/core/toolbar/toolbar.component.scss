@@ -1,5 +1,9 @@
 @import '../../../styles/mixin';
 
+button {
+  margin-left: 1em;
+}
+
 .pull-right {
   position: fixed !important;
   right: 8px;

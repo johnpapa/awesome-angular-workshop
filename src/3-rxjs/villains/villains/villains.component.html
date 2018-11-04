@@ -8,13 +8,10 @@
 
 <div class="content-container">
   <div class="list-container">
-    <div *ngIf="villains">
-      <mat-spinner *ngIf="loading;else villainList" mode="indeterminate" color="accent"></mat-spinner>
-      <ng-template #villainList>
-        <aw-villain-list [villains]="villains" [selectedVillain]="selectedVillain" (deleted)="deleteVillain($event)"
-          (selected)="onSelect($event)"></aw-villain-list>
-      </ng-template>
-    </div>
+    <aw-villain-list *ngIf="villains" [villains]="villains"
+      [selectedVillain]="selectedVillain" (selected)="onSelect($event)"
+      (deleted)="deleteVillain($event)">
+    </aw-villain-list>
   </div>
   <div class="detail-container">
     <router-outlet></router-outlet>

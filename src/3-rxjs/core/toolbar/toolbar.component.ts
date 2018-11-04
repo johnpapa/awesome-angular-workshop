@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MessageService } from '../message.service';
+import { BusyService } from '../../core/busy.service';
 
 @Component({
   selector: 'aw-toolbar',
@@ -7,10 +8,11 @@ import { MessageService } from '../message.service';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
+  private isBusy = false;
   labTitle = '3-rxjs';
   labState = '';
 
-  constructor(private messageService: MessageService) {}
+  constructor(private busyService: BusyService, private messageService: MessageService) {}
 
   // Send a message that would close VillainDetailsContainer
   // IF the MessageService were not shadowed (which it is)
@@ -18,4 +20,8 @@ export class ToolbarComponent {
   fakeMessage() {
     this.messageService.send('Fake close', 'VillainDetailContainer');
   }
-}
+
+  toggleBusy() {
+    this.busyService.setBusy(this.isBusy = !this.isBusy);
+  }
+ }

@@ -15,7 +15,8 @@
       <a mat-button [routerLink]="['/raw']" routerLinkActive="router-link-active">
         <span>Raw</span>
       </a>
-      <button mat-raised-button color="accent" type="button" (click)="fakeMessage()" matTooltip="Send fake Villains Message">Fake message</button>
+      <button mat-raised-button color="accent" type="button" (click)="toggleBusy()" >Busy</button>
+      <button mat-raised-button color="accent" type="button" (click)="fakeMessage()" matTooltip="Send fake Villains Message">Message</button>
     </div>
   </mat-toolbar-row>
   <mat-toolbar-row class="row-commands">

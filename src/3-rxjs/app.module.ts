@@ -10,6 +10,7 @@ import { filter } from 'rxjs/operators';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core';
+import { MatProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { CoreModule } from './core';
     BrowserAnimationsModule,
     CoreModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
     AppRoutingModule
   ],
   declarations: [AppComponent],

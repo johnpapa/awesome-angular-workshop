@@ -1,10 +1,8 @@
 import * as Rxjs from 'rxjs';
-import * as op from 'rxjs/operators';
-import { of, interval } from 'rxjs';
 
 import { filter, map, reduce, scan, take } from 'rxjs/operators';
 
-import { log } from '../helpers'; // if we need it.
+import { log } from '../core/helpers'; // if we need it.
 
 export function play(...args: any[]) {
 

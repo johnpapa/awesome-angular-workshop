@@ -1,11 +1,4 @@
-// #region imports
-// tslint:disable:member-ordering
-// Namespace to get something you need
-import * as Rxjs from 'rxjs';
-import * as op from 'rxjs/operators';
-// #endregion imports
-
-import { timerData$ } from '../helpers';
+import { timerData$ } from '../core/helpers';
 
   /**
    * Normal Observables notify only a single subscriber (uni-cast)

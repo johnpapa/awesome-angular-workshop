@@ -2,10 +2,9 @@
 // tslint:disable:member-ordering
 // Namespace to get something you need
 import * as Rxjs from 'rxjs';
-import * as op from 'rxjs/operators';
 // #endregion imports
 
-import { timerData$ } from '../helpers';
+import { timerData$ } from '../core/helpers';
 
 export function play(...args: any[]) {
 

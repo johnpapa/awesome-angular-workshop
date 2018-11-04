@@ -20,7 +20,6 @@ const routes: Routes = [{ path: '', pathMatch: 'full', component: BusContainerCo
     BlueComponent,
     GreenComponent,
     RedComponent
-  ],
-  exports: [BusContainerComponent]
+  ]
 })
 export class BusModule {}

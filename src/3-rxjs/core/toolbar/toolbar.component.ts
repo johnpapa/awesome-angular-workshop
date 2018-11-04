@@ -15,10 +15,8 @@ export class ToolbarComponent {
   constructor(private busyService: BusyService, private messageService: MessageService) {}
 
   // Send a message that would close VillainDetailsContainer
-  // IF the MessageService were not shadowed (which it is)
-  // Prove it by removing MessageService provider from VillainsModule.
   sendMessage() {
-    this.messageService.send('Fake close', 'VillainDetailContainer');
+    this.messageService.send('Message close', 'VillainDetailContainer');
   }
 
   toggleBusy() {

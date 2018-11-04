@@ -1,15 +1,13 @@
 // #region imports
 // tslint:disable:member-ordering
 import { Component, OnDestroy } from '@angular/core';
-import { loggingObserver, logOp, messageObserver } from '../helpers';
+import { messageObserver } from '../core/helpers';
 
 // Always available in the ops playground
 import { Observable, Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 // Namespace to get something you need
 import * as Rxjs from 'rxjs';
-import * as op from 'rxjs/operators';
 // #endregion imports
 
 import { play as map01 } from './01-map';

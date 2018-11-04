@@ -28,9 +28,6 @@ const routes: Routes = [{ path: '', pathMatch: 'full', component: BasicsComponen
     Basic06Component,
     Basic07Component,
     BasicsComponent,
-  ],
-  exports: [
-    BasicsComponent
   ]
 })
 export class BasicsModule { }

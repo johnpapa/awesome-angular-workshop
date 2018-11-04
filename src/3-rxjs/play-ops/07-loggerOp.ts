@@ -3,10 +3,9 @@
 import { Observable } from 'rxjs';
 
 // Namespace to get something you need
-import * as Rxjs from 'rxjs';
 import * as op from 'rxjs/operators';
 // #endregion imports
-import { timerData$ } from '../helpers';
+import { timerData$ } from '../core/helpers';
 
 /** Observer logs to the console with optional name prefix */
 export const loggingObserver = (name?: string) => ({

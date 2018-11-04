@@ -11,7 +11,7 @@ import { BusyService } from './core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  busy = true;
+  busy = false;
 
   constructor(busyService: BusyService) {
     busyService.busy$.pipe(

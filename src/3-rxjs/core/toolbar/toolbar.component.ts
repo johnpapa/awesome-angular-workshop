@@ -17,7 +17,7 @@ export class ToolbarComponent {
   // Send a message that would close VillainDetailsContainer
   // IF the MessageService were not shadowed (which it is)
   // Prove it by removing MessageService provider from VillainsModule.
-  fakeMessage() {
+  sendMessage() {
     this.messageService.send('Fake close', 'VillainDetailContainer');
   }
 

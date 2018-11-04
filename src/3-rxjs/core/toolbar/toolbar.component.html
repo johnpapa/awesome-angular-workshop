@@ -12,11 +12,23 @@
       <a mat-button [routerLink]="['/villains']" routerLinkActive="router-link-active">
         <span>Villains</span>
       </a>
-      <a mat-button [routerLink]="['/raw']" routerLinkActive="router-link-active">
-        <span>Raw</span>
+      <a mat-button [routerLink]="['/basics']" routerLinkActive="router-link-active">
+        <span>Basics</span>
+      </a>
+      <a mat-button [routerLink]="['/play-ops']" routerLinkActive="router-link-active">
+        <span>Ops</span>
+      </a>
+      <a mat-button [routerLink]="['/play-subject']" routerLinkActive="router-link-active">
+        <span>Subject</span>
+      </a>
+      <a mat-button [routerLink]="['/unsubscribe']" routerLinkActive="router-link-active">
+        <span>Unsubscribe</span>
+      </a>
+      <a mat-button [routerLink]="['/bus']" routerLinkActive="router-link-active">
+        <span>Bus</span>
       </a>
       <button mat-raised-button color="accent" type="button" (click)="toggleBusy()" >Busy</button>
-      <button mat-raised-button color="accent" type="button" (click)="fakeMessage()" matTooltip="Send fake Villains Message">Message</button>
+      <button mat-raised-button color="accent" type="button" (click)="sendMessage()" matTooltip="Send Villains Message">Message</button>
     </div>
   </mat-toolbar-row>
   <mat-toolbar-row class="row-commands">

@@ -18,6 +18,8 @@ export interface FilterObserver {
 export class FilterComponent implements OnInit {
   @Input() filterObserver: FilterObserver;
   @Input() filterPlaceholder: string;
+
+  // ReactiveForms control is observable
   filter: FormControl = new FormControl();
 
   clear() {
@@ -25,6 +27,7 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
+
     // Although no need to unsubscribe because subscribing to self,
     // unsubscribe for safety
     this.filter.valueChanges

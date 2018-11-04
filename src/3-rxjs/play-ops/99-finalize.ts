@@ -49,14 +49,14 @@ export function play(component: { producer: Rxjs.Observer<string> }) {
         console.log('Producer unsubscribed!');
         alert('Producer unsubscribed!');
       }
-    }
+    };
   });
 
   return observable$.pipe(
     op.finalize(() => {
       console.log('finalized');
-      alert('FINALIZED')
+      alert('FINALIZED');
     })
-  )
+  );
 
 }

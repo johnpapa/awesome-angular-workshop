@@ -1,13 +1,17 @@
 // #region imports
 // tslint:disable:member-ordering
-import { Observable } from 'rxjs';
+import { of, Observable } from 'rxjs';
+import { filter, map, reduce } from 'rxjs/operators';
 
 // Namespace to get something you need
-import * as op from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 // #endregion imports
 import { timerData$ } from '../core/helpers';
 
-/** Observer logs to the console with optional name prefix */
+/**
+ * Observer logs to the console with optional name prefix
+ * When observable nexts, errors, or completes
+ */
 export const loggingObserver = (name?: string) => ({
   next(value: any) { name ? console.log(name, value) : console.log(value); },
   error(err: any) { console.error((name ?  `${name}: ` : '') + err); },
@@ -19,19 +23,9 @@ export const loggingObserver = (name?: string) => ({
 /** Custom operator that taps into observable and logs it with the loggingObserver */
 export const logOp = (name?: string) =>
   (o: Observable<any>) => o.pipe(
-    // use the tap operator for side-effects
-    op.tap(loggingObserver(name))
+    // tap operator for side-effects like logging
+    tap(loggingObserver(name))
   );
-
-
-
-/**
- * Custom nameless logger operator
- * Usage: drop it in a pipe:  data$.pipe(log, filter(...), etc.)
- */
-export const log = logOp();
-
-
 
 
 export function play(...args: any[]) {
@@ -43,3 +37,29 @@ export function play(...args: any[]) {
   return observable$;
 
 }
+
+
+
+
+
+/// SIMPLE VERSION. NO NAME
+
+/** Observer logs to the console when observable nexts, errors, or completes */
+export const logObserver = () => ({
+  next(value: any) { console.log(value); },
+  error(err: any) { console.error(err); },
+  complete() { console.log('Completed'); }
+});
+
+/** Operator fn: takes an observable; returns an observable */
+export const log = (o: Observable<any>) => o.pipe(
+  tap(logObserver())
+);
+
+const numbers$ = of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+const result$ = numbers$.pipe(
+  filter(i => i % 2 === 1),
+  log,
+  map(i => i * 2),
+  reduce((acc, curr) => acc + curr, 0)
+);

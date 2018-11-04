@@ -26,7 +26,9 @@ import { MatProgressSpinnerModule } from '@angular/material';
 })
 export class AppModule {
   constructor(router: Router) {
-    // Log when router navigates to a destination
+
+    // Observe router events
+    // Log when router successfully navigates to a destination
     router.events
       .pipe(filter(evt => evt instanceof NavigationEnd))
       .subscribe((evt: NavigationEnd) => {

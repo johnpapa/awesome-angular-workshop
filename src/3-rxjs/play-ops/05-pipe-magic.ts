@@ -15,11 +15,11 @@ export function play(...args: any[]) {
   // const numbers$ = interval(50); // tick tick tick
 
   /**
-   * To double the odd integers and sum them ...
-   * pipe with RxJS array-like operators
+   * Double the odd integers and sum them by
+   * piping with RxJS array-like operators
    */
   const result$ = numbers$.pipe(
-    take(10),  //  WHAT IF WE LEAVE THIS OUT?
+    take(10),  //  WHAT IF NUMBERS COME FROM INTERVAL AND WE LEAVE THIS OUT?
     filter(i => i % 2 === 1),
     map(i => i * 2),
     reduce((acc, curr) => acc + curr, 0)

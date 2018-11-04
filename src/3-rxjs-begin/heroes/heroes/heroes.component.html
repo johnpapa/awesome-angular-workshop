@@ -1,0 +1,28 @@
+<div class="control-panel">
+  <div class="button-panel">
+    <button mat-raised-button color="primary" type="button" (click)="getHeroes()" matTooltip="Refresh the heroes">Refresh</button>
+    <button mat-raised-button color="primary" type="button" (click)="enableAddMode()" *ngIf="!selectedHero" matTooltip="Add a new hero">Add</button>
+  </div>
+
+  <!-- FILTER OBSERVER -->
+
+  <aw-filter [filterObserver]="filterObserver" filterPlaceholder="Filter by hero's name"
+  class="filter-panel"></aw-filter>
+
+</div>
+
+<div class="content-container">
+
+  <!-- ASYNC PIPES -->
+  <!-- *ngIf="heroes$ | async as heroes" -->
+  <div class="list-container" *ngIf="filteredHeroes$ | async as heroes">
+    <aw-hero-list
+      [heroes]="heroes" (deleted)="deleteHero($event)"
+      [selectedHero]="selectedHero" (selected)="onSelect($event)"></aw-hero-list>
+  </div>
+
+  <div class="detail-container">
+    <aw-hero-detail *ngIf="selectedHero" [hero]="selectedHero" (unselect)="unselect()" (add)="add($event)" (update)="update($event)">
+    </aw-hero-detail>
+  </div>
+</div>

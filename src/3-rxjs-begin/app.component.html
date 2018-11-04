@@ -1,0 +1,9 @@
+<div class="layout">
+  <aw-toolbar></aw-toolbar>
+
+  <mat-spinner *ngIf="busy" mode="indeterminate" color="accent"></mat-spinner>
+  <div class="content" [hidden]="busy">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

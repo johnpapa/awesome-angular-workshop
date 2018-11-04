@@ -1,0 +1,23 @@
+<h4>Subject - {{playName}}</h4>
+
+<select (change)="selected($event.currentTarget.value)">
+  <option *ngFor="let name of playList" >{{name}}</option>
+</select>
+
+<div class="buttons">
+  <button type="text" (click)="start()">Start</button>
+  <span *ngIf="producer">
+    <button type="text" (click)="next()">Next</button>
+    <button type="text" (click)="error()">Error</button>
+    <button type="text" (click)="complete()">Done</button>
+  </span>
+  <button type="text" (click)="clear()">Clear</button>
+</div>
+
+<ol>
+  <li *ngFor="let message of messages">{{message}}</li>
+</ol>
+
+<div *ngIf="errorMessage" class="error" >
+  {{errorMessage}}
+</div>

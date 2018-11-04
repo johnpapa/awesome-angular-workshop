@@ -1,0 +1,45 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div>
+      <a class="ng-title-icon" href="http://angular.io" target="_blank">
+        <i></i>
+      </a>
+      <span class="title">{{labTitle}}</span>
+      <span></span>
+      <a mat-button [routerLink]="['/heroes']" routerLinkActive="router-link-active">
+        <span>Heroes</span>
+      </a>
+      <a mat-button [routerLink]="['/villains']" routerLinkActive="router-link-active">
+        <span>Villains</span>
+      </a>
+      <a mat-button [routerLink]="['/basics']" routerLinkActive="router-link-active">
+        <span>Basics</span>
+      </a>
+      <a mat-button [routerLink]="['/play-ops']" routerLinkActive="router-link-active">
+        <span>Ops</span>
+      </a>
+      <a mat-button [routerLink]="['/play-subject']" routerLinkActive="router-link-active">
+        <span>Subject</span>
+      </a>
+      <a mat-button [routerLink]="['/unsubscribe']" routerLinkActive="router-link-active">
+        <span>Unsubscribe</span>
+      </a>
+      <a mat-button [routerLink]="['/bus']" routerLinkActive="router-link-active">
+        <span>Bus</span>
+      </a>
+      <button mat-raised-button color="accent" type="button" (click)="toggleBusy()" >Busy</button>
+      <button mat-raised-button color="accent" type="button" (click)="sendMessage()" matTooltip="Send Villains Message">Message</button>
+    </div>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="row-commands">
+    <div class="footer-container">
+      <span class="spacer">{{labState}}</span>
+      <a href="http://twitter.com/wardbell" target="_blank" class="avatar avatar-1" title="Ward Bell">
+        <i></i>
+      </a>
+      <a href="http://twitter.com/john_papa" target="_blank" class="avatar avatar-2" title="John Papa">
+        <i></i>
+      </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

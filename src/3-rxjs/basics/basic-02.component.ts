@@ -4,7 +4,6 @@ import { Observable, Observer } from 'rxjs';
 
 ///// Producer Class //////
 class Producer {
-
   constructor(private observer: Observer<string>) {}
 
   // Various "next" behaviors
@@ -32,12 +31,10 @@ class Producer {
   }
 }
 
-
-
 //////  Component //////////
 
 @Component({
-  selector: 'app-basic-02',
+  selector: 'aw-basic-02',
   template: `
     <h4>02 - Error & Complete</h4>
 
@@ -61,33 +58,29 @@ class Producer {
   `
 })
 export class Basic02Component implements OnInit {
-
   errorMessage = '';
   messages: string[] = [];
 
   producer: Producer;
 
   // Wrap new Producer in an RxJS Observable
-  observable = new Observable(
-    (o: Observer<string>) => { this.producer = new Producer(o); }
-  );
+  observable = new Observable((o: Observer<string>) => {
+    this.producer = new Producer(o);
+  });
 
   // Subscriber: An object with all three Observable methods
   subscriber = {
-    next: value => this.messages.push(value),
+    next: (value: string) => this.messages.push(value),
 
     error: (err: string) => (this.errorMessage = err),
 
     complete: () => this.messages.push('Observable completed')
   };
 
-
   ngOnInit() {
-
     // Subscribe to execute (nothing happens until we subscribe!)
     // The subscriber will receive emitted values from the observable.
     this.observable.subscribe(this.subscriber);
-
   }
 
   clear() {

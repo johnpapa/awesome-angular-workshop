@@ -4,7 +4,6 @@ import { Observable, Observer } from 'rxjs';
 
 ///// Producer Class //////
 class Producer {
-
   constructor(private observer: Observer<string>) {}
 
   // Various "next" behaviors
@@ -32,12 +31,10 @@ class Producer {
   }
 }
 
-
-
 //////  Component //////////
 
 @Component({
-  selector: 'app-basic-03',
+  selector: 'aw-basic-03',
   template: `
     <h4>03 - Subscribe fn params</h4>
 
@@ -61,19 +58,17 @@ class Producer {
   `
 })
 export class Basic03Component implements OnInit {
-
   errorMessage = '';
   messages: string[] = [];
 
   producer: Producer;
 
   // Wrap new Producer in an RxJS Observable
-  observable = new Observable(
-    (o: Observer<string>) => { this.producer = new Producer(o); }
-  );
+  observable = new Observable((o: Observer<string>) => {
+    this.producer = new Producer(o);
+  });
 
   ngOnInit() {
-
     // Don't need a Subscriber object to subscribe
     // Subscribe also takes zero-to-three fn params: next, error, complete
     this.observable.subscribe(
@@ -81,7 +76,6 @@ export class Basic03Component implements OnInit {
       (err: string) => (this.errorMessage = err),
       () => this.messages.push('Observable completed')
     );
-
   }
 
   clear() {

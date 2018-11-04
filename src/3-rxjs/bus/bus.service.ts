@@ -4,7 +4,7 @@ import { Subject, ReplaySubject, BehaviorSubject } from 'rxjs';
 
 export class Message {
   type: string;
-  payload?: any
+  payload?: any;
   sender?: any;
 }
 

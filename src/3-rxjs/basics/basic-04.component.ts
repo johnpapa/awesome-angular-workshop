@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-basic-04',
+  selector: 'aw-basic-04',
   template: `
     <h4>04 - Producer on its own</h4>
 

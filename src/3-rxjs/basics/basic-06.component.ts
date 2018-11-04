@@ -4,7 +4,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { fromEvent } from 'rxjs';
 
 @Component({
-  selector: 'app-basic-06',
+  selector: 'aw-basic-06',
   template: `
     <h4>06 - fromEvent</h4>
 
@@ -20,8 +20,8 @@ import { fromEvent } from 'rxjs';
   `
 })
 export class Basic06Component implements OnInit {
-
-  @ViewChild('input') inputElRef: ElementRef;
+  @ViewChild('input')
+  inputElRef: ElementRef;
   inputEl: HTMLInputElement;
   messages: string[] = [];
 
@@ -31,12 +31,10 @@ export class Basic06Component implements OnInit {
     // RxJS `fromEvent` makes it easy to observe DOM events (note import above)
     const keyupObservable = fromEvent<KeyboardEvent>(this.inputEl, 'keyup');
 
-    keyupObservable.subscribe(
-      keyboardEvent => {
-        console.log('KeyboardEvent', keyboardEvent);
-        this.messages.push(this.inputEl.value)
-      }
-    );
+    keyupObservable.subscribe(keyboardEvent => {
+      console.log('KeyboardEvent', keyboardEvent);
+      this.messages.push(this.inputEl.value);
+    });
   }
 
   clear() {

@@ -7,7 +7,7 @@ import { fromEvent } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-basic-07',
+  selector: 'aw-basic-07',
   template: `
     <h4>07 - pipe</h4>
 
@@ -23,8 +23,8 @@ import { filter, tap } from 'rxjs/operators';
   `
 })
 export class Basic07Component implements OnInit {
-
-  @ViewChild('input') inputElRef: ElementRef;
+  @ViewChild('input')
+  inputElRef: ElementRef;
   inputEl: HTMLInputElement;
   messages: string[] = [];
 
@@ -32,9 +32,8 @@ export class Basic07Component implements OnInit {
     this.inputEl = this.inputElRef.nativeElement;
 
     const enterKeyObservable = fromEvent<KeyboardEvent>(this.inputEl, 'keyup')
-       // "pipe" operators to manipulate observable outputs
+      // "pipe" operators to manipulate observable outputs
       .pipe(
-
         // Tap for side-effects
         // Report each key to console (typical debugging step)
         tap(keyboardEvent => {
@@ -46,11 +45,9 @@ export class Basic07Component implements OnInit {
         filter(KeyboardEvent => KeyboardEvent.key === 'Enter')
       );
 
-    enterKeyObservable.subscribe(
-      enterKeyEvent => {
-        this.messages.push(this.inputEl.value)
-      }
-    );
+    enterKeyObservable.subscribe(enterKeyEvent => {
+      this.messages.push(this.inputEl.value);
+    });
   }
 
   clear() {

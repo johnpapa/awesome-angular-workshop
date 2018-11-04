@@ -3,9 +3,9 @@ import { ColorComponent } from './color.component';
 import { BusService } from './bus.service';
 
 @Component({
-  selector: 'app-blue',
+  selector: 'aw-blue',
   templateUrl: './color.component.html',
-  styleUrls:  ['./color.component.scss'],
+  styleUrls: ['./color.component.scss']
 })
 export class BlueComponent extends ColorComponent {
   color = 'Blue';

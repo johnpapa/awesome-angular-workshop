@@ -4,7 +4,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 
 @Component({
-  selector: 'app-basic-05',
+  selector: 'aw-basic-05',
   template: `
     <h4>05 - Observe keystrokes</h4>
 
@@ -20,8 +20,8 @@ import { Observable, Observer } from 'rxjs';
   `
 })
 export class Basic05Component implements OnInit {
-
-  @ViewChild('input') inputElRef: ElementRef;
+  @ViewChild('input')
+  inputElRef: ElementRef;
   inputEl: HTMLInputElement;
   messages: string[] = [];
 
@@ -34,12 +34,10 @@ export class Basic05Component implements OnInit {
       this.inputEl.addEventListener('keyup', listener);
     });
 
-    keyupObservable.subscribe(
-      keyupEvent => {
-        console.log('KeyUp event', keyupEvent);
-        this.messages.push(this.inputEl.value)
-      }
-    );
+    keyupObservable.subscribe(keyupEvent => {
+      console.log('KeyUp event', keyupEvent);
+      this.messages.push(this.inputEl.value);
+    });
   }
 
   clear() {

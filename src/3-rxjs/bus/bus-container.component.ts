@@ -5,9 +5,9 @@ import { BusService, Message } from './bus.service';
   selector: 'aw-bus',
   template: `
   <h3>Message Bus <button (click)="clear()">Clear All</button></h3>
-    <app-red></app-red>
-    <app-green></app-green>
-    <app-blue></app-blue>
+    <aw-red></aw-red>
+    <aw-green></aw-green>
+    <aw-blue></aw-blue>
   `
 })
 export class BusContainerComponent {

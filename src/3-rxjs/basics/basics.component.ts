@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-basics',
+  selector: 'aw-basics',
   template: `
   <h3>Basics</h3>
 
@@ -16,13 +16,13 @@ import { Component } from '@angular/core';
   </div>
 
   <div [ngSwitch]="demo">
-    <app-basic-01 *ngSwitchCase="01"></app-basic-01>
-    <app-basic-02 *ngSwitchCase="02"></app-basic-02>
-    <app-basic-03 *ngSwitchCase="03"></app-basic-03>
-    <app-basic-04 *ngSwitchCase="04"></app-basic-04>
-    <app-basic-05 *ngSwitchCase="05"></app-basic-05>
-    <app-basic-06 *ngSwitchCase="06"></app-basic-06>
-    <app-basic-07 *ngSwitchCase="07"></app-basic-07>
+    <aw-basic-01 *ngSwitchCase="01"></aw-basic-01>
+    <aw-basic-02 *ngSwitchCase="02"></aw-basic-02>
+    <aw-basic-03 *ngSwitchCase="03"></aw-basic-03>
+    <aw-basic-04 *ngSwitchCase="04"></aw-basic-04>
+    <aw-basic-05 *ngSwitchCase="05"></aw-basic-05>
+    <aw-basic-06 *ngSwitchCase="06"></aw-basic-06>
+    <aw-basic-07 *ngSwitchCase="07"></aw-basic-07>
   </div>
 `
 })

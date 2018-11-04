@@ -1,9 +1,4 @@
-// #region imports
-// tslint:disable:member-ordering
-// Namespace to get something you need
-import * as Rxjs from 'rxjs';
-import * as op from 'rxjs/operators';
-// #endregion imports
+import { ReplaySubject } from 'rxjs';
 
 /**
  * ReplaySubject has no initial value.
@@ -12,7 +7,7 @@ import * as op from 'rxjs/operators';
  */
 export function play(...args: any[]) {
 
-  const replaySubject = new Rxjs.ReplaySubject(1);
+  const replaySubject = new ReplaySubject(2); // play with buffer size
 
   setTimeout(() => {
     replaySubject.next('Got the data');
@@ -30,7 +25,7 @@ export function play(...args: any[]) {
 
 
 /**
- * As far as I can tell, BehaviorSubject could be implemented with ReplaySubject
+ * BehaviorSubject could be implemented with ReplaySubject
  * // subject = new Rxjs.ReplaySubject(1); // buffer one value
  * // subject.next('initial'); // immediately next the initial value, before 1st possible subscription.
  */

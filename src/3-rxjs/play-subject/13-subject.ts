@@ -1,13 +1,8 @@
-// #region imports
-// tslint:disable:member-ordering
-// Namespace to get something you need
-import * as Rxjs from 'rxjs';
-import * as op from 'rxjs/operators';
-// #endregion imports
+import { Subject } from 'rxjs';
 
 export function play(...args: any[]) {
 
-  const subject = new Rxjs.Subject();
+  const subject = new Subject();
 
   subject.next('Waiting for data');
 

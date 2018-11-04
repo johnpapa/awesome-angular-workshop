@@ -1,9 +1,4 @@
-// #region imports
-// tslint:disable:member-ordering
-// Namespace to get something you need
-import * as Rxjs from 'rxjs';
-import * as op from 'rxjs/operators';
-// #endregion imports
+import { BehaviorSubject } from 'rxjs';
 
 /**
  * BehaviorSubject created with an initial value
@@ -11,7 +6,7 @@ import * as op from 'rxjs/operators';
  */
 export function play(...args: any[]) {
 
-  const behaviorSubject = new Rxjs.BehaviorSubject('Waiting for data');
+  const behaviorSubject = new BehaviorSubject('Waiting for data');
 
   setTimeout(() => {
     behaviorSubject.next('Got the data');

@@ -14,16 +14,16 @@ import * as op from 'rxjs/operators';
 import { play as observable11 } from './11-observable';
 import { play as subject12 } from './12-subject';
 import { play as subject13 } from './13-subject';
-import { play as behaviorSubject14 } from './14-behavior-subject';
-import { play as replaySubject15 } from './15-replay-subject';
+import { play as replaySubject14 } from './14-replay-subject';
+import { play as behaviorSubject15 } from './15-behavior-subject';
 import { play as shareReplay16 } from './16-share-replay';
 
 const playFns: {[name: string]: (...args: any[]) => Observable<any>} = {
   '11-Observable': observable11,
   '12-Subject': subject12,
   '13-Subject': subject13,
-  '14-BehaviorSubject': behaviorSubject14,
-  '15-ReplaySubject': replaySubject15,
+  '15-ReplaySubject': replaySubject14,
+  '14-BehaviorSubject': behaviorSubject15,
   '16-ShareReplay': shareReplay16,
 };
 

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MessageService } from '../message.service';
-import { BusyService } from '../../core/busy.service';
 
 @Component({
   selector: 'aw-toolbar',
@@ -8,11 +7,10 @@ import { BusyService } from '../../core/busy.service';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
-  private isBusy = false;
   labTitle = '3-rxjs';
   labState = 'begin';
 
-  constructor(private busyService: BusyService, private messageService: MessageService) {}
+  constructor(private messageService: MessageService) {}
 
   // Send a message that would close VillainDetailsContainer
   sendMessage() {
@@ -20,6 +18,6 @@ export class ToolbarComponent {
   }
 
   toggleBusy() {
-    this.busyService.setBusy(this.isBusy = !this.isBusy);
+    // wire busy service to this button click handler
   }
  }

@@ -2,21 +2,16 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
 
-import { BusyService } from './busy.service';
-
-@Injectable() // no providedIn because multi-provided
+// Explain how this interceptor is provided.
+// Why is it provided that way?
+// Can you see how this interceptor follows the "Russian Doll" pattern?
+@Injectable()
 export class BusyHttpInterceptor implements HttpInterceptor {
-  constructor(private busyService: BusyService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.busyService.setBusy(true);
-
-    return next.handle(request).pipe(
-      finalize(() => {
-        this.busyService.setBusy(false);
-      })
-    );
+    // turn busy on when the request comes in
+    // turn it off when the response goes out ... even a failed response.
+    return next.handle(request);
   }
 }

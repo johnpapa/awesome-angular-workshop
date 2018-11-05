@@ -16,7 +16,6 @@ export class VillainsComponent implements OnInit, OnDestroy {
   selectedVillain: Villain;
 
   villains: Villain[];
-  loading: boolean;
   constructor(
     private villainService: VillainService,
     private router: Router,
@@ -44,10 +43,8 @@ export class VillainsComponent implements OnInit, OnDestroy {
 
   getVillains() {
     this.clear();
-    this.loading = true;
     this.villainService
       .getVillains()
-      .pipe(finalize(() => (this.loading = false)))
       .subscribe(villains => (this.villains = villains));
   }
 
@@ -57,31 +54,25 @@ export class VillainsComponent implements OnInit, OnDestroy {
   }
 
   add(villain: Villain) {
-    this.loading = true;
     this.villainService
       .addVillain(villain)
-      .pipe(finalize(() => (this.loading = false)))
       .subscribe(
         addedVillain => (this.villains = this.villains.concat(addedVillain))
       );
   }
 
   deleteVillain(villain: Villain) {
-    this.loading = true;
     this.clear();
     this.villainService
       .deleteVillain(villain)
-      .pipe(finalize(() => (this.loading = false)))
       .subscribe(
         () => (this.villains = this.villains.filter(h => h.id !== villain.id))
       );
   }
 
   update(villain: Villain) {
-    this.loading = true;
     this.villainService
       .updateVillain(villain)
-      .pipe(finalize(() => (this.loading = false)))
       .subscribe(
         () =>
           (this.villains = this.villains.map(

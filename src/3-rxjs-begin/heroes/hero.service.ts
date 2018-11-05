@@ -17,8 +17,6 @@ export class HeroService {
   filteredHeroes$: Observable<Hero[]>;
   heroes$ = new BehaviorSubject<Hero[]>([]);
 
-  loading$ = new BehaviorSubject<boolean>(false);
-
   constructor(private http: HttpClient, private toastService: ToastService) {
     this.wireFilteredHeroes();
   }
@@ -31,9 +29,8 @@ export class HeroService {
 
   // region Commands
 
-  /** Get all heroes from the database. Update heroes$ and loading$ indicator. */
+  /** Get all heroes from the database. Update heroes$ . */
   getHeroes(): void {
-    this.loading$.next(true);
     this.http
       .get<Hero[]>(`${api}/heroes/`)
       .pipe(
@@ -41,15 +38,13 @@ export class HeroService {
           this.next(results);
           this.toast('Heroes retrieved successfully!', 'GET');
         }),
-        catchError(this.handleError),
-        finalize(() => this.loading$.next(false))
+        catchError(this.handleError)
       )
       .subscribe(); // <--- What if you don't subscribe?
   }
 
   /** Add hero to the database. Update heroes$. */
   addHero(hero: Hero): void {
-    this.loading$.next(true);
     this.http
       .post<Hero>(`${api}/hero/`, hero)
       .pipe(
@@ -59,7 +54,6 @@ export class HeroService {
           this.toast(`Hero ${hero.name} added`, 'POST');
         }),
         catchError(this.handleError),
-        finalize(() => this.loading$.next(false))
       )
       .subscribe(); // <--- What if you don't subscribe?
   }

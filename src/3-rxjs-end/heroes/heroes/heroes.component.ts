@@ -18,13 +18,11 @@ export class HeroesComponent implements OnInit {
   filterObserver: FilterObserver;
   filteredHeroes$: Observable<Hero[]>;
   heroes$: Observable<Hero[]>;
-  loading$: Observable<boolean>;
 
   constructor(private heroService: HeroService) {
     this.heroes$ = heroService.heroes$;
     this.filterObserver = heroService.filterObserver;
     this.filteredHeroes$ = heroService.filteredHeroes$;
-    this.loading$ = heroService.loading$;
   }
 
   ngOnInit() {

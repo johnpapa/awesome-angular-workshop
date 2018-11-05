@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+
+// Import a Subject of some kind from rxjs
+// Be ready to justify your choice
+import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class BusyService {
 
-  private busySubject = new ReplaySubject<boolean>(1);
-  busy$ = this.busySubject.asObservable();
+  // private busySubject = ... created subject
 
-  setBusy(isBusy = true) {
-    this.busySubject.next(isBusy);
+  // initialize this observable properly
+  busy$: Observable<boolean> = of(false);
+
+  setBusy(isBusy: boolean) {
+    // should signal whether is or is not busy
   }
 
 }

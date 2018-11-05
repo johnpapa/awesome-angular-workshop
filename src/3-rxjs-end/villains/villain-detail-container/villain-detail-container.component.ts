@@ -14,7 +14,6 @@ export const VILLAIN_DETAIL_CONTAINER = 'VillainDetailContainer';
 export class VillainDetailContainerComponent implements OnInit {
   selectedVillain: Villain;
 
-  loading: boolean;
   private id: number;
 
   constructor(
@@ -37,7 +36,6 @@ export class VillainDetailContainerComponent implements OnInit {
   }
 
   close() {
-    this.loading = false;
     this.sendMessage('Close')();
   }
 
@@ -47,15 +45,12 @@ export class VillainDetailContainerComponent implements OnInit {
 
   getVillain() {
     this.clear();
-    this.loading = true;
     this.villainService
       .getVillain(this.id)
-      .pipe(finalize(() => (this.loading = false)))
       .subscribe(villain => (this.selectedVillain = villain));
   }
 
   add(villain: Villain) {
-    this.loading = true;
     this.villainService
       .addVillain(villain)
       .pipe(
@@ -66,7 +61,6 @@ export class VillainDetailContainerComponent implements OnInit {
   }
 
   update(villain: Villain) {
-    this.loading = true;
     this.villainService
       .updateVillain(villain)
       .pipe(

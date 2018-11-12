@@ -2,12 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { Subject, ReplaySubject, BehaviorSubject } from 'rxjs';
 
-export class Message {
-  type: string;
-  payload?: any;
-  sender?: any;
-}
-
 @Injectable({providedIn: 'root'})
 export class BusService {
 
@@ -19,3 +13,8 @@ export class BusService {
   }
 }
 
+export class Message {
+  type: string;
+  payload?: any;
+  sender?: any;
+}

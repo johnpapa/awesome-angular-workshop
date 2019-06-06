@@ -20,7 +20,7 @@ import { fromEvent } from 'rxjs';
   `
 })
 export class Basic06Component implements OnInit {
-  @ViewChild('input')
+  @ViewChild('input', { static: true })
   inputElRef: ElementRef;
   inputEl: HTMLInputElement;
   messages: string[] = [];

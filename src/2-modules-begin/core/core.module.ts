@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import {
-  MatButtonModule,
-  MatIconModule,
-  MatSnackBarModule,
-  MatToolbarModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { throwIfAlreadyLoaded } from './module-import-check';
 import { ToolbarComponent } from './toolbar/toolbar.component';

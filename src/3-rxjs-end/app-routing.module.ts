@@ -5,31 +5,31 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'heroes' },
   {
     path: 'heroes',
-    loadChildren: '3-rxjs-end/heroes/heroes.module#HeroesModule'
+    loadChildren: () => import('3-rxjs-end/heroes/heroes.module').then(m => m.HeroesModule)
   },
   {
     path: 'villains',
-    loadChildren: '3-rxjs-end/villains/villains.module#VillainsModule'
+    loadChildren: () => import('3-rxjs-end/villains/villains.module').then(m => m.VillainsModule)
   },
   {
     path: 'basics',
-    loadChildren: '3-rxjs-end/basics/basics.module#BasicsModule'
+    loadChildren: () => import('3-rxjs-end/basics/basics.module').then(m => m.BasicsModule)
   },
   {
     path: 'play-ops',
-    loadChildren: '3-rxjs-end/play-ops/play-ops.module#PlayOpsModule'
+    loadChildren: () => import('3-rxjs-end/play-ops/play-ops.module').then(m => m.PlayOpsModule)
   },
   {
     path: 'play-subject',
-    loadChildren: '3-rxjs-end/play-subject/play-subject.module#PlaySubjectModule'
+    loadChildren: () => import('3-rxjs-end/play-subject/play-subject.module').then(m => m.PlaySubjectModule)
   },
   {
     path: 'unsubscribe',
-    loadChildren: '3-rxjs-end/unsubscribe/unsubscribe.module#UnsubscribeModule'
+    loadChildren: () => import('3-rxjs-end/unsubscribe/unsubscribe.module').then(m => m.UnsubscribeModule)
   },
   {
     path: 'bus',
-    loadChildren: '3-rxjs-end/bus/bus.module#BusModule'
+    loadChildren: () => import('3-rxjs-end/bus/bus.module').then(m => m.BusModule)
   }
 ];
 

@@ -5,11 +5,11 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'heroes' },
   {
     path: 'heroes',
-    loadChildren: '4-reactive/heroes/heroes.module#HeroesModule'
+    loadChildren: () => import('4-reactive/heroes/heroes.module').then(m => m.HeroesModule)
   },
   {
     path: 'villains',
-    loadChildren: '4-reactive/villains/villains.module#VillainsModule'
+    loadChildren: () => import('4-reactive/villains/villains.module').then(m => m.VillainsModule)
   }
 ];
 

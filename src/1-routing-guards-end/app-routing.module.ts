@@ -6,12 +6,12 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'heroes' },
   {
     path: 'heroes',
-    loadChildren: '1-routing-guards-end/heroes/heroes.module#HeroesModule'
+    loadChildren: () => import('1-routing-guards-end/heroes/heroes.module').then(m => m.HeroesModule)
   },
   {
     path: 'villains',
     loadChildren:
-      '1-routing-guards-end/villains/villains.module#VillainsModule',
+      () => import('1-routing-guards-end/villains/villains.module').then(m => m.VillainsModule),
     canActivate: [AuthGuard]
   }
 ];

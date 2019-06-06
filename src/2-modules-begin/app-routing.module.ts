@@ -5,11 +5,11 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'heroes' },
   {
     path: 'heroes',
-    loadChildren: '2-modules-begin/heroes/heroes.module#HeroesModule'
+    loadChildren: () => import('2-modules-begin/heroes/heroes.module').then(m => m.HeroesModule)
   },
   {
     path: 'villains',
-    loadChildren: '2-modules-begin/villains/villains.module#VillainsModule'
+    loadChildren: () => import('2-modules-begin/villains/villains.module').then(m => m.VillainsModule)
   }
 ];
 

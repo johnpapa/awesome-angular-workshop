@@ -7,11 +7,11 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'heroes' },
   {
     path: 'heroes',
-    loadChildren: '1-routing-guards-begin/heroes/heroes.module#HeroesModule'
+    loadChildren: () => import('1-routing-guards-begin/heroes/heroes.module').then(m => m.HeroesModule)
   },
   {
     path: 'villains',
-    loadChildren: '1-routing-guards-begin/villains/villains.module#VillainsModule'
+    loadChildren: () => import('1-routing-guards-begin/villains/villains.module').then(m => m.VillainsModule)
   }
 ];
 

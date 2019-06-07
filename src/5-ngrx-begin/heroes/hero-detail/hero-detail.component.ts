@@ -25,7 +25,7 @@ export class HeroDetailComponent implements OnChanges {
   @Output() add = new EventEmitter<Hero>();
   @Output() update = new EventEmitter<Hero>();
 
-  @ViewChild('name', { static: true }) nameElement: ElementRef;
+  @ViewChild('name', { static: false }) nameElement: ElementRef;
 
   addMode = false;
 

@@ -23,7 +23,7 @@ import { filter, tap } from 'rxjs/operators';
   `
 })
 export class Basic07Component implements OnInit {
-  @ViewChild('input', { static: true })
+  @ViewChild('input', { static: false })
   inputElRef: ElementRef;
   inputEl: HTMLInputElement;
   messages: string[] = [];

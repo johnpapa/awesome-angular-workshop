@@ -25,7 +25,7 @@ export class VillainDetailComponent implements OnChanges {
   @Output() add = new EventEmitter<Villain>();
   @Output() update = new EventEmitter<Villain>();
 
-  @ViewChild('name', { static: true }) nameElement: ElementRef;
+  @ViewChild('name', { static: false }) nameElement: ElementRef;
 
   addMode = false;
   form = this.fb.group({

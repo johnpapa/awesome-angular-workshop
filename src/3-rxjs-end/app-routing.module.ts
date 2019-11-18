@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'bus',
     loadChildren: '3-rxjs-end/bus/bus.module#BusModule'
+  },
+  {
+    path: 'mapping',
+    loadChildren: '3-rxjs-end/mapping/mapping.module#MappingModule'
   }
 ];
 

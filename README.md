@@ -18,7 +18,7 @@ We also have a routing guard lab. `1-routing-guards-begin` and `1-routing-guards
 
 ### 2-Modules
 
-`2-modules-begin` and `1-modules-end`.
+`2-modules-begin` and `2-modules-end`.
 
 ### 3-rxjs
 

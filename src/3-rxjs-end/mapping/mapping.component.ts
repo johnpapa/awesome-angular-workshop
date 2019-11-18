@@ -3,7 +3,7 @@ import { Observable, Subject } from 'rxjs';
 
 import {
   concatMap, exhaustMap, mergeMap, switchMap,
-  endWith,  scan, map, startWith
+  endWith,  scan, map, startWith, withLatestFrom
 } from 'rxjs/operators';
 
 import { addImg } from './addImg';
@@ -21,7 +21,10 @@ export class MappingComponent {
   @ViewChild('svg') svg: ElementRef;
 
   /** Subject/Observable of clicks of the drop button */
-  drop$ = new Subject();
+  click$ = new Subject();
+
+  /** Observable of drop button clicks that is reset when results.dropped goes to zero */
+  clicks$: Observable<number>;
 
   /** Observable of results from clicking the drop button. */
   results$: Observable<Results>;
@@ -37,7 +40,6 @@ export class MappingComponent {
    * @param mapOpName Name of the map operator to use
    */
   resetResults$(mapOpName: string) {
-
     // Return an image animation observable that emits an action: { type: string } when
     // 1) the image starts to drop,
     // 2) after each animation frame, and
@@ -61,7 +63,7 @@ export class MappingComponent {
     // tslint:enable: deprecation
 
     // Observable of flattened add()observables, mapped with the selected map operator
-    const mapped$ = this.drop$.pipe(
+    const mapped$ = this.click$.pipe(
       mapOperator(add) // e.g., mergeMap(add)
     );
 
@@ -86,6 +88,12 @@ export class MappingComponent {
 
       // Begin with zeroed-out results each time we reset results$
       startWith({ dropped: 0, completed: 0 })
+    );
+
+    // Reset the clicks count by recreating the observable
+    this.clicks$ = this.click$.pipe(
+      scan((count) => count + 1, 0),
+      startWith(0)
     );
   }
 

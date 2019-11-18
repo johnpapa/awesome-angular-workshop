@@ -13,7 +13,8 @@
 <ng-container *ngIf="results$ | async as results">
   <div>
     <button mat-raised-button color="primary" type="button" matTooltip="Drop a kitten"
-    (click)="drop$.next()">Drop</button>
+    (click)="click$.next()">Drop</button>
+    Clicks: {{clicks$ | async}}
     Dropped: {{results.dropped}}
     Complete: {{results.completed}}
   </div>

@@ -3,7 +3,7 @@ import { Observable, Subject } from 'rxjs';
 
 import {
   concatMap, exhaustMap, mergeMap, switchMap,
-  endWith,  scan, map, startWith, withLatestFrom
+  endWith,  scan, map, startWith
 } from 'rxjs/operators';
 
 import { addImg } from './addImg';
@@ -20,6 +20,15 @@ interface Results {
 export class MappingComponent {
   @ViewChild('svg') svg: ElementRef;
 
+  private _mapOpName = 'mergeMap';
+
+  /** Name of the map operator to use */
+  get mapOpName() { return this._mapOpName; }
+  set mapOpName(name: string) {
+    this._mapOpName = name;
+    this.resetResults$();
+  }
+
   /** Subject/Observable of clicks of the drop button */
   click$ = new Subject();
 
@@ -30,7 +39,7 @@ export class MappingComponent {
   results$: Observable<Results>;
 
   constructor() {
-    this.resetResults$('mergeMap'); // start with default, mergeMap
+    this.resetResults$(); // start with default, mergeMap
   }
 
   /**
@@ -39,7 +48,7 @@ export class MappingComponent {
    * Animation observables are (or may be) created after each drop-click.
    * @param mapOpName Name of the map operator to use
    */
-  resetResults$(mapOpName: string) {
+  resetResults$() {
     // Return an image animation observable that emits an action: { type: string } when
     // 1) the image starts to drop,
     // 2) after each animation frame, and
@@ -54,11 +63,12 @@ export class MappingComponent {
     );
 
     // Pick the selected map operator
+    const mop = this.mapOpName;
     // tslint:disable: deprecation
     const mapOperator =
-      mapOpName === 'exhaustMap' ? exhaustMap :
-      mapOpName === 'concatMap' ? concatMap :
-      mapOpName === 'switchMap' ? switchMap :
+      mop === 'exhaustMap' ? exhaustMap :
+      mop === 'concatMap' ? concatMap :
+      mop === 'switchMap' ? switchMap :
       mergeMap; // default to mergeMap
     // tslint:enable: deprecation
 

@@ -2,21 +2,25 @@
 
 <label>
   Map Operator:
-  <select (change)="resetResults$($event.currentTarget.value)" style="font-size: 1em">
+  <select [(ngModel)]="mapOpName" style="font-size: 1em">
     <option>concatMap</option>
     <option>exhaustMap</option>
-    <option selected="true">mergeMap</option>
+    <option>mergeMap</option>
     <option>switchMap</option>
   </select>
 </label>
 
 <ng-container *ngIf="results$ | async as results">
-  <div>
+  <div style="margin: 0.5em 0">
     <button mat-raised-button color="primary" type="button" matTooltip="Drop a kitten"
-    (click)="click$.next()">Drop</button>
+      (click)="click$.next()">Drop</button>
+
     Clicks: {{clicks$ | async}}
     Dropped: {{results.dropped}}
     Complete: {{results.completed}}
+
+    <button mat-raised-button color="accent" type="button" matTooltip="Reset results"
+      (click)="resetResults$()">Reset</button>
   </div>
   <svg #svg width="600" height="500" style="border: 1px solid gray"></svg>
 <ng-container>

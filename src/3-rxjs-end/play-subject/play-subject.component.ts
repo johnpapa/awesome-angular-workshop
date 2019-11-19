@@ -20,8 +20,8 @@ import { play as shareReplay16 } from './16-share-replay';
 
 const playFns: {[name: string]: (...args: any[]) => Observable<any>} = {
   '11-Observable': observable11,
-  '12-Subject': subject12,
-  '13-Subject': subject13,
+  '12-Subject (once)': subject12,
+  '13-Subject (multiple)': subject13,
   '15-ReplaySubject': replaySubject14,
   '14-BehaviorSubject': behaviorSubject15,
   '16-ShareReplay': shareReplay16,

@@ -1,110 +1,86 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-
 import {
   concatMap, exhaustMap, mergeMap, switchMap,
-  endWith,  scan, map, startWith
+  endWith,  ignoreElements, scan, startWith, tap
 } from 'rxjs/operators';
 
 import { addImg } from './addImg';
 
 interface Results {
+  clicks: number;
   dropped: number;
   completed: number;
 }
 
-// tslint:disable:member-ordering
 @Component({
   templateUrl: './mapping.component.html'
 })
 export class MappingComponent {
   @ViewChild('svg') svg: ElementRef;
 
-  private _mapOpName = 'mergeMap';
-
-  /** Name of the map operator to use */
-  get mapOpName() { return this._mapOpName; }
-  set mapOpName(name: string) {
-    this._mapOpName = name;
-    this.resetResults$();
-  }
-
   /** Subject/Observable of clicks of the drop button */
   click$ = new Subject();
 
-  /** Observable of drop button clicks that is reset when results.dropped goes to zero */
-  clicks$: Observable<number>;
+  /** Name of the map operator to use. */
+  mapOpName = 'mergeMap'; // initial map operator
 
-  /** Observable of results from clicking the drop button. */
+  /**
+   * Observable of results from clicking the drop button given the current map operator.
+   * Emits {clicks, dropped, completed} counts built from combining clicks with
+   * animation observables, created and flattened by the selected map operator.
+   */
   results$: Observable<Results>;
 
   constructor() {
-    this.resetResults$(); // start with default, mergeMap
+    this.reset(); // start with initial map operator
   }
 
-  /**
-   * Reset the observable of results (results$).
-   * Emits results built from combining animation observables with the selected map operator.
-   * Animation observables are (or may be) created after each drop-click.
-   * @param mapOpName Name of the map operator to use
-   */
-  resetResults$() {
-    // Return an image animation observable that emits an action: { type: string } when
-    // 1) the image starts to drop,
-    // 2) after each animation frame, and
-    // 3) when it stops
-    const add = () =>  addImg(this.svg.nativeElement as SVGSVGElement).pipe(
-      // when the ball animates, emit an action
-      map((e) => ({ type: 'IMG_ANIMATE', e })), // for diagnostic purposes
-      // it starts with a IMG_START action
-      startWith({ type: 'IMG_START' }),
-      // it ends with a IMG_END action
-      endWith({ type: 'IMG_END' }),
-    );
-
-    // Pick the selected map operator
-    const mop = this.mapOpName;
+  /** Reset the results$ observable. */
+  reset() {
+    // Pick the map operator by the selected name
     // tslint:disable: deprecation
     const mapOperator =
-      mop === 'exhaustMap' ? exhaustMap :
-      mop === 'concatMap' ? concatMap :
-      mop === 'switchMap' ? switchMap :
-      mergeMap; // default to mergeMap
+      this.mapOpName === 'exhaustMap' ? exhaustMap :
+      this.mapOpName === 'concatMap' ? concatMap :
+      this.mapOpName === 'switchMap' ? switchMap :
+      mergeMap; // default
     // tslint:enable: deprecation
 
-    // Observable of flattened add()observables, mapped with the selected map operator
-    const mapped$ = this.click$.pipe(
-      mapOperator(add) // e.g., mergeMap(add)
+    // Create a new animation observable that
+    // emits 'START' when the animation observable begins and
+    // emits 'END' when the observable completes and
+    // ignores the emitted animation values.
+    const animation = () => addImg(this.svg.nativeElement).pipe(
+      ignoreElements(),
+      startWith('START'),
+      endWith('END'),
     );
 
+    // Initialize results
+    const results = { clicks: 0, dropped: 0, completed: 0 };
 
-    // Observable of mapped animations, transformed into results for display
-    this.results$ = mapped$.pipe(
-      // use a scan for state management (we'll just mutate state, it's okay here)
-      scan((state: Results, action: {type: string}) => {
-        switch (action.type) {
-          // when you get a IMG_START, increment dropped counter
-          case 'IMG_START':
-            state.dropped++;
-            break;
-          // when you get a IMG_END, increment the completed counter
-          case 'IMG_END':
-            state.completed++;
-            break;
-          // otherwise we don't care
+    // Observable of clicks mapped into animation actions, transformed into results for display
+    this.results$ = this.click$.pipe(
+      // Bump the click count
+      tap(() => results.clicks++),
+
+      // Map the button clicks into new animation observables (emitting 'START' and 'STOP').
+      // Animation observables are created and flattened with the selected map operator.
+      mapOperator(animation), // e.g., mergeMap(animation)
+
+      // Scan animation actions into the emitted results object
+      scan((state: Results, action: string) => {
+        if (action === 'START') {
+          state.dropped++;
+        } else if (action === 'END') {
+          state.completed++;
         }
         return state;
-      }, { dropped: 0, completed: 0 }),
+      }, results),
 
-      // Begin with zeroed-out results each time we reset results$
-      startWith({ dropped: 0, completed: 0 })
-    );
-
-    // Reset the clicks count by recreating the observable
-    this.clicks$ = this.click$.pipe(
-      scan((count) => count + 1, 0),
-      startWith(0)
+      // Begin with initial (zero-ed out) results
+      startWith(results)
     );
   }
-
 }

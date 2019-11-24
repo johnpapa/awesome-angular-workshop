@@ -2,7 +2,7 @@
 
 <label>
   Map Operator:
-  <select [(ngModel)]="mapOpName" style="font-size: 1em">
+  <select [(ngModel)]="mapOpName" (change)="reset()" style="font-size: 1em">
     <option>concatMap</option>
     <option>exhaustMap</option>
     <option>mergeMap</option>
@@ -15,12 +15,12 @@
     <button mat-raised-button color="primary" type="button" matTooltip="Drop a kitten"
       (click)="click$.next()">Drop</button>
 
-    Clicks: {{clicks$ | async}}
+    Clicks: {{results.clicks}}
     Dropped: {{results.dropped}}
     Complete: {{results.completed}}
 
     <button mat-raised-button color="accent" type="button" matTooltip="Reset results"
-      (click)="resetResults$()">Reset</button>
+      (click)="reset()">Reset</button>
   </div>
   <svg #svg width="600" height="500" style="border: 1px solid gray"></svg>
 <ng-container>

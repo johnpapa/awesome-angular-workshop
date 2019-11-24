@@ -16,7 +16,7 @@ export interface ImgAnimationEvent {
  * @param svg The SVG image to which the animated image will be appended.
  * @returns object with data about the most recent frame of the animation
  */
-export const addImg = (svg: any) => defer(() => {
+export const addImg = (svg: SVGSVGElement) => defer(() => {
   // Animate the image
   // const elem = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   // elem.style = 'fill: red; stroke: none;';
